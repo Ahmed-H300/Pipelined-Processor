@@ -163,3 +163,97 @@ run
 run
 force reg_write_low 0
 run
+force reg_write_low 0
+force data_to_be_written_low 15'd5
+run
+force reg_write_low 1
+ru
+# ambiguous command name "ru": run runIntHandler runStatus
+run
+# WARNING: No extended dataflow license exists
+set reset 1
+# 1
+force reset 1
+run
+force data_to_be_written_low 15'd99
+run
+run
+force reset 0
+run
+# WARNING: No extended dataflow license exists
+run
+force reset 1
+run
+force reset 0
+run
+quit -sim
+# End time: 22:18:42 on Nov 27,2022, Elapsed time: 1:29:25
+# Errors: 0, Warnings: 8
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of CU.v was successful.
+# Compile of reg.v was successful.
+# 17 compiles, 0 failed with no errors.
+# Load canceled
+vsim -gui work.regFile
+# vsim -gui work.regFile 
+# Start time: 22:18:56 on Nov 27,2022
+# Loading work.regFile
+# Loading work.Reg
+add wave -position insertpoint  \
+sim:/regFile/reset \
+sim:/regFile/register_out \
+sim:/regFile/reg_write_low \
+sim:/regFile/reg_write_high \
+sim:/regFile/reg_readnum_src \
+sim:/regFile/reg_readnum_dst \
+sim:/regFile/reg_dst_low \
+sim:/regFile/reg_dst_high \
+sim:/regFile/reg2_read_dst \
+sim:/regFile/reg1_read_src \
+sim:/regFile/data_to_be_written_low \
+sim:/regFile/data_to_be_written_high \
+sim:/regFile/data_clk_select \
+sim:/regFile/data_actual \
+sim:/regFile/clk_Rdst2_input \
+sim:/regFile/clk_Rdst2 \
+sim:/regFile/clk_Rdst1_input \
+sim:/regFile/clk_Rdst1 \
+sim:/regFile/clk_actual \
+sim:/regFile/clk
+force reg_readnum_dst 3'd0
+force reg_readnum_src 3'd1
+force reset 0
+force clk 0
+force reg_dst_low 3'd0
+force reg_dst_high 3'd1
+force data_to_be_written_low 15'd25
+force data_to_be_written_high 15'd15
+force reg_write_high 0
+force reg_write_low 0
+run
+force reg_write_high 1
+force reg_write_low 1
+run
+force -freeze sim:/regFile/clk 1 0, 0 {50 ps} -r 100
+run
+force reset 1
+run
+force reset 0
+run
+quit -sim
+# End time: 22:20:00 on Nov 27,2022, Elapsed time: 0:01:04
+# Errors: 0, Warnings: 2
