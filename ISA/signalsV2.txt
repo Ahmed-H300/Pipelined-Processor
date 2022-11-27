@@ -1,0 +1,139 @@
+control unit signals: 32 signals	-> active high		// there is a decoding circuit in the fetch stage to handle the LDM command
+---------------------
+-> RegLow_write 	-> 1 bit (reg_dst1_write_back)
+	active in :
+		- all of R_type instructions
+		- m_type in case of IN
+		- s_type in case of POP and PC != 1
+		- I type in case of LDM
+
+-> RegHigh_write2	-> 1 bit (reg_dst2_write_back)	
+	active in :
+		- multiplication command only
+
+-> ALU_OP		-> 4 bits
+	values:
+		- 0 (ADD) when opcode is 1 and funct is 2
+		- 1 (SUB) when opcode is 1 and funct is 3
+		- 2 (INC) when opcode is 2 and funct is 2
+		- 3 (DEC) when opcode is 2 and funct is 3
+		- 4 (AND) when opcode is 3 and funct is 1
+		- 5 (OR) when opcode is 3 and funct is 0
+		- 6 (NOT) when opcode is 3 and funct is 2
+		- 7 (SHL) when opcode is 2 and funct is 0
+		- 8 (SHR) when opcode is 2 and funct is 1
+		- 9 (MUL) when opcode is 1 and funct is 1
+		- 10 (DIV) when opcode is 1 and funct is 0
+		- 11 (MOV) when opcode is 3 and funct is 3
+	otherwise:
+		- we use the command MOV for any other operation
+				
+
+	
+-> ALU_src1		-> 2 bits		(to select between shmt, Rsrc, data fro, second line in case of LDM)
+	values: 
+		- 0 : when input to Rsrc in ALU comes from register file (anyother case)
+		- 1 : when input to Rsrc in ALU comes from DATA which is 16 input used mostly with LDM command
+		- 2 : when input to Rsrc in ALU comes from shmt to do shifting (ALUOP = SHF | SHR)
+		
+
+ 
+-> MemToReg		-> 1 bit		(to choose the source of Rdst1 is comming from the memory or result of ALU)	
+	active in :
+		- LDD, POP (where PC != 0) , IN
+		
+		
+-> memWrite		-> 1 bit 		(signal to write to the data memory)
+	active in :
+		- PUSH, STD, CALL #imm , CALL Rdst
+
+-> memRead		-> 1 bit		(signal to read from the data memory)
+	active in :
+		- POP, LDD
+
+-> portWrite		-> 1 bit		(signal to write to the port memory)
+	active in : 
+		-  OUT
+
+-> portRead		-> 1 bit		(signal to read from the port memory)
+	active in :
+		- IN
+
+-> memType		-> 1 bit		(to select between the port memory and data memory)
+	active in :
+		- when memRead or memWrite is high 
+	
+
+-> PC_push_pop		-> 1 bit 		(to indication we should pop/push PC)
+	active in:
+		- using PUSH/POP and PC = 1
+
+-> flags_push_pop	-> 1 bit 		(to indication we should pop/push flags)
+	active in:
+		- using PUSH/POP and flags = 1
+
+-> JMP_type		-> 2 bit 		(to indicate whether jump on: flag(carry, zero, negative) or unconditional)
+	values:
+		- 0 when performing unconditional jump
+		- 1 when jumping on carry flag
+		- 2 when jumping on negative flag
+		- 3 when jumping on zero flag
+
+-> is_jmp		-> 1 bit 		(to indication it's a jump command or not)
+	active in:
+		- b_type instructions, CALL, I_type except for LDM
+
+-> JMP_src		-> 1 bit 		(to select whether to jump using immediate value or using register)
+	active in:
+		- I_type
+
+
+
+-> SET_Z		-> 1 bit 		(sets the zero flag)
+	active in:
+		- c_type instructions group 1 (SET_Z)
+
+-> SET_N		-> 1 bit 		(sets the negative flag)
+	active in:
+		- c_type instructions group 1 (SET_N)
+
+-> SET_C		-> 1 bit 		(sets the carry flag)
+	active in:
+		- c_type instructions group 1 (SET_C)
+
+-> SET_INT		-> 1 bit 		(sets the interrupt flag)
+	active in:
+		- c_type instructions group 1 (SET_INT)
+
+
+-> CLR_Z		-> 1 bit 		(clears the zero flag)
+	active in:
+		- c_type instructions group 0 (CLR_Z) and CLR_FLAGS instruction
+
+-> CLR_N		-> 1 bit 		(clears the negative flag)
+	active in:
+		- c_type instructions group 0 (CLR_N) and CLR_FLAGS instruction
+
+-> CLR_C		-> 1 bit 		(clears the carry flag)
+	active in:
+		- c_type instructions group 0 (CLR_C) and CLR_FLAGS instruction
+
+-> CLR_INT		-> 1 bit 		(clears the interrupt aaflag)
+	active in:
+		- c_type instructions group 0 (CLR_INT) and CLR_FLAGS instruction
+		- RTI instruction (POP PC, flags)
+
+
+-> SP_src		-> 2 bit 		(select whether to keep SP value as it's or decrement it or increment it)
+	values :
+		- 0	keep the value of SP as it's in case of NO (PUSH/POP, CALL)
+		- 1	decrement the value of SP by 1 incase of POP
+		- 2 	increment the value of SP by 1 incase of PUSH, CALL
+
+-> mem_data_src		-> 1 bit 		(select between PUSH PC or Rdst)
+	active in:
+		- PUSH command, PC | flags = 1
+
+-> mem_address_src	-> 1 bit 		(select between using address using Rdst and SP)
+	acive in :
+		- POP/PUSH instructions (s_type)

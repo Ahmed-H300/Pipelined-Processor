@@ -1,0 +1,165 @@
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of CU.v was successful.
+# Compile of reg.v failed with 1 errors.
+# 17 compiles, 1 failed with 1 error.
+# Error opening D:/PROJECTS/third year/first term/computer architecture/codes/work/(vlog-13069) D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v
+# Path name 'D:/PROJECTS/third year/first term/computer architecture/codes/work/(vlog-13069) D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v' doesn't exist.
+# Error opening D:/PROJECTS/third year/first term/computer architecture/codes/work/(vlog-13069) D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v
+# Path name 'D:/PROJECTS/third year/first term/computer architecture/codes/work/(vlog-13069) D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v' doesn't exist.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of CU.v was successful.
+# Compile of reg.v was successful.
+# 17 compiles, 0 failed with no errors.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v failed with 20 errors.
+# Compile of CU.v was successful.
+# Compile of reg.v was successful.
+# 17 compiles, 1 failed with 20 errors.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v failed with 1 errors.
+# Compile of CU.v was successful.
+# Compile of reg.v was successful.
+# 17 compiles, 1 failed with 1 error.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v failed with 2 errors.
+# Compile of CU.v was successful.
+# Compile of reg.v was successful.
+# 17 compiles, 1 failed with 2 errors.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of CU.v was successful.
+# Compile of reg.v was successful.
+# 17 compiles, 0 failed with no errors.
+vsim -gui work.regFile
+# vsim -gui work.regFile 
+# Start time: 20:49:17 on Nov 27,2022
+# Loading work.regFile
+# Loading work.Reg
+add wave -position insertpoint  \
+sim:/regFile/reset \
+sim:/regFile/register_out \
+sim:/regFile/reg_write_low \
+sim:/regFile/reg_write_high \
+sim:/regFile/reg_readnum_src \
+sim:/regFile/reg_readnum_dst \
+sim:/regFile/reg_dst_low \
+sim:/regFile/reg_dst_high \
+sim:/regFile/reg2_read_dst \
+sim:/regFile/reg1_read_src \
+sim:/regFile/data_to_be_written_low \
+sim:/regFile/data_to_be_written_high \
+sim:/regFile/data_clk_select \
+sim:/regFile/data_actual \
+sim:/regFile/clk_Rdst2_input \
+sim:/regFile/clk_Rdst2 \
+sim:/regFile/clk_Rdst1_input \
+sim:/regFile/clk_Rdst1 \
+sim:/regFile/clk_actual \
+sim:/regFile/clk
+force reg_readnum_dst 3'd0
+force reg_readnum_src 3'd1
+force reset 0
+force clk 0
+force reg_dst_low 3'd0
+force reg_dst_high 3'd1
+force data_to_be_written_low 15'd25
+force data_to_be_written_high 15'd15
+force reg_write_high 0
+force reg_write_low 0
+run
+force reg_write_high 1
+force reg_write_low 1
+force clk = 1
+# Invalid binary digit: =.
+# ** UI-Msg: (vsim-4011) Invalid force value: = 1.
+# 
+force clk  1
+run
+force reg_write_high 0
+force reg_write_low 1
+force data_to_be_written_low 15'd100
+force -freeze sim:/regFile/clk 1 0, 0 {50 ps} -r 100
+run
+run
+force reg_write_low 0
+run
