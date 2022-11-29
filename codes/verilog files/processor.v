@@ -1,13 +1,13 @@
-`include "intermediate buffers/EX_MEM.v"
-`include "intermediate buffers/ID_EX.v"
-`include "intermediate buffers/IF_ID.v"
-`include "intermediate buffers/MEM_WB.v"
-
 `include "stages/ID.v"
 `include "stages/EX.v"
 `include "stages/IF.v"
 `include "stages/MEM.v"
 `include "stages/WB.v"
+
+`include "intermediate_buffers/EX_MEM.v"
+`include "intermediate_buffers/ID_EX.v"
+`include "intermediate_buffers/IF_ID.v"
+`include "intermediate_buffers/MEM_WB.v"
 
 
 
@@ -51,10 +51,11 @@ wire INT_IF;
 /**************************************************************
 	immediate wires for the IF_ID buffer
 **************************************************************/
+wire [31:0] PC_dummy;
+wire [15:0] instr_dummy;
+wire [15:0] data_dummy;
+wire INT_dummy;
 
-/*inputs*/
-
-/*outputs*/
 
 /**************************************************************
 	immediate wires for the ID stage
@@ -119,6 +120,10 @@ wire INT_IF;
 
 IF instr_fetch(.PC_IF_out(PC_IF), .instruction(instruction_IF), .Data(Data_IF), .INT(INT_IF), .clk(clk), .reset(reset), .interrupt(interrupt), .exception(exception_IF),
 				.SET_INT(SET_INT_IF), .pop_pc(pop_pc_IF), .PC_popedValue(PC_popedValue_IF), .jmp_sgn(jmp_sgn_IF), .PC_jmpValue(PC_jmpValue_IF), .stall(stall));
+
+IF_ID fetch_decode_buff(.PC_out(PC_dummy), .instruction_out(instr_dummy), .Data_out(data_dummy), .INT_out(INT_dummy), .PC_in(PC_IF), .instruction_in(instruction_IF),
+						.Data_in(Data_IF), .INT_in(INT_IF), .stall(stall), .reset(reset), .clk(clk));
+						
 
 
 

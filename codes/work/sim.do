@@ -4,8 +4,8 @@ vsim -t 100ps processor
 
 mem load -i {instructionMemory.mem} /processor/instr_fetch/instr_mem/memory
 
-add wave interrupt reset clk PC_IF instruction_IF Data_IF INT_IF instr_fetch/PC_in instr_fetch/masterOut instr_fetch/slaveOut instr_fetch/PC_out instr_fetch/is_Itype instr_fetch/inst_opcode  
-
+#add wave interrupt reset clk PC_IF instruction_IF Data_IF INT_IF instr_fetch/PC_in instr_fetch/masterOut instr_fetch/slaveOut instr_fetch/PC_out instr_fetch/is_Itype instr_fetch/inst_opcode  
+add wave interrupt reset clk PC_dummy instr_dummy data_dummy INT_dummy PC_IF instruction_IF Data_IF
 
 force interrupt 1'b0
 force reset 1'b0
