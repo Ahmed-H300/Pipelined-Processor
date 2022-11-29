@@ -173,7 +173,7 @@ Notes:
 	-> assembler should map the addresses of the ports to their real addresses
 	-> assembler should detect invalid instructions
 	-> reset before interrupt if both happened at the same time
-
+	-> for reset signal, it has to be stable for at least 1 clock cycle
 =====================================================================================
 
  

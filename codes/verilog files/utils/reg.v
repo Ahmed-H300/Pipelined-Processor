@@ -25,7 +25,7 @@ assign out_data = register;
 
 
 /*there is a signal that came and we need to change the output */
-always @(posedge clk, reset, posedge set) //posedge
+always @(posedge clk, reset, set) 
 begin 
 	if(reset)
 		register <= 0;			// passing 0 on reset
