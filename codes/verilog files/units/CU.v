@@ -43,7 +43,7 @@ output wire PC_push_pop;
 output wire flags_push_pop;
 
 /*to indicate whether jump on: flag(carry, zero, negative) or unconditional*/
-output wire JMP_type;
+output wire [1:0] JMP_type;
 
 /*to indication it's a jump command or not*/
 output wire is_jmp;
@@ -76,7 +76,7 @@ output wire CLR_C;
 output wire CLR_INT;
 
 /*select whether to keep SP value as it's or decrement it or increment it*/
-output wire SP_src;
+output wire [1:0] SP_src;
 
 /*select between PUSH PC or Rdst*/
 output wire mem_data_src;

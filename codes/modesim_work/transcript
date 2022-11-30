@@ -1,0 +1,378 @@
+# Compile of processor.v was successful.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 0 failed with no errors.
+# Compile of processor.v failed with 2 errors.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v failed with 2 errors.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 2 failed with 4 errors.
+# Compile of processor.v was successful.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 0 failed with no errors.
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 10:27:49 on Nov 30,2022
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module Reg
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module IF_ID
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 10:27:49 on Nov 30,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 10:27:49 on Nov 30,2022
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'JMP_type'. The port definition is at: ../verilog files/stages/../units/CU.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/instr_decode/controlUnit File: ../verilog files/stages/ID.v Line: 111
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'SP_src'. The port definition is at: ../verilog files/stages/../units/CU.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/instr_decode/controlUnit File: ../verilog files/stages/ID.v Line: 111
+# ** UI-Msg: (vish-4014) No objects found matching 'PC_dummy'.
+# ** UI-Msg: (vish-4014) No objects found matching 'instr_dummy'.
+# ** UI-Msg: (vish-4014) No objects found matching 'data_dummy'.
+# ** UI-Msg: (vish-4014) No objects found matching 'INT_dummy'.
+# Error in macro ./sim.do line 8
+# ** UI-Msg: (vish-4014) No objects found matching 'PC_dummy'.
+# ** UI-Msg: (vish-4014) No objects found matching 'instr_dummy'.
+# ** UI-Msg: (vish-4014) No objects found matching 'data_dummy'.
+# ** UI-Msg: (vish-4014) No objects found matching 'INT_dummy'.
+#     while executing
+# "add wave interrupt reset clk PC_dummy instr_dummy data_dummy INT_dummy PC_IF instruction_IF Data_IF"
+quit -sim
+# End time: 10:28:01 on Nov 30,2022, Elapsed time: 0:00:12
+# Errors: 0, Warnings: 13
+# Compile of processor.v failed with 3 errors.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v failed with 2 errors.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 2 failed with 5 errors.
+# Compile of processor.v failed with 1 errors.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 1 failed with 1 error.
+# Compile of processor.v was successful.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 0 failed with no errors.
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:19:42 on Nov 30,2022
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module Reg
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 11:19:43 on Nov 30,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 11:19:43 on Nov 30,2022
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'JMP_type'. The port definition is at: ../verilog files/stages/../units/CU.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/instr_decode/controlUnit File: ../verilog files/stages/ID.v Line: 111
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'SP_src'. The port definition is at: ../verilog files/stages/../units/CU.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/instr_decode/controlUnit File: ../verilog files/stages/ID.v Line: 111
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 11:29:03 on Nov 30,2022, Elapsed time: 0:09:20
+# Errors: 0, Warnings: 6
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:29:06 on Nov 30,2022
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module Reg
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 11:29:06 on Nov 30,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 11:29:06 on Nov 30,2022
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'JMP_type'. The port definition is at: ../verilog files/stages/../units/CU.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /processor/instr_decode/controlUnit File: ../verilog files/stages/ID.v Line: 111
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 11:30:40 on Nov 30,2022, Elapsed time: 0:01:34
+# Errors: 0, Warnings: 2
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:30:44 on Nov 30,2022
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module Reg
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 11:30:44 on Nov 30,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 11:30:44 on Nov 30,2022
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 11:35:47 on Nov 30,2022, Elapsed time: 0:05:03
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:35:50 on Nov 30,2022
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module Reg
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 11:35:50 on Nov 30,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 11:35:51 on Nov 30,2022
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 11:37:03 on Nov 30,2022, Elapsed time: 0:01:12
+# Errors: 0, Warnings: 1

@@ -175,6 +175,8 @@ Notes:
 	-> reset before interrupt if both happened at the same time
 	-> for reset signal, it has to be stable for at least 1 clock cycle
 =====================================================================================
-
+TODO:
+	-> make the EPC accept PC from different stages
+	-> handle the invalid instruction exception
  
 
