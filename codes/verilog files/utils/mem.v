@@ -1,3 +1,6 @@
+`ifndef MEM_V
+`define MEM_V
+
 /*this is some generice memory that will be used as portMem, dataMem, instrMem*/
 module memory #(parameter memSize = 1024) (data_out, reset, address, data_in, mem_read, mem_write, clk);
 
@@ -50,3 +53,5 @@ begin
 end
 
 endmodule
+
+`endif

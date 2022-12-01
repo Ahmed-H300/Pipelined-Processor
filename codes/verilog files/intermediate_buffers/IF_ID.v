@@ -1,3 +1,4 @@
+/*this is the buffer between instruction fetch stage and instruction decode stage*/
 module IF_ID (PC_out, instruction_out, Data_out, INT_out, PC_in, instruction_in, Data_in, INT_in, stall, reset, clk);
 	
 /*this is the PC output from IF stage*/

@@ -1,39 +1,42 @@
 {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/MEM_WB.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/MEM_WB.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 
-} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/ID_EX.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/ID_EX.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module ID_EX
-
-Top level modules:
-	ID_EX
-
 } {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/WB.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/WB.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 
-} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v}
+} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v} {0 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module CU
 -- Compiling module regFile
 -- Compiling module ID
+-- Compiling module ALU
 -- Compiling module Reg
+-- Compiling module EX
+** Error: (vlog-13069) ** while parsing file included at D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v(2)
+** at D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\EX.v(194): near "|": syntax error, unexpected '|'.
+** Error: (vlog-13069) ** while parsing file included at D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v(2)
+** at D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\EX.v(195): near "|": syntax error, unexpected '|'.
+** Error: (vlog-13069) ** while parsing file included at D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v(2)
+** at D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\EX.v(196): near "|": syntax error, unexpected '|'.
 -- Compiling module memory
 -- Compiling module IF
 -- Compiling module PC
 -- Compiling module I_typeDetectionUnit
 -- Compiling module masterSlaveReg
+-- Compiling module EX_MEM
 -- Compiling module ID_EX
 -- Compiling module IF_ID
 -- Compiling module processor
 
-Top level modules:
-	processor
-
-} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/EDU.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/EDU.v}
+} {9.0 10.0 11.0 12.0 13.0 14.0} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/EDU.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/EDU.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 
 } {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/EX_MEM.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/EX_MEM.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module EX_MEM
+
+Top level modules:
+	EX_MEM
 
 } {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/IF_ID.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/IF_ID.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -42,10 +45,32 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	IF_ID
 
-} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/HDU.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/HDU.v}
+} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/CU.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/CU.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module CU
 
-} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v}
+Top level modules:
+	CU
+
+} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v} {0 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ALU
+-- Compiling module Reg
+-- Compiling module EX
+** Error: (vlog-13069) D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v(194): near "|": syntax error, unexpected '|'.
+** Error: (vlog-13069) D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v(195): near "|": syntax error, unexpected '|'.
+** Error: (vlog-13069) D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v(196): near "|": syntax error, unexpected '|'.
+
+} {6.0 9.0} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/ID.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/ID.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module CU
+-- Compiling module regFile
+-- Compiling module ID
+
+Top level modules:
+	ID
+
+} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/HDU.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/HDU.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 
 } {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/ALU.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/ALU.v}

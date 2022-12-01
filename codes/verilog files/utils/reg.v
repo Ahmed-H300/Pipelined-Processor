@@ -1,3 +1,6 @@
+`ifndef REG_V
+`define REG_V
+
 /*this is the main building block for any register in our processor and we do writing at positive edge*/
 module Reg #(parameter N = 16) (out_data, reset, set, clk, in_data);
 
@@ -38,3 +41,6 @@ begin
 end
 
 endmodule
+
+
+`endif

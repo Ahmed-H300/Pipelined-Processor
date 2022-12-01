@@ -1,3 +1,4 @@
+/*this is the buffer between the instruction decode and instructiong execute*/
 module ID_EX(PC_out, Shmt_out, hash_imm_out, Data_out, Rdst1_out, Rdst_val_out, Rsrc_val_out, ALU_src1_out, mem_write_out, mem_read_out, reglow_write_out, reghigh_write_out,
 			ALU_OP_out, port_write_out, port_read_out, Rdst2_out, mem_type_out, memToReg_out, set_Z_out, set_N_out, set_C_out, set_INT_out, clr_Z_out, clr_N_out,
 			clr_C_out, clr_INT_out, jmp_sel_out, SP_src_out, PORT_out, Rsrc_out, is_jmp_out, jmp_src_out, mem_data_src_out, mem_addr_src_out, INT_out, PC_push_pop_out,
@@ -221,7 +222,7 @@ begin
 		mem_read <= 1'd0;
 		reglow_write <= 1'd0;
 		reghigh_write <= 1'd0;
-		ALU_OP <= 4'd0;
+		ALU_OP <= 4'd11;
 		port_write <= 1'd0;
 		port_read <= 1'd0;
 		mem_type <= 1'd0;
