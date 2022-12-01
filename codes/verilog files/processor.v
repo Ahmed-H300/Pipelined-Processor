@@ -219,25 +219,46 @@ wire flags_push_pop_EX_MEM_buff;
 
 /**************************************************************
 	intermediate wires for the MEM stage
+	(inputs comes from the EX/MEM buffer)
 **************************************************************/
 
 /*outputs*/
+
+wire stall_out_MEM;
+wire [31:0] POP_PC_addr_MEM;
+wire POP_PC_sgn_MEM;
 wire [2:0] POP_flags_val_MEM;
-wire is_POP_flags_MEM;
+wire POP_flags_sgn_MEM;
+wire stall_MEM; 
+
+wire [15:0] Rdst2_val_MEM;
+wire [2:0] Rdst2_MEM;
+wire reghigh_write_MEM;
+wire reglow_write_MEM;
+wire [2:0] Rdst1_MEM;
+wire [15:0] Rdst1_val_MEM;
+wire [15:0] Data_MEM;
+wire memToReg_MEM;
 
 /**************************************************************
 	intermediate wires for the MEM_WB buffer
+	(inputs comes from the MEM stage)
 **************************************************************/
 
-/*inputs*/
-
 /*outputs*/
+wire [15:0] Rdst2_val_MEM_WB_buff;
+wire [2:0] Rdst2_MEM_WB_buff;
+wire reghigh_write_MEM_WB_buff;
+wire reglow_write_MEM_WB_buff;
+wire [2:0] Rdst1_MEM_WB_buff;
+wire [15:0] Rdst1_val_MEM_WB_buff;
+wire [15:0] Data_MEM_WB_buff;
+wire memToReg_MEM_WB_buff;
 
 /**************************************************************
 	intermediate wires for the WB stage
+	(inputs comes from the MEM_WB buffer)
 **************************************************************/
-
-/*inputs*/
 
 /*outputs*/
 wire [15:0] Rdst2_val_WB;
@@ -299,7 +320,7 @@ EX instr_execute(.PC_out(PC_EX), .SP_src_out(SP_src_EX), .port_write_out(port_wr
 				.clr_Z_in(clr_Z_ID_EX_buff), .clr_N_in(clr_N_ID_EX_buff), .clr_C_in(clr_C_ID_EX_buff), .clr_INT_in(clr_INT_ID_EX_buff), .jmp_sel_in(jmp_sel_ID_EX_buff), 
 				.SP_src_in(SP_src_ID_EX_buff), .PORT_in(PORT_ID_EX_buff), .Rsrc_in(Rsrc_ID_EX_buff), .is_jmp_in(is_jmp_ID_EX_buff), .jmp_src_in(jmp_src_ID_EX_buff), 
 				.mem_data_src_in(mem_data_src_ID_EX_buff), .mem_addr_src_in(mem_addr_src_ID_EX_buff), .INT_in(INT_ID_EX_buff), .PC_push_pop_in(PC_push_pop_ID_EX_buff), 
-				.flags_push_pop_in(flags_push_pop_ID_EX_buff), .POP_flags_val_in(POP_flags_val_MEM), .is_POP_flags_in(is_POP_flags_MEM), .clk(clk), .reset(reset));
+				.flags_push_pop_in(flags_push_pop_ID_EX_buff), .POP_flags_val_in(POP_flags_val_MEM), .is_POP_flags_in(POP_flags_sgn_MEM), .clk(clk), .reset(reset));
 
 /*EX_MEM buffer*/
 EX_MEM execute_memory_buff(.PC_out(PC_EX_MEM_buff), .SP_src_out(SP_src_EX_MEM_buff), .port_write_out(port_write_EX_MEM_buff), .port_read_out(port_read_EX_MEM_buff), 
@@ -312,5 +333,26 @@ EX_MEM execute_memory_buff(.PC_out(PC_EX_MEM_buff), .SP_src_out(SP_src_EX_MEM_bu
 							.reglow_write_in(reglow_write_EX), .reghigh_write_in(reghigh_write_EX), .Rdst2_in(Rdst2_EX), .mem_type_in(mem_type_EX), .memToReg_in(memToReg_EX), 
 							.Rdst2_val_in(Rdst2_val_EX), .PORT_in(PORT_EX), .Rsrc_in(Rsrc_EX), .Rsrc_val_in(Rsrc_val_EX), .mem_data_src_in(mem_data_src_EX), .mem_addr_src_in(mem_addr_src_EX), 
 							.Rdst_val_in(Rdst_val_EX), .INT_in(INT_EX), .PC_push_pop_in(PC_push_pop_EX), .flags_push_pop_in(flags_push_pop_EX), .clk(clk), .reset(reset), .stall(stall));
-				
+
+/*MEM stage*/
+MEM intr_memory(.Rdst2_val_out(Rdst2_val_MEM), .Rdst2_out(Rdst2_MEM), .reghigh_write_out(reghigh_write_MEM), .reglow_write_out(reglow_write_MEM), .Rdst1_out(Rdst1_MEM), 
+				.Rdst1_val_out(Rdst1_val_MEM), .Data_out(Data_MEM), .memToReg_out(memToReg_MEM), .POP_PC_addr_out(POP_PC_addr_MEM), .POP_PC_sgn_out(POP_PC_sgn_MEM),
+				.POP_flags_val_out(POP_flags_val_MEM), .POP_flags_sgn_out(POP_flags_sgn_MEM), .stall_out(stall_out_MEM), .PC_in(PC_EX_MEM_buff), .SP_src_in(SP_src_EX_MEM_buff), 
+				.port_write_in(port_write_EX_MEM_buff), .port_read_in(port_read_EX_MEM_buff), .Rdst1_val_in(Rdst1_val_EX_MEM_buff), .Rdst1_in(Rdst1_EX_MEM_buff), 
+				.mem_write_in(mem_write_EX_MEM_buff), .mem_read_in(mem_read_EX_MEM_buff), .reglow_write_in(reglow_write_EX_MEM_buff), .reghigh_write_in(reghigh_write_EX_MEM_buff),
+				.Rdst2_in(Rdst2_EX_MEM_buff), .mem_type_in(mem_type_EX_MEM_buff), .memToReg_in(memToReg_EX_MEM_buff), .Rdst2_val_in(Rdst2_val_EX_MEM_buff), .PORT_in(PORT_EX_MEM_buff),
+				.Rsrc_in(Rsrc_EX_MEM_buff), .Rsrc_val_in(Rsrc_val_EX_MEM_buff), .mem_data_src_in(mem_data_src_EX_MEM_buff), .mem_addr_src_in(mem_addr_src_EX_MEM_buff), 
+				.Rdst_val_in(Rdst_val_EX_MEM_buff), .INT_in(INT_EX_MEM_buff), .PC_push_pop_in(PC_push_pop_EX_MEM_buff), .flags_push_pop_in(flags_push_pop_EX_MEM_buff), 
+				.reset(reset), .clk(clk));
+
+/*MEM_WB buffer*/
+MEM_WB memory_writeBack_buff(.Rdst2_val_out(Rdst2_val_MEM_WB_buff), .Rdst2_out(Rdst2_MEM_WB_buff), .reghigh_write_out(reghigh_write_MEM_WB_buff), .reglow_write_out(reglow_write_MEM_WB_buff), 
+							 .Rdst1_out(Rdst1_MEM_WB_buff), .Rdst1_val_out(Rdst1_val_MEM_WB_buff), .Data_out(Data_MEM_WB_buff), .memToReg_out(memToReg_MEM_WB_buff),
+							 .Rdst2_val_in(Rdst2_val_MEM), .Rdst2_in(Rdst2_MEM), .reghigh_write_in(reghigh_write_MEM), .reglow_write_in(reglow_write_MEM), 
+							 .Rdst1_in(Rdst1_MEM), .Rdst1_val_in(Rdst1_val_MEM), .Data_in(Data_MEM), .memToReg_in(memToReg_MEM), .stall(stall), .reset(reset), .clk(clk));
+
+/*WB stage*/	
+
+
+		
 endmodule

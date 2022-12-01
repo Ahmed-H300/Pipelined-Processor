@@ -198,7 +198,7 @@ assign flags_push_pop_out = flags_push_pop;
 
 
 /**************************************************************
-	sthe actual logic of the buffer
+	the actual logic of the buffer
 **************************************************************/		
 always @(negedge clk)
 begin

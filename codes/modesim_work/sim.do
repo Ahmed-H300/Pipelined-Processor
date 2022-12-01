@@ -16,11 +16,16 @@ add wave interrupt reset clk PC_ID_EX_buff Shmt_ID_EX_buff hash_imm_ID_EX_buff D
 			mem_addr_src_ID_EX_buff PC_push_pop_ID_EX_buff flags_push_pop_ID_EX_buff
 }
 
+if 0 {
 add wave interrupt reset clk Rdst1_val_EX_MEM_buff Rdst2_val_EX_MEM_buff PC_EX_MEM_buff SP_src_EX_MEM_buff port_write_EX_MEM_buff port_read_EX_MEM_buff Rdst1_EX_MEM_buff \
 			mem_write_EX_MEM_buff mem_read_EX_MEM_buff reglow_write_EX_MEM_buff reghigh_write_EX_MEM_buff Rdst2_EX_MEM_buff mem_type_EX_MEM_buff memToReg_EX_MEM_buff \
 			PORT_EX_MEM_buff Rsrc_EX_MEM_buff Rsrc_val_EX_MEM_buff mem_data_src_EX_MEM_buff mem_addr_src_EX_MEM_buff Rdst_val_EX_MEM_buff INT_EX_MEM_buff PC_push_pop_EX_MEM_buff \
 			flags_push_pop_EX_MEM_buff instr_execute/clr_CF_JC instr_execute/clr_NF_JN instr_execute/clr_ZF_JZ  instr_execute/clr_N_in instr_execute/clr_C_in instr_execute/CFlag_in \
 			instr_execute/choose_POP_flags instr_execute/ALU_ZF_out instr_execute/ALU_ZF_in instr_execute/ZFlag_set instr_execute/ALU_OP instr_execute/ALU_ZF_in instr_execute/ALU_ZF_out
+}
+
+add wave interrupt reset clk Rdst2_val_MEM Rdst2_MEM reghigh_write_MEM reglow_write_MEM Rdst1_MEM Rdst1_val_MEM Data_MEM memToReg_MEM POP_PC_addr_MEM POP_PC_sgn_MEM \
+				POP_flags_val_MEM POP_flags_sgn_MEM
 
 force interrupt 1'b0
 force reset 1'b0
@@ -30,7 +35,6 @@ force pop_pc_IF		1'b0
 force exception_IF	1'b0
 force PC_popedValue_IF	32'd1
 force stall	1'b0
-force is_POP_flags_MEM 1'b0
 force clk 1'b1
 force clk 1 0, 0 {100 ps} -r 200
 run
