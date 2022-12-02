@@ -168,7 +168,7 @@ wire clr_ZF_JZ;		// clearing the Z flag after JZ
 Reg #(1) Z_flag(.out_data(ZFlag_out), .reset(ZFlag_reset), .set(ZFlag_set), .clk(clk), .in_data(ZFlag_in));
 Reg #(1) C_flag(.out_data(CFlag_out), .reset(CFlag_reset), .set(CFlag_set), .clk(clk), .in_data(CFlag_in));
 Reg #(1) N_flag(.out_data(NFlag_out), .reset(NFlag_reset), .set(NFlag_set), .clk(clk), .in_data(NFlag_in));
-Reg #(1) INT_flag(.out_data(INTFlag_out), .reset(), .set(INTFlag_set), .clk(clk), .in_data(INTFlag_out));
+Reg #(1) INT_flag(.out_data(INTFlag_out), .reset(INTFlag_reset), .set(INTFlag_set), .clk(clk), .in_data(INTFlag_out));
 
 ALU arithmetic_unit(.resultLowerWord(ALU_resultLowerWord), .resultUpperWord(ALU_resultUpperWord), .CF_out(ALU_CF_out), .NF_out(ALU_NF_out), .ZF_out(ALU_ZF_out), 
 					.Rdst(ALU_Rdst), .Rsrc(ALU_Rsrc), .ALU_OP(ALU_OP), .ZF_in(ALU_ZF_in), .NF_in(ALU_NF_in), .CF_in(ALU_CF_in));
@@ -194,6 +194,7 @@ assign CFlag_set = set_C_in;
 assign CFlag_reset = reset | clr_CF_JC | clr_C_in;
 assign NFlag_reset = reset | clr_NF_JN | clr_N_in;
 assign ZFlag_reset = reset | clr_ZF_JZ | clr_Z_in;
+assign INTFlag_reset = reset | clr_INT_in;
 
 /*for the inputs/outputs to the ALU*/
 assign ALU_Rdst = Rdst_val_in;  //TO BE EDITED

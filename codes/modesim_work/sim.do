@@ -24,16 +24,48 @@ add wave interrupt reset clk Rdst1_val_EX_MEM_buff Rdst2_val_EX_MEM_buff PC_EX_M
 			instr_execute/choose_POP_flags instr_execute/ALU_ZF_out instr_execute/ALU_ZF_in instr_execute/ZFlag_set instr_execute/ALU_OP instr_execute/ALU_ZF_in instr_execute/ALU_ZF_out
 }
 
+if 0 {
 add wave interrupt reset clk Rdst2_val_MEM Rdst2_MEM reghigh_write_MEM reglow_write_MEM Rdst1_MEM Rdst1_val_MEM Data_MEM memToReg_MEM POP_PC_addr_MEM POP_PC_sgn_MEM \
 				POP_flags_val_MEM POP_flags_sgn_MEM
+}
+
+#Signals
+add wave -divider signals
+add wave -color #00FF3A -label INT interrupt -label rst reset -label clk clk 
+
+#register file
+add wave -divider reg_file
+for { set a 0}  {$a < 8} {incr a} {
+   add wave -color yellow -radix dec -label reg[$a] instr_decode/registerFile/genblk2[$a]/registerModule/register
+}
+
+#Program counter
+add wave -divider PC					     
+add wave -color #007EFF -radix dec -label pc_IF PC_IF -label pc_ID PC_ID -label pc_EX PC_EX
+
+#Stack pointer
+add wave -divider SP
+add wave -color #4A00FF -radix dec -label SP instr_memory/SP
+
+#CCR register
+add wave -divider CCR
+add wave -color #00FFFB -label Z_flag instr_execute/Z_flag/register 
+add wave -color #00FFFB -label C_flag instr_execute/C_flag/register 
+add wave -color #00FFFB -label N_flag instr_execute/N_flag/register 
+add wave -color #00FFFB -label INT_flag instr_execute/INT_flag/register 
+
+
+# for testing
+add wave -divider tests
+add wave -color #B27600 Rdst2_val_WB Rdst2_WB reghigh_write_WB Rdst1_val_WB Rdst1_WB reglow_write_WB Rdst1_val_MEM_WB_buff Rdst1_val_MEM Rdst2_MEM_WB_buff
+
 
 force interrupt 1'b0
 force reset 1'b0
 force clk 1'b0
-force SET_INT_IF	1'b0
-force pop_pc_IF		1'b0
+#force SET_INT_IF	1'b0
+#force pop_pc_IF		1'b0
 force exception_IF	1'b0
-force PC_popedValue_IF	32'd1
 force stall	1'b0
 force clk 1'b1
 force clk 1 0, 0 {100 ps} -r 200
