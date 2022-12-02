@@ -57,7 +57,8 @@ add wave -color #00FFFB -label INT_flag instr_execute/INT_flag/register
 
 # for testing
 add wave -divider tests
-add wave -color #B27600 Rdst2_val_WB Rdst2_WB reghigh_write_WB Rdst1_val_WB Rdst1_WB reglow_write_WB Rdst1_val_MEM_WB_buff Rdst1_val_MEM Rdst2_MEM_WB_buff
+add wave -color #B27600 Rdst2_val_WB Rdst2_WB reghigh_write_WB Rdst1_val_WB Rdst1_WB reglow_write_WB Rdst1_val_MEM_WB_buff Rdst1_val_MEM Rdst2_MEM_WB_buff mem_write_EX_MEM_buff \
+						instr_memory/data_mem_addr instr_memory/mem_write_in instr_memory/data_mem_in mem_write_ID_EX_buff
 
 
 force interrupt 1'b0
