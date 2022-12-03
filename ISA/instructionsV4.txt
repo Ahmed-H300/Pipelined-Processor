@@ -160,7 +160,7 @@ bonus:
 -> reset the data memory
 -> 2 forwarding units (extra one is to make MEM-MEM forwarding for common cases like copying elements of array from one place to another)
 -> exception unit:
-	-> stack overflow and underflow
+	-> stack overflow and underflow (SP)
 	-> division by zero
 	-> out of memory bounds in instruction and data memory
 	-> saves the adddress of PC in EPC 

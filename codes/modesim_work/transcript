@@ -1,20 +1,72 @@
-# Compile of processor.v was successful.
-# Compile of EX_MEM.v was successful.
-# Compile of ID_EX.v was successful.
-# Compile of IF_ID.v was successful.
-# Compile of MEM_WB.v was successful.
-# Compile of EX.v was successful.
-# Compile of ID.v was successful.
-# Compile of IF.v was successful.
-# Compile of MEM.v was successful.
-# Compile of WB.v was successful.
-# Compile of ALU.v was successful.
-# Compile of CU.v was successful.
-# Compile of EDU.v was successful.
-# Compile of FU1.v was successful.
-# Compile of FU2.v was successful.
-# Compile of HDU.v was successful.
-# Compile of regFile.v was successful.
-# Compile of mem.v was successful.
-# Compile of reg.v was successful.
-# 19 compiles, 0 failed with no errors.
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 01:33:53 on Dec 03,2022
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 01:33:53 on Dec 03,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 01:33:53 on Dec 03,2022
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 01:36:49 on Dec 03,2022, Elapsed time: 0:02:56
+# Errors: 0, Warnings: 1

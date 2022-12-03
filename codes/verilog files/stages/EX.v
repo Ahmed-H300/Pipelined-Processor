@@ -178,7 +178,7 @@ ALU arithmetic_unit(.resultLowerWord(ALU_resultLowerWord), .resultUpperWord(ALU_
 **************************************************************/
 
 /*to check which flags to insert as input to the CCR*/
-assign choose_POP_flags = (ALU_CF_in == ALU_CF_out) & (ALU_NF_in == ALU_NF_out) & (ALU_ZF_in == ALU_ZF_out) & is_POP_flags_in;
+assign choose_POP_flags = (ALU_OP == 4'd11) & is_POP_flags_in;
 
 /*chosing the inputs to the CCR based on whether prioirty to POP instr or the current instruction in the exection*/
 assign ZFlag_in = (choose_POP_flags) ? POP_flags_val_in[2] : ALU_ZF_out;
