@@ -594,3 +594,5 @@ fileOut.close()
 
 print(Fore.GREEN + 'Assembled Successfully. File Name: ' + fileNameOut)
 print(Fore.GREEN + 'Have Fun :)')
+print(Style.RESET_ALL)
+
