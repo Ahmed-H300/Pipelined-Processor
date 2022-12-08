@@ -49,10 +49,7 @@ def getInput(file, arrayISA):
 # compile the instructions for range
 # first loop for instuctions without label
 
-
 def CompileOutput(arrayISA, out, start, end):
-    label = {}
-    labelused = []
     reg = {
         'R0': 0b000,
         'R1': 0b001,
@@ -496,12 +493,19 @@ def CompileOutput(arrayISA, out, start, end):
             return 'Invaild Instruction (instruction is not in the ISA please check your code): ' + lineOld + '-> ' + str(numISA)
         currentIP += 1
         numISA += 1
+
+    return 0
+
+
+label = {}
+labelused = []
+def labelCompile(out):
+
     # loop for label
     # second loop for label instuctions
     for k, v in out.items():
         if(v in labelused):
             out[k] = label[v]
-    return 0
 
 
 arrayISA = []
@@ -580,6 +584,8 @@ if(len(out) == 0):
     print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
     print(Style.RESET_ALL)
     exit()
+
+labelCompile(out)
 
 # write in file
 # write out in
