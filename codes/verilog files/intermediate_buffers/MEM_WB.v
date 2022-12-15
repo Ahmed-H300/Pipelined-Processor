@@ -1,5 +1,6 @@
+/*this is the buffer between memory stage and  writeback stage*/
 module MEM_WB(Rdst2_val_out, Rdst2_out, reghigh_write_out, reglow_write_out, Rdst1_out, Rdst1_val_out, Data_out, memToReg_out,
-			  Rdst2_val_in, Rdst2_in, reghigh_write_in, reglow_write_in, Rdst1_in, Rdst1_val_in, Data_in, memToReg_in, stall, reset, clk);
+			  Rdst2_val_in, Rdst2_in, reghigh_write_in, reglow_write_in, Rdst1_in, Rdst1_val_in, Data_in, memToReg_in, stall, reset, clk, flush);
 
 
 /*the clk that derives our buffer*/
@@ -10,6 +11,9 @@ input wire reset;
 
 /*the stall signal that prevents any new value from being stored in the buffer*/
 input wire stall;
+
+/*this is the flush signal and it's synchrounous with the clock*/
+input wire flush;
 
 /**************************************************************
 	value bypassed from the MEM stage
@@ -68,7 +72,7 @@ assign memToReg_out = memToReg;
 /**************************************************************
 	the actual logic of the buffer
 **************************************************************/	
-always @(negedge clk)
+always @(negedge clk, posedge reset)
 begin
 	
 	if(reset)
@@ -81,6 +85,18 @@ begin
 		Rdst1_val <= 16'd0;
 		Data <= 16'd0;
 		memToReg <= 1'd0;		
+	end
+	
+	else if(flush)
+	begin
+		Rdst2_val <= 16'd0;
+		Rdst2 <= 3'd0;
+		reghigh_write <= 1'd0;
+		reglow_write <= 1'd0;
+		Rdst1 <= 3'd0;
+		Rdst1_val <= 16'd0;
+		Data <= 16'd0;
+		memToReg <= 1'd0;			
 	end
 	
 	else if(!stall & !clk)

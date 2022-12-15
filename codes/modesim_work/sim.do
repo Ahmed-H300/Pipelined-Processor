@@ -56,29 +56,43 @@ add wave -color #00FFFB -label INT_flag instr_execute/INT_flag/register
 
 
 # for testing
-add wave -divider tests
-add wave -color #B27600 Rdst2_val_WB Rdst2_WB reghigh_write_WB Rdst1_val_WB Rdst1_WB reglow_write_WB Rdst1_val_MEM_WB_buff Rdst1_val_MEM Rdst2_MEM_WB_buff mem_write_EX_MEM_buff \
-						instr_memory/data_mem_addr instr_memory/mem_write_in instr_memory/data_mem_in mem_write_ID_EX_buff
+add wave -divider IF
+add wave -color #B27600 instr_fetch/*
+
+add wave -divider IF_ID
+add wave -color #B27600 fetch_decode_buff/*
+
+add wave -divider ID
+add wave -color #B27600 instr_decode/*
+
+add wave -divider EX
+add wave -color #B27600 instr_execute/*
+
+add wave -divider MEM
+add wave -color #B27600 instr_memory/*
+
+add wave -divider WB
+add wave -color #B27600 instr_WB/*
+
+add wave -divider HDU
+add wave -color #B27600 hazard_unit/*
+
+add wave -divider EDU
+add wave -color #B27600 exception_unit/*
+
+add wave -divider another_tests
+add wave -color #B27600 stall_HDU stall_MEM set_INT_ID exception_EDU set_INT_ID
+
+
+
 
 
 force interrupt 1'b0
-force reset 1'b0
-force clk 1'b0
-#force SET_INT_IF	1'b0
-#force pop_pc_IF		1'b0
-force exception_IF	1'b0
-force stall	1'b0
-force clk 1'b1
+force reset 1'b1
 force clk 1 0, 0 {100 ps} -r 200
 run
 
-force reset 1'b1
-run
-
-
-run
-
 force reset 1'b0
 run
 
-
+run

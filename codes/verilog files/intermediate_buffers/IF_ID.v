@@ -1,5 +1,5 @@
 /*this is the buffer between instruction fetch stage and instruction decode stage*/
-module IF_ID (PC_out, instruction_out, Data_out, INT_out, PC_in, instruction_in, Data_in, INT_in, stall, reset, clk);
+module IF_ID (PC_out, instruction_out, Data_out, INT_out, PC_in, instruction_in, Data_in, INT_in, stall, reset, clk, flush);
 	
 /*this is the PC output from IF stage*/
 output wire [31:0] PC_out;
@@ -31,6 +31,9 @@ input wire stall;
 /*this is the reset signal that will zero out the buffer*/
 input wire reset;
 
+/*this is the flush signal and it's synchrounous with the clock*/
+input wire flush;
+
 /*this is the clk that derives our buffer*/
 input wire clk;
 
@@ -53,7 +56,7 @@ assign INT_out = INT;
 /**************************************************************
 	actual logic of the buffer
 **************************************************************/
-always @(negedge clk)
+always @(negedge clk, posedge reset)
 begin
 	
 	if(reset)
@@ -62,6 +65,12 @@ begin
 		instruction <= 16'd0;
 		Data <= 32'd0;
 		INT <= 32'd0;	
+	end
+	
+	else if(flush)
+	begin
+		instruction <= 0;
+		Data <= 0;
 	end
 	
 	else if(!stall & !clk)

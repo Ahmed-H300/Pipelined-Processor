@@ -5,7 +5,7 @@ module ID_EX(PC_out, Shmt_out, hash_imm_out, Data_out, Rdst1_out, Rdst_val_out, 
 			flags_push_pop_out, PC_in, Shmt_in, hash_imm_in, Data_in, Rdst1_in, Rdst_val_in, Rsrc_val_in, ALU_src1_in, mem_write_in, mem_read_in, reglow_write_in, reghigh_write_in,
 			ALU_OP_in, port_write_in, port_read_in, Rdst2_in, mem_type_in, memToReg_in, set_Z_in, set_N_in, set_C_in, set_INT_in, clr_Z_in, clr_N_in,
 			clr_C_in, clr_INT_in, jmp_sel_in, SP_src_in, PORT_in, Rsrc_in, is_jmp_in, jmp_src_in, mem_data_src_in, mem_addr_src_in, INT_in, PC_push_pop_in,
-			flags_push_pop_in, stall, reset, clk);
+			flags_push_pop_in, stall, reset, clk, flush);
 			
 
 /**************************************************************
@@ -108,6 +108,8 @@ input wire stall;
 /*the reset signal that zero out the content of the buffer*/
 input wire reset;
 
+/*this is the flush signal and it's synchrounous with the clock*/
+input wire flush;
 
 /**************************************************************
 	actuals registers in the buffer
@@ -200,9 +202,10 @@ assign flags_push_pop_out = flags_push_pop;
 /**************************************************************
 	the actual logic of the buffer
 **************************************************************/		
-always @(negedge clk)
+always @(negedge clk, posedge reset)
 begin
-		if(reset)
+
+	if(reset)
 	begin
 		PC <= 32'd0;
 		Shmt <= 4'd0;
@@ -243,6 +246,47 @@ begin
 		mem_addr_src <= 1'd0;
 		PC_push_pop <= 1'd0;
 		flags_push_pop <= 1'd0;	
+	end
+	
+	else if(flush)
+	begin
+		Shmt <= 4'd0;
+		hash_imm <= 4'd0;
+		Data <= 16'd0;
+		Rdst1 <= 3'd0;
+		Rdst2 <= 3'd0;
+		PORT <= 4'd0;
+		Rsrc <= 3'd0;
+
+		Rdst_val <= 16'd0;
+		Rsrc_val <= 16'd0;
+
+		ALU_src1 <= 2'd0;
+		mem_write <= 1'd0;
+		mem_read <= 1'd0;
+		reglow_write <= 1'd0;
+		reghigh_write <= 1'd0;
+		ALU_OP <= 4'd11;
+		port_write <= 1'd0;
+		port_read <= 1'd0;
+		mem_type <= 1'd0;
+		memToReg <= 1'd0;
+		set_Z <= 1'd0;
+		set_N <= 1'd0;
+		set_C <= 1'd0;
+		set_INT <= 1'd0;
+		clr_Z <= 1'd0;
+		clr_N <= 1'd0;
+		clr_C <= 1'd0;
+		clr_INT <= 1'd0;
+		jmp_sel <= 2'd0;
+		SP_src <= 2'd0;
+		is_jmp <= 1'd0;
+		jmp_src <= 1'd0;
+		mem_data_src <= 1'd0;
+		mem_addr_src <= 1'd0;
+		PC_push_pop <= 1'd0;
+		flags_push_pop <= 1'd0;		
 	end
 	
 	else if(!stall & !clk)

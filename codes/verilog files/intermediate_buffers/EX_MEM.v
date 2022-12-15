@@ -2,7 +2,7 @@ module EX_MEM(PC_out, SP_src_out, port_write_out, port_read_out, Rdst1_val_out, 
 				mem_type_out, memToReg_out, Rdst2_val_out, PORT_out, Rsrc_out, Rsrc_val_out, mem_data_src_out, mem_addr_src_out, Rdst_val_out, INT_out, PC_push_pop_out,
 				flags_push_pop_out, PC_in, SP_src_in, port_write_in, port_read_in, Rdst1_val_in, Rdst1_in, mem_write_in, mem_read_in, reglow_write_in, reghigh_write_in, Rdst2_in, 
 				mem_type_in, memToReg_in, Rdst2_val_in, PORT_in, Rsrc_in, Rsrc_val_in, mem_data_src_in, mem_addr_src_in, Rdst_val_in, INT_in, PC_push_pop_in,
-				flags_push_pop_in, clk, reset, stall);
+				flags_push_pop_in, clk, reset, stall, flush);
 
 
 
@@ -75,6 +75,9 @@ input wire stall;
 /*the reset signal that zero out the content of the buffer*/
 input wire reset;
 
+/*this is the flush signal and it's synchrounous with the clock*/
+input wire flush;
+
 /**************************************************************
 	actuals registers in the buffer
 **************************************************************/
@@ -132,7 +135,7 @@ assign flags_push_pop_out = flags_push_pop;
 /**************************************************************
 	the actual logic of the buffer
 **************************************************************/	
-always @(negedge clk)
+always @(negedge clk, posedge reset)
 begin 
 
 	if(reset)
@@ -158,6 +161,31 @@ begin
 		mem_addr_src <= 1'd0;
 		Rdst_val <= 16'd0;
 		INT <= 1'd0;
+		PC_push_pop <= 1'd0;
+		flags_push_pop <= 1'd0;		
+	end
+	
+	else if(flush)
+	begin
+		Rdst1_val <= 16'd0;
+		Rdst2_val <= 16'd0;
+		SP_src <= 2'd0;
+		port_write <= 1'd0;
+		port_read <= 1'd0;
+		Rdst1 <= 3'd0;
+		mem_write <= 1'd0;
+		mem_read <= 1'd0;
+	 	reglow_write <= 1'd0;
+		reghigh_write <= 1'd0;
+		Rdst2 <= 3'd0;
+		mem_type <= 1'd0;
+		memToReg <= 1'd0;
+		PORT <= 4'd0;
+		Rsrc <= 3'd0;
+		Rsrc_val <= 16'd0;
+		mem_data_src <= 1'd0;
+		mem_addr_src <= 1'd0;
+		Rdst_val <= 16'd0;
 		PC_push_pop <= 1'd0;
 		flags_push_pop <= 1'd0;		
 	end
