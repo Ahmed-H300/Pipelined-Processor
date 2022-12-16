@@ -595,9 +595,11 @@ labelCompile(out)
 
 # write in file
 # write out in
-outConst = ['// instance=/processor/instr_fetch/instr_mem/memory',
-            '// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1']
+outConst = ['// instance=/processor/instr_fetch/instr_mem/memory\n',
+            '// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1\n\n']
 fileOut = open(fileNameOut, "w")
+for txt in outConst:
+    fileOut.write(txt)
 for key, vlaue in out.items():
     # formating the output
     line = str(key).zfill(8) + ': ' + \
