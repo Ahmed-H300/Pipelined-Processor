@@ -4,10 +4,12 @@
 /*this is the execute imstruction stage*/
 module EX(PC_out, SP_src_out, port_write_out, port_read_out, Rdst1_val_out, Rdst1_out, mem_write_out, mem_read_out, reglow_write_out, reghigh_write_out, Rdst2_out, 
 			mem_type_out, memToReg_out, Rdst2_val_out, PORT_out, Rsrc_out, Rsrc_val_out, mem_data_src_out, mem_addr_src_out, Rdst_val_out, INT_out, PC_push_pop_out,
-			flags_push_pop_out, jmp_addr_out, do_jmp_out, PC_in, Shmt_in, hash_imm_in, Data_in, Rdst1_in, Rdst_val_in, Rsrc_val_in, ALU_src1_in, mem_write_in, mem_read_in,
+			flags_push_pop_out, jmp_addr_out, do_jmp_out, PC_in, ALU_src_val_out, Shmt_in, hash_imm_in, Data_in, Rdst1_in, Rdst_val_in, Rsrc_val_in, ALU_src1_in, mem_write_in, mem_read_in,
 			reglow_write_in, reghigh_write_in, ALU_OP_in, port_write_in, port_read_in, Rdst2_in, mem_type_in, memToReg_in, set_Z_in, set_N_in, set_C_in, set_INT_in,
 			clr_Z_in, clr_N_in, clr_C_in, clr_INT_in, jmp_sel_in, SP_src_in, PORT_in, Rsrc_in, is_jmp_in, jmp_src_in, mem_data_src_in, mem_addr_src_in, INT_in,
-			PC_push_pop_in, flags_push_pop_in, POP_flags_val_in, is_POP_flags_in, clk, reset);
+			PC_push_pop_in, flags_push_pop_in, POP_flags_val_in, is_POP_flags_in, Rdst1_val_MEM_in, Rdst2_val_MEM_in, Rdst1_val_WB_in, Rdst2_val_WB_in, forward_ALU_dst_FU1_in,
+			forward_ALU_src_FU1_in, forward_Rdst_num_MEM_to_Rdst_FU1_in, forward_Rdst_num_WB_to_Rdst_FU1_in, forward_Rdst_num_MEM_to_Rsrc_FU1_in, forward_Rdst_num_WB_to_Rsrc_FU1_in
+			,clk, reset);
 
 /*it's the jmp address incase we did want to do jmp instruction*/
 output wire [31:0] jmp_addr_out;
@@ -33,6 +35,9 @@ input wire [2:0] POP_flags_val_in;
 
 /*the signal coming from the MEM stage indicating we want to POP the flags value*/
 input wire is_POP_flags_in;
+
+/*this is the value which is input to the ALU src and it's output to detect divsion by 0 exceptions*/
+output wire [15:0] ALU_src_val_out;
 
 /**************************************************************
 	value read from the ID_EX buffer
@@ -109,6 +114,28 @@ output wire PC_push_pop_out;
 output wire flags_push_pop_out;
 
 /**************************************************************
+	value read from the forwarding unit 1 and from later stages
+	to be forwarded
+	(refer to ID.v to know what each symbol means) 
+	(don't forget to have a look at the design files)
+**************************************************************/
+input wire [15:0] Rdst1_val_MEM_in;
+input wire [15:0] Rdst2_val_MEM_in;
+input wire [15:0] Rdst1_val_WB_in;
+input wire [15:0] Rdst2_val_WB_in;
+
+input wire [1:0] forward_ALU_dst_FU1_in;
+input wire [1:0] forward_ALU_src_FU1_in;
+
+input wire forward_Rdst_num_MEM_to_Rdst_FU1_in;
+input wire forward_Rdst_num_WB_to_Rdst_FU1_in;
+
+input wire forward_Rdst_num_MEM_to_Rsrc_FU1_in;
+input wire forward_Rdst_num_WB_to_Rsrc_FU1_in;
+			
+			
+			
+/**************************************************************
 	immediate wires for clean code
 **************************************************************/
 
@@ -161,6 +188,14 @@ wire clr_CF_JC;		// clearing the C flag after JC
 wire clr_NF_JN;		// clearing the N flag after JN
 wire clr_ZF_JZ;		// clearing the Z flag after JZ
 
+/*these wire are for forwarding units to choose which data to be forwarded if there is a data depenedency*/
+wire [15:0] selected_Rdst1_or_Rdst2_MEM_to_ALU_Rdst;
+wire [15:0] selected_Rdst1_or_Rdst2_WB_to_ALU_Rdst;
+
+wire [15:0] selected_Rdst1_or_Rdst2_MEM_to_ALU_Rsrc;
+wire [15:0] selected_Rdst1_or_Rdst2_WB_to_ALU_Rsrc;
+
+wire [15:0] normal_without_forward_selected_value;
 
 /**************************************************************
 	creating needed modules
@@ -196,12 +231,27 @@ assign NFlag_reset = reset | clr_NF_JN | clr_N_in;
 assign ZFlag_reset = reset | clr_ZF_JZ | clr_Z_in;
 assign INTFlag_reset = reset | clr_INT_in;
 
-/*for the inputs/outputs to the ALU*/
-assign ALU_Rdst = Rdst_val_in;  //TO BE EDITED
+/*for forwarding*/
+assign selected_Rdst1_or_Rdst2_MEM_to_ALU_Rdst = (forward_Rdst_num_MEM_to_Rdst_FU1_in) ? Rdst1_val_MEM_in : Rdst2_val_MEM_in;
+assign selected_Rdst1_or_Rdst2_WB_to_ALU_Rdst = (forward_Rdst_num_WB_to_Rdst_FU1_in) ? Rdst1_val_WB_in : Rdst2_val_WB_in;
 
-assign ALU_Rsrc = 	(ALU_src1_in == 2'd0)	?	Rsrc_val_in				:		// TO BE EDITED
-					(ALU_src1_in == 2'd1)	?	Data_in					:
-												{{12{1'b0}}, Shmt_in}	;		
+assign selected_Rdst1_or_Rdst2_MEM_to_ALU_Rsrc = (forward_Rdst_num_MEM_to_Rsrc_FU1_in) ? Rdst1_val_MEM_in : Rdst2_val_MEM_in;
+assign selected_Rdst1_or_Rdst2_WB_to_ALU_Rsrc = (forward_Rdst_num_WB_to_Rsrc_FU1_in) ? Rdst1_val_WB_in : Rdst2_val_WB_in;
+
+/*for the inputs/outputs to the ALU*/
+assign normal_without_forward_selected_value = 	(ALU_src1_in == 2'd0)	?	Rsrc_val_in				:
+												(ALU_src1_in == 2'd1)	?	Data_in					:
+																			{{12{1'b0}}, Shmt_in}	;	
+												
+assign ALU_Rdst = 	(forward_ALU_dst_FU1_in == 2'd1)	?	selected_Rdst1_or_Rdst2_MEM_to_ALU_Rdst	:
+					(forward_ALU_dst_FU1_in == 2'd2)	?	selected_Rdst1_or_Rdst2_WB_to_ALU_Rdst	:				
+															Rdst_val_in								;  
+
+
+assign ALU_Rsrc = 	(forward_ALU_src_FU1_in == 2'd1)	?	selected_Rdst1_or_Rdst2_MEM_to_ALU_Rsrc	:
+					(forward_ALU_src_FU1_in == 2'd2)	?	selected_Rdst1_or_Rdst2_WB_to_ALU_Rsrc	:				
+															normal_without_forward_selected_value	; 
+
 assign ALU_OP = ALU_OP_in;
 assign ALU_ZF_in = ZFlag_out;
 assign ALU_CF_in = CFlag_out;
@@ -256,5 +306,6 @@ assign PC_push_pop_out = PC_push_pop_in;
 assign flags_push_pop_out = flags_push_pop_in;
 assign jmp_addr_out = jmp_actual_addr;
 assign do_jmp_out = is_jmp_instr;
+assign ALU_src_val_out = ALU_Rsrc;
 			
 endmodule

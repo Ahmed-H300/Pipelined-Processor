@@ -511,7 +511,7 @@ def labelCompile(out):
 arrayISA = []
 # try opening the file
 try:
-    file = open('test.txt', 'r')
+    file = open(fileName, 'r')
     getInput(file, arrayISA)
     if(len(arrayISA) == 0):
         print(Fore.RED + 'File is Empty! Please check it again.')

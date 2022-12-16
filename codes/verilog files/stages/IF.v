@@ -47,6 +47,15 @@ input wire stall;
 input wire [31:0] PC_jmpValue;
 
 
+/**************************************************************
+	1 bit regs in this stage
+**************************************************************/
+
+/*this is the interrupt register to make the interrupt active for only one cycle*/
+reg INT_reg;
+
+/*this is the reset register to make the reset active for only one cycle*/
+reg RESET_reg;
 
 /**************************************************************
 	immediate wires to make the code cleaner
@@ -67,18 +76,18 @@ wire slaveOut;
 assign PC_addedByOne = PC_out + 1;
 assign inst_opcode = {4{!masterOut}} & instr[15:12];
 
-assign PC_in =  (reset | exception)		?	32'd32			:
-				(interrupt | SET_INT)	?	32'd0			:
-				(pop_pc)				?	PC_popedValue	:	
-				(jmp_sgn)				?	PC_jmpValue		:
-											PC_addedByOne	;
+assign PC_in =  (RESET_reg | exception)		?	32'd32			:
+				(INT_reg | SET_INT)			?	32'd0			:
+				(pop_pc)					?	PC_popedValue	:	
+				(jmp_sgn)					?	PC_jmpValue		:
+												PC_addedByOne	;
 
 assign instruction = 	(masterOut) 	?	16'd0			:
 						(slaveOut)		?	tempRegOut		:
 											instr			;
 
 assign Data = instr;
-assign INT = interrupt;
+assign INT = INT_reg;
 assign PC_IF_out = PC_addedByOne;
 
 
@@ -92,12 +101,33 @@ I_typeDetectionUnit ItypeDetectionUnit(.is_I_type(is_Itype), .instr_opcode(inst_
 masterSlaveReg stateMachine(.masterOut(masterOut), .slaveOut(slaveOut), .masterIn(is_Itype), .clk(clk), .reset(reset));
 Reg #(16) tempReg(.out_data(tempRegOut), .reset(reset), .set(1'b0), .clk(is_Itype), .in_data(instr));
 
+
+/**************************************************************
+	logic for 1 bit regs
+**************************************************************/
+always@(negedge clk, interrupt)
+begin
+	if(interrupt)
+		INT_reg <= 1;
+	else if(!clk)
+		INT_reg <= 0;
+	else
+		INT_reg <= INT_reg;
+end
+
+always@(negedge clk, reset)
+begin
+	if(reset)
+		RESET_reg <= 1;
+	else if(!clk)
+		RESET_reg <= 0;
+	else
+		RESET_reg <= INT_reg;
+end
+
 endmodule
 
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*this is the program counter module*/
 module PC(PC_out, PC_in, clk, stall);
@@ -131,9 +161,8 @@ end
 
 endmodule
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 /*this module detects if the fetched instruction is I_type or not*/
 module I_typeDetectionUnit(is_I_type, instr_opcode);
@@ -149,10 +178,8 @@ assign is_I_type =  (instr_opcode == 4'd8) ? 1'b1 : 1'b0;
 
 endmodule
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*used in the state machine as in the schematic to delay for one clock cycle*/
 module masterSlaveReg(masterOut, slaveOut, masterIn, clk, reset);
@@ -183,7 +210,7 @@ assign masterOut = masterReg;
 assign slaveOut = slaveReg;
 
 /*actual logic in the circuit*/
-always @(clk, reset)
+always @(clk, posedge reset)
 begin 
 	if(reset)
 	begin 
@@ -203,5 +230,3 @@ begin
 end
 
 endmodule
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////

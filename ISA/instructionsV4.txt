@@ -137,19 +137,21 @@ instructions to be handled by assembler:
 -> RTI   	: POP PC, flags
 
 //-> Reset 	: load PC, 2^5
-	   	  reset hardware
+	   	  reset hardware		-> commented
 			
 
-//-> interrupt	: push PC,flags
+//-> interrupt	: push PC,flags	-> commented
 
 		  
 //-> CALL 	: PUSH PC
-		  JMP Rdst
+		  JMP Rdst			-> commented
 	 
+HAZARDS types:	- LDD,OUT then R_type iunstrcution or b_type instruction
 
 ======================================================================================
 
 bonus:
+------
 -> many new instructions like MUL and DIV, JMP #imm , POP PC, flags , etc....
 -> jumping on labels and functions
 -> more than one port (immediate is 4 bits)
@@ -161,22 +163,46 @@ bonus:
 -> 2 forwarding units (extra one is to make MEM-MEM forwarding for common cases like copying elements of array from one place to another)
 -> exception unit:
 	-> stack overflow and underflow (SP)
+	-> invalid instruction (instruction op code > 10)
 	-> division by zero
 	-> out of memory bounds in instruction and data memory
-	-> saves the adddress of PC in EPC 
+	=> saves the adddress of PC in EPC and cause will hold the exception number
 -> handling the state when writing the result of multiplication to 2 registers and theses registers are same so we give priority to the one who stores the lower 16 bits
 	
 =====================================================================================
 Notes:
 	-> assembler should use Rdst as the the target register while Rsrc as the memory address in STD and LDD commands
-	-> assembler should replace RET, RTI   with their equivalent commands
+	-> assembler should replace RET, RTI with their equivalent commands
 	-> assembler should map the addresses of the ports to their real addresses
 	-> assembler should detect invalid instructions
 	-> reset before interrupt if both happened at the same time
 	-> for reset signal, it has to be stable for at least 1 clock cycle
+	-> when flushing, we clear all the registers except for INT signal and PC
 =====================================================================================
 TODO:
-	-> make the EPC accept PC from different stages
-	-> handle the invalid instruction exception
- 
+	-> when doing jmp then reset, the jmp instruction will flush the int signal
+ 	-> make reset aysnchronous and flush synchronous
+	-> complete interrupt design
+	-> CLR_FLAGs and CLR_interrupt should execute same as RTI
+	-> CLR_INT (will be discussed with hany)
+	-> forward the port memory also in the case of (IN Rdst,Port then out Rdst, port)
+	-> reset is asynchronous with clock
+=====================================================================================
+CAUSE valus:
+	->	0	:	no error
+	->	1	:	stack overflow		(mem stage)
+	->	2	:	stack underflow		(mem stage)
+	->	3	:	invalid instruction	(decode stage)
+	->	4	:	Division by zero		(ex stage)
+	->	5	:	out of memory boundries in instruction memory (ex stage)
+	->	6	:	out of memory boundries in data memory	(mem stage)
 
+PC_src for EPC:
+	-> 	0	:	0
+	->	1	:	PC from decode stage
+	->	2	:	PC from execution stage
+	->	3	:	PC from mem stage
+=====================================================================================
+tesetcases:	
+	-> fibanocci series
+	->
