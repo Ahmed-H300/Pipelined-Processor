@@ -546,44 +546,47 @@ if (('{\n' in arrayISA) and ('}\n' in arrayISA)):
 out = OrderedDict()
 
 # Compile VECT
-startMain = 0
-endMain = 31
-errorMessage = CompileOutput(arrVect, out, startMain, endMain)
-if(errorMessage != 0):
-    print(Fore.RED + errorMessage + '! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
-if(len(out) == 0):
-    print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
+if(len(arrVect) != 0):
+    startMain = 0
+    endMain = 31
+    errorMessage = CompileOutput(arrVect, out, startMain, endMain)
+    if(errorMessage != 0):
+        print(Fore.RED + errorMessage + '! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
+    if(len(out) == 0):
+        print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
 
 # Compile ISA
-startMain = 32
-endMain = 1048575
-errorMessage = CompileOutput(arrayISA, out, startMain, endMain)
-if(errorMessage != 0):
-    print(Fore.RED + errorMessage + '! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
-if(len(out) == 0):
-    print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
+if(len(arrayISA) != 0):
+    startMain = 32
+    endMain = 1048575
+    errorMessage = CompileOutput(arrayISA, out, startMain, endMain)
+    if(errorMessage != 0):
+        print(Fore.RED + errorMessage + '! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
+    if(len(out) == 0):
+        print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
 
 #Compile ()
-startMain = int(arrSpecial[0])
-del arrSpecial[0]
-endMain = 1048575
-errorMessage = CompileOutput(arrSpecial, out, startMain, endMain)
-if(errorMessage != 0):
-    print(Fore.RED + errorMessage + '! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
-if(len(out) == 0):
-    print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
+if(len(arrSpecial) != 0):
+    startMain = int(arrSpecial[0])
+    del arrSpecial[0]
+    endMain = 1048575
+    errorMessage = CompileOutput(arrSpecial, out, startMain, endMain)
+    if(errorMessage != 0):
+        print(Fore.RED + errorMessage + '! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
+    if(len(out) == 0):
+        print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
 
 labelCompile(out)
 
