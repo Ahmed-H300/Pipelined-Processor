@@ -10,7 +10,7 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 vALU
-Z0 !s110 1671180892
+Z0 !s110 1671564950
 !i10b 1
 !s100 FZA[zoSLPoAAd5eYmd30T0
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,13 +20,13 @@ Z3 dD:/PROJECTS/third year/first term/computer architecture/codes/modesim_work
 w1669498371
 8..\verilog files\stages\..\units\ALU.v
 F..\verilog files\stages\..\units\ALU.v
-!i122 567
+!i122 660
 L0 2 294
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1671180892.000000
+Z5 !s108 1671564950.000000
 !s107 ..\verilog files\units\HDU.v|..\verilog files\units\FU2.v|..\verilog files\units\FU1.v|..\verilog files\units\EDU.v|..\verilog files\intermediate_buffers\MEM_WB.v|..\verilog files\intermediate_buffers\IF_ID.v|..\verilog files\intermediate_buffers\ID_EX.v|..\verilog files\intermediate_buffers\EX_MEM.v|..\verilog files\stages\WB.v|..\verilog files\stages\MEM.v|..\verilog files\stages\..\utils\mem.v|..\verilog files\stages\IF.v|..\verilog files\stages\..\utils\reg.v|..\verilog files\stages\..\units\ALU.v|..\verilog files\stages\EX.v|..\verilog files\stages\..\units\regFile.v|..\verilog files\stages\..\units\CU.v|..\verilog files\stages\ID.v|../verilog files/processor.v|
 Z6 !s90 -reportprogress|300|../verilog files/processor.v|
 !i113 1
@@ -35,15 +35,15 @@ n@a@l@u
 vCU
 R0
 !i10b 1
-!s100 AzV>aQ8I[NeF[]0=K6A=R1
+!s100 [3n>7;B:EOWM790]VYH_@2
 R1
-I[[5fMzE75G5o?UnLfNWKe1
+IbBOK0Fj:ThYEkN_LC^iL^0
 R2
 R3
-w1669800592
+w1671513166
 8..\verilog files\stages\..\units\CU.v
 F..\verilog files\stages\..\units\CU.v
-!i122 567
+!i122 660
 L0 2 548
 R4
 r1
@@ -66,7 +66,7 @@ R3
 w1670948539
 8..\verilog files\units\EDU.v
 F..\verilog files\units\EDU.v
-!i122 567
+!i122 660
 L0 2 150
 R4
 r1
@@ -81,16 +81,16 @@ n@e@d@u
 vEX
 R0
 !i10b 1
-!s100 hGD6Pa63J;U<7jn^G=;=C3
+!s100 KNdB08doZXh<@T<?YcKce2
 R1
-IM_oioeZg:Pk<MP?K:D:V<0
+Io@l`o8VH6HVIMVXj>VRLz3
 R2
 R3
-w1671132056
+w1671562032
 8..\verilog files\stages\EX.v
 F..\verilog files\stages\EX.v
-!i122 567
-L0 5 307
+!i122 660
+L0 5 308
 R4
 r1
 !s85 0
@@ -112,7 +112,7 @@ R3
 w1671145557
 8..\verilog files\intermediate_buffers\EX_MEM.v
 F..\verilog files\intermediate_buffers\EX_MEM.v
-!i122 567
+!i122 660
 L0 1 251
 R4
 r1
@@ -135,7 +135,7 @@ R3
 w1671019626
 8..\verilog files\units\FU1.v
 F..\verilog files\units\FU1.v
-!i122 567
+!i122 660
 L0 2 135
 R4
 r1
@@ -158,7 +158,7 @@ R3
 w1671019780
 8..\verilog files\units\FU2.v
 F..\verilog files\units\FU2.v
-!i122 567
+!i122 660
 L0 2 69
 R4
 r1
@@ -181,7 +181,7 @@ R3
 w1670955592
 8..\verilog files\units\HDU.v
 F..\verilog files\units\HDU.v
-!i122 567
+!i122 660
 L0 2 43
 R4
 r1
@@ -204,7 +204,7 @@ R3
 Z9 w1671144606
 Z10 8..\verilog files\stages\IF.v
 Z11 F..\verilog files\stages\IF.v
-!i122 567
+!i122 660
 L0 168 12
 R4
 r1
@@ -227,7 +227,7 @@ R3
 w1669800943
 8..\verilog files\stages\ID.v
 F..\verilog files\stages\ID.v
-!i122 567
+!i122 660
 L0 5 130
 R4
 r1
@@ -250,7 +250,7 @@ R3
 w1671145554
 8..\verilog files\intermediate_buffers\ID_EX.v
 F..\verilog files\intermediate_buffers\ID_EX.v
-!i122 567
+!i122 660
 L0 2 379
 R4
 r1
@@ -273,7 +273,7 @@ R3
 R9
 R10
 R11
-!i122 567
+!i122 660
 L0 5 124
 R4
 r1
@@ -296,7 +296,7 @@ R3
 w1671145545
 8..\verilog files\intermediate_buffers\IF_ID.v
 F..\verilog files\intermediate_buffers\IF_ID.v
-!i122 567
+!i122 660
 L0 2 93
 R4
 r1
@@ -319,7 +319,7 @@ R3
 R9
 R10
 R11
-!i122 567
+!i122 660
 L0 185 48
 R4
 r1
@@ -334,15 +334,15 @@ nmaster@slave@reg
 vMEM
 R0
 !i10b 1
-!s100 <a8X_o11VD<aem1LEbU9J2
+!s100 NY_z[KLVPo_:8>PEP4GlB1
 R1
-IJIZ`B9N5V6;USgjcL?T:a0
+I8]:WdSjS?:8NFcT98LKET3
 R2
 R3
-w1671041114
+w1671564939
 8..\verilog files\stages\MEM.v
 F..\verilog files\stages\MEM.v
-!i122 567
+!i122 660
 L0 4 188
 R4
 r1
@@ -365,7 +365,7 @@ R3
 w1671145559
 8..\verilog files\intermediate_buffers\MEM_WB.v
 F..\verilog files\intermediate_buffers\MEM_WB.v
-!i122 567
+!i122 660
 L0 2 127
 R4
 r1
@@ -388,7 +388,7 @@ R3
 w1669846140
 8..\verilog files\stages\..\utils\mem.v
 F..\verilog files\stages\..\utils\mem.v
-!i122 567
+!i122 660
 L0 5 51
 R4
 r1
@@ -410,7 +410,7 @@ R3
 R9
 R10
 R11
-!i122 567
+!i122 660
 L0 133 30
 R4
 r1
@@ -425,15 +425,15 @@ n@p@c
 vprocessor
 R0
 !i10b 1
-!s100 lL9?B64lJBXRgfakk05ES2
+!s100 NKeBM3Zc]VN4OZ<T<zP:h0
 R1
-I3a[3Wg2^F_SfOYLMA_dLe1
+I<MfTh]?j0cG]d6W547ei10
 R2
 R3
-w1671134353
+w1671564250
 8../verilog files/processor.v
 F../verilog files/processor.v
-!i122 567
+!i122 660
 L0 19 417
 R4
 r1
@@ -455,7 +455,7 @@ R3
 w1669846148
 8..\verilog files\stages\..\utils\reg.v
 F..\verilog files\stages\..\utils\reg.v
-!i122 567
+!i122 660
 L0 5 39
 R4
 r1
@@ -478,7 +478,7 @@ R3
 w1669573466
 8..\verilog files\stages\..\units\regFile.v
 F..\verilog files\stages\..\units\regFile.v
-!i122 567
+!i122 660
 L0 2 128
 R4
 r1
@@ -501,7 +501,7 @@ R3
 w1669987169
 8..\verilog files\stages\WB.v
 F..\verilog files\stages\WB.v
-!i122 567
+!i122 660
 L0 2 39
 R4
 r1

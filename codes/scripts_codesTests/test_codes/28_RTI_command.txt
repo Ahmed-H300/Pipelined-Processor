@@ -1,0 +1,32 @@
+
+
+; main code
+SETC
+SETINT
+
+LDM R4, 5
+
+
+; interrupt service routine
+VECT
+LDM R1,3
+LDM R2,2
+RTI
+
+;	expected values after this code ends 
+;	------------------------------------
+;	R0	=	0
+;	R1	=	3
+;	R2	=	2
+;	R3	=	0
+;	R4	=	5
+;	R5	=	0
+;	R6	=	0
+;	R7	=	0
+;	------------------------------------	
+;	C_flag	=	1
+;	N_flag	=	0
+;	Z_flag	=	0
+;	OVF_flag	=	0
+;	------------------------------------
+;	SP	=	2047

@@ -84,15 +84,15 @@ b_type	: 4 (op-code)
 c_type	: 5 (op-code)
 ------
 group0 : OP	-> 0	(clear)
--> CLRZ	   	-> 0	 (funct)
+-> CLRZ	-> 0	 (funct)
 -> CLRN 	-> 1	 (funct)
--> CLRC		-> 2 	 (funct)
+-> CLRC	-> 2 	 (funct)
 -> CLRINT	-> 3	 (funct)
 
 group1 : OP	-> 1	(set)
--> SETZ		-> 0	 (funct)
+-> SETZ	-> 0	 (funct)
 -> SETN 	-> 1	 (funct)
--> SETC		-> 2	 (funct)
+-> SETC	-> 2	 (funct)
 -> SETINT	-> 3	 (funct)
 
 
@@ -104,10 +104,10 @@ s_type : 6 (op-code)
 
 m_type : 7 (op-code)
 ------
--> OUT		-> 0 (funct)		-> Rdst, port
+-> OUT	-> 0 (funct)		-> Rdst, port
 -> IN		-> 1 (funct)		
--> LDD		-> 2 (funct)		-> Rdst, Rsrc
--> STD		-> 3 (funct)	
+-> LDD	-> 2 (funct)		-> Rdst, Rsrc
+-> STD	-> 3 (funct)	
 
 
 I_type : 8 (op-code)
@@ -187,6 +187,9 @@ TODO:
 	-> CLR_INT (will be discussed with hany)
 	-> forward the port memory also in the case of (IN Rdst,Port then out Rdst, port)
 	-> reset is asynchronous with clock
+	-> make memory for data and in ports
+	-> solve the problems related to INT 
+	-> add the overflow flag
 =====================================================================================
 CAUSE valus:
 	->	0	:	no error

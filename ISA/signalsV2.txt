@@ -3,7 +3,7 @@ control unit signals: 32 signals	-> active high		// there is a decoding circuit 
 -> RegLow_write 	-> 1 bit (reg_dst1_write_back)
 	active in :
 		- all of R_type instructions
-		- m_type in case of IN
+		- m_type in case of IN and LDD
 		- s_type in case of POP and PC != 1
 		- I type in case of LDM
 

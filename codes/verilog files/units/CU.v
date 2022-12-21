@@ -295,11 +295,11 @@ assign selected_ALU_OP_from_group2 = 	(funct == 4'd0) ? 4'd5 :		// bitwise OR (O
 	---------------------------------------
 		active in :
 		- all of R_type instructions
-		- m_type in case of IN
+		- m_type in case of IN or LDD
 		- s_type in case of POP and PC != 1
 		- I type in case of LDM
 */
-assign RegLow_write = is_R_type | is_IN_inst | (is_POP_inst & (!PC)) | is_LDM_inst;
+assign RegLow_write = is_R_type | is_IN_inst | is_LDD_inst | (is_POP_inst & (!PC)) | is_LDM_inst;
 
 /*
 	calculating the value of RegHigh_write :

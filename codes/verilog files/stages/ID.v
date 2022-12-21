@@ -121,7 +121,7 @@ regFile registerFile(.reg1_read_src(Rsrc_val_out), .reg2_read_dst(Rdst_val_out),
 /**************************************************************
 	important assigns
 **************************************************************/
-assign INT_out = INT_in | set_INT_out;
+assign INT_out = INT_in;
 assign Data_out = Data_in;
 assign PC_out = PC_in;
 assign Shmt_out = instruction_in[5:2];

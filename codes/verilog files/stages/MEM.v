@@ -127,7 +127,7 @@ wire do_flags_push_pop;
 	important assigns for intermediate wires
 **************************************************************/
 assign SP_in = (reset) ? 32'd2047 : SP_selectedVal;
-assign SP_selector = (INT_in) ? 2'd1 : SP_src_in;
+assign SP_selector = (INT_in) ? 2'd2 : SP_src_in;
 assign SP_out = SP;
 
 assign SP_selectedVal = 	(SP_selector == 2'd0)	?	SP_out		:
@@ -149,7 +149,7 @@ assign do_flags_push_pop = flags_push_pop_in | INT_in;
 /**************************************************************
 	creating needed modules
 **************************************************************/
-memory #(4096) data_memort(.data_out(data_mem_out), .reset(reset), .address(data_mem_addr), .data_in(data_mem_in), .mem_read(mem_read_in), .mem_write(mem_write_in), .clk(clk));
+memory #(4096) data_memory(.data_out(data_mem_out), .reset(reset), .address(data_mem_addr), .data_in(data_mem_in), .mem_read(mem_read_in), .mem_write(mem_write_in), .clk(clk));
 memory #(16) port_out_memory(.data_out(port_read_data), .reset(reset), .address({{28{1'b0}}, PORT_in}), .data_in(16'd0), .mem_read(port_read_in), .mem_write(1'b0), .clk(clk));
 memory #(16) port_in_memory(.data_out(port_read_data_dummy), .reset(reset), .address({{28{1'b0}}, PORT_in}), .data_in(Rdst_val_in), .mem_read(1'b0), .mem_write(port_write_in), .clk(clk));
 	

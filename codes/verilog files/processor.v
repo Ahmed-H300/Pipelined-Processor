@@ -348,7 +348,7 @@ ID_EX decode_execute_buff(.PC_out(PC_ID_EX_buff), .Shmt_out(Shmt_ID_EX_buff), .h
 							.ALU_OP_in(ALU_OP_ID), .port_write_in(port_write_ID), .port_read_in(port_read_ID), .Rdst2_in(Rdst2_ID), .mem_type_in(mem_type_ID), .memToReg_in(memToReg_ID), .set_Z_in(set_Z_ID), .set_N_in(set_N_ID), 
 							.set_C_in(set_C_ID), .set_INT_in(set_INT_ID), .clr_Z_in(clr_Z_ID), .clr_N_in(clr_N_ID), .clr_C_in(clr_C_ID), .clr_INT_in(clr_INT_ID), .jmp_sel_in(jmp_sel_ID), .SP_src_in(SP_src_ID), .PORT_in(PORT_ID),
 							.Rsrc_in(Rsrc_ID), .is_jmp_in(is_jmp_ID), .jmp_src_in(jmp_src_ID), .mem_data_src_in(mem_data_src_ID), .mem_addr_src_in(mem_addr_src_ID), .INT_in(INT_ID), .PC_push_pop_in(PC_push_pop_ID),
-							.flags_push_pop_in(flags_push_pop_ID), .stall(POP_PC_sgn_MEM), .reset(reset), .clk(clk), .flush(exception_EXE_EDU | exception_MEM_EDU | stall_HDU | POP_PC_sgn_MEM));
+							.flags_push_pop_in(flags_push_pop_ID), .stall(stall_MEM), .reset(reset), .clk(clk), .flush(exception_EXE_EDU | exception_MEM_EDU | stall_HDU | POP_PC_sgn_MEM));
 
 /*EX stage*/	
 EX instr_execute(.PC_out(PC_EX), .SP_src_out(SP_src_EX), .port_write_out(port_write_EX), .port_read_out(port_read_EX), .Rdst1_val_out(Rdst1_val_EX), .Rdst1_out(Rdst1_EX), 
@@ -375,10 +375,10 @@ EX_MEM execute_memory_buff(.PC_out(PC_EX_MEM_buff), .SP_src_out(SP_src_EX_MEM_bu
 							.memToReg_out(memToReg_EX_MEM_buff), .Rdst2_val_out(Rdst2_val_EX_MEM_buff), .PORT_out(PORT_EX_MEM_buff), .Rsrc_out(Rsrc_EX_MEM_buff), .Rsrc_val_out(Rsrc_val_EX_MEM_buff), 
 							.mem_data_src_out(mem_data_src_EX_MEM_buff), .mem_addr_src_out(mem_addr_src_EX_MEM_buff), .Rdst_val_out(Rdst_val_EX_MEM_buff), .INT_out(INT_EX_MEM_buff), 
 							.PC_push_pop_out(PC_push_pop_EX_MEM_buff), .flags_push_pop_out(flags_push_pop_EX_MEM_buff), .PC_in(PC_EX), .SP_src_in(SP_src_EX), .port_write_in(port_write_EX), 
-							.port_read_in(port_read_EX), .Rdst1_val_in(Rdst1_val_EX), .Rdst1_in(Rdst1_EX), .mem_write_in(mem_write_EX), .mem_read_in(mem_write_EX), 
+							.port_read_in(port_read_EX), .Rdst1_val_in(Rdst1_val_EX), .Rdst1_in(Rdst1_EX), .mem_write_in(mem_write_EX), .mem_read_in(mem_read_EX), 
 							.reglow_write_in(reglow_write_EX), .reghigh_write_in(reghigh_write_EX), .Rdst2_in(Rdst2_EX), .mem_type_in(mem_type_EX), .memToReg_in(memToReg_EX), 
 							.Rdst2_val_in(Rdst2_val_EX), .PORT_in(PORT_EX), .Rsrc_in(Rsrc_EX), .Rsrc_val_in(Rsrc_val_EX), .mem_data_src_in(mem_data_src_EX), .mem_addr_src_in(mem_addr_src_EX), 
-							.Rdst_val_in(Rdst_val_EX), .INT_in(INT_EX), .PC_push_pop_in(PC_push_pop_EX), .flags_push_pop_in(flags_push_pop_EX), .clk(clk), .reset(reset), .stall(POP_PC_sgn_MEM),
+							.Rdst_val_in(Rdst_val_EX), .INT_in(INT_EX), .PC_push_pop_in(PC_push_pop_EX), .flags_push_pop_in(flags_push_pop_EX), .clk(clk), .reset(reset), .stall(stall_MEM),
 							.flush(exception_MEM_EDU));
 
 /*MEM stage*/

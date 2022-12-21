@@ -5,6 +5,7 @@ vsim -t 100ps processor
 mem load -filltype value -filldata 0 -fillradix symbolic -skip 0 /processor/instr_fetch/instr_mem/memory
 mem load -i ../verilog\ files/simulation\ files/instructionMemory.mem /processor/instr_fetch/instr_mem/memory
 
+
 #add wave interrupt reset clk PC_IF instruction_IF Data_IF INT_IF instr_fetch/PC_in instr_fetch/masterOut instr_fetch/slaveOut instr_fetch/PC_out instr_fetch/is_Itype instr_fetch/inst_opcode  
 #add wave interrupt reset clk PC_dummy instr_dummy data_dummy INT_dummy PC_IF instruction_IF Data_IF
 
@@ -31,7 +32,7 @@ add wave interrupt reset clk Rdst2_val_MEM Rdst2_MEM reghigh_write_MEM reglow_wr
 
 #Signals
 add wave -divider signals
-add wave -color #00FF3A -label INT interrupt -label rst reset -label clk clk 
+add wave -color #00FF3A -label INT interrupt -label rst reset -label clk clk -label EPC EPC -label CAUSE CAUSE
 
 #register file
 add wave -divider reg_file
@@ -68,6 +69,9 @@ add wave -color #B27600 instr_decode/*
 add wave -divider EX
 add wave -color #B27600 instr_execute/*
 
+add wave -divider EX_MEM
+add wave -color #B27600 execute_memory_buff/*
+
 add wave -divider MEM
 add wave -color #B27600 instr_memory/*
 
@@ -86,7 +90,6 @@ add wave -color #B27600 stall_HDU stall_MEM set_INT_ID exception_EDU set_INT_ID
 
 
 
-
 force interrupt 1'b0
 force reset 1'b1
 force clk 1 0, 0 {100 ps} -r 200
@@ -94,5 +97,9 @@ run
 
 force reset 1'b0
 run
+
+# loading the data memory after reset signal
+mem load -i ../verilog\ files/simulation\ files/portInMemory.mem /processor/instr_memory/port_in_memory/memory
+mem load -i ../verilog\ files/simulation\ files/dataMemory.mem /processor/instr_memory/data_memory/memory
 
 run

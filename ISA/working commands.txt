@@ -1,0 +1,39 @@
+SETC -> working
+
+CLRC -> working
+
+LDM -> working
+
+NOT -> working
+
+INC -> working
+
+DEC -> working
+
+OUT -> not working because of the assembler
+
+IN -> not working because of the assembler
+
+MOV -> working
+
+ADD -> working
+
+SUB -> working
+
+AND -> working
+
+OR -> working
+
+SHL -> not working because of the assembler
+
+SHR -> not working because of the assembler
+
+PUSH -> not working because of the assembler
+
+POP -> not working because of the assembler
+
+LDD -> working
+
+STD -> working
+
+ 

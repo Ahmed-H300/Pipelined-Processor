@@ -224,6 +224,7 @@ assign CFlag_in = (choose_POP_flags) ? POP_flags_val_in[0] : ALU_CF_out;
 assign ZFlag_set = set_Z_in;
 assign NFlag_set = set_N_in;
 assign CFlag_set = set_C_in;
+assign INTFlag_set = set_INT_in;
 
 /*assigning the reset signal for the CCR*/
 assign CFlag_reset = reset | clr_CF_JC | clr_C_in;

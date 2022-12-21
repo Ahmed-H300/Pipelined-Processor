@@ -69,6 +69,7 @@ wire [3:0] inst_opcode;
 wire is_Itype;
 wire masterOut;
 wire slaveOut;
+wire do_interruptRoutine;
 
 /**************************************************************
 	important assigns
@@ -77,7 +78,7 @@ assign PC_addedByOne = PC_out + 1;
 assign inst_opcode = {4{!masterOut}} & instr[15:12];
 
 assign PC_in =  (RESET_reg | exception)		?	32'd32			:
-				(INT_reg | SET_INT)			?	32'd0			:
+				(INT_reg)					?	32'd0			:
 				(pop_pc)					?	PC_popedValue	:	
 				(jmp_sgn)					?	PC_jmpValue		:
 												PC_addedByOne	;
@@ -89,7 +90,7 @@ assign instruction = 	(masterOut) 	?	16'd0			:
 assign Data = instr;
 assign INT = INT_reg;
 assign PC_IF_out = PC_addedByOne;
-
+assign do_interruptRoutine = interrupt | SET_INT;
 
 /**************************************************************
 	creating needed modules
@@ -105,7 +106,7 @@ Reg #(16) tempReg(.out_data(tempRegOut), .reset(reset), .set(1'b0), .clk(is_Ityp
 /**************************************************************
 	logic for 1 bit regs
 **************************************************************/
-always@(negedge clk, interrupt)
+always@(negedge clk,posedge do_interruptRoutine)
 begin
 	if(interrupt)
 		INT_reg <= 1;

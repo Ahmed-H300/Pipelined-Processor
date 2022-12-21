@@ -1,0 +1,22 @@
+; this is a program to test the NOT command which preform the NOT operation on a register
+
+LDM R1, 1
+NOT R1
+
+;	expected values after this code ends 
+;	------------------------------------
+;	R0	=	0
+;	R1	=	-2
+;	R2	=	0
+;	R3	=	0
+;	R4	=	0
+;	R5	=	0
+;	R6	=	0
+;	R7	=	0
+;	------------------------------------	
+;	C_flag	=	0
+;	N_flag	=	1
+;	Z_flag	=	0
+;	OVF_flag	=	0
+;	------------------------------------
+;	SP	=	2047

@@ -49,6 +49,7 @@ def getInput(file, arrayISA):
 # compile the instructions for range
 # first loop for instuctions without label
 
+
 def CompileOutput(arrayISA, out, start, end):
     reg = {
         'R0': 0b000,
@@ -347,21 +348,21 @@ def CompileOutput(arrayISA, out, start, end):
         elif (line[0].casefold() == 'SETN'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
-                    0 << operationShift) | (func['funct1'])
+                    1 << operationShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SETC'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
-                    0 << operationShift) | (func['funct2'])
+                    1 << operationShift) | (func['funct2'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SETINT'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
-                    0 << operationShift) | (func['funct3'])
+                    1 << operationShift) | (func['funct3'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
@@ -499,6 +500,8 @@ def CompileOutput(arrayISA, out, start, end):
 
 label = {}
 labelused = []
+
+
 def labelCompile(out):
 
     # loop for label
@@ -546,59 +549,64 @@ if (('{\n' in arrayISA) and ('}\n' in arrayISA)):
 out = OrderedDict()
 
 # Compile VECT
-startMain = 0
-endMain = 31
-errorMessage = CompileOutput(arrVect, out, startMain, endMain)
-if(errorMessage != 0):
-    print(Fore.RED + errorMessage + '! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
-if(len(out) == 0):
-    print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
+if(len(arrVect) != 0):
+    startMain = 0
+    endMain = 31
+    errorMessage = CompileOutput(arrVect, out, startMain, endMain)
+    if(errorMessage != 0):
+        print(Fore.RED + errorMessage + '! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
+    if(len(out) == 0):
+        print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
 
 # Compile ISA
-startMain = 32
-endMain = 1048575
-errorMessage = CompileOutput(arrayISA, out, startMain, endMain)
-if(errorMessage != 0):
-    print(Fore.RED + errorMessage + '! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
-if(len(out) == 0):
-    print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
+if(len(arrayISA) != 0):
+    startMain = 32
+    endMain = 1048575
+    errorMessage = CompileOutput(arrayISA, out, startMain, endMain)
+    if(errorMessage != 0):
+        print(Fore.RED + errorMessage + '! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
+    if(len(out) == 0):
+        print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
 
 #Compile ()
-startMain = int(arrSpecial[0])
-del arrSpecial[0]
-endMain = 1048575
-errorMessage = CompileOutput(arrSpecial, out, startMain, endMain)
-if(errorMessage != 0):
-    print(Fore.RED + errorMessage + '! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
-if(len(out) == 0):
-    print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
-    print(Style.RESET_ALL)
-    exit()
+if(len(arrSpecial) != 0):
+    startMain = int(arrSpecial[0])
+    del arrSpecial[0]
+    endMain = 1048575
+    errorMessage = CompileOutput(arrSpecial, out, startMain, endMain)
+    if(errorMessage != 0):
+        print(Fore.RED + errorMessage + '! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
+    if(len(out) == 0):
+        print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
 
 labelCompile(out)
 
 # write in file
 # write out in
-outConst = ['// instance=/processor/instr_fetch/instr_mem/memory',
-            '// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1']
+outConst = ['// instance=/processor/instr_fetch/instr_mem/memory\n',
+            '// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1\n\n']
 fileOut = open(fileNameOut, "w")
+for txt in outConst:
+    fileOut.write(txt)
 for key, vlaue in out.items():
     # formating the output
-    line = str(key).zfill(8) + ': ' + str(str(hex(int(vlaue)))[2:]).zfill(4) + '\n'
+    line = str(key).zfill(8) + ': ' + \
+        str(str(hex(int(vlaue)))[2:]).zfill(4) + '\n'
     fileOut.write(line)
 fileOut.close()
 
 print(Fore.GREEN + 'Assembled Successfully. File Name: ' + fileNameOut)
 print(Fore.GREEN + 'Have Fun :)')
 print(Style.RESET_ALL)
-

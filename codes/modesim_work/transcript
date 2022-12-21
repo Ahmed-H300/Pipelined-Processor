@@ -1,6 +1,6 @@
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:49:40 on Dec 16,2022
+# Start time: 20:38:24 on Dec 20,2022
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -27,10 +27,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 10:49:40 on Dec 16,2022, Elapsed time: 0:00:00
+# End time: 20:38:24 on Dec 20,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 10:49:40 on Dec 16,2022
+# Start time: 20:38:24 on Dec 20,2022
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -53,32 +53,41 @@ do sim.do
 # Loading work.HDU
 # Loading work.FU1
 # Loading work.FU2
-# ** UI-Msg: (vsim-7) Failed to open mem file "instructionMemory.mem" in read mode.
-# No such file or directory. (errno = ENOENT)
-# Error in macro ./../verilog files/simulation files/sim.do line 6
-# ** UI-Msg: (vsim-7) Failed to open mem file "instructionMemory.mem" in read mode.
-# No such file or directory. (errno = ENOENT)
-#     while executing
-# "mem load -i {instructionMemory.mem} /processor/instr_fetch/instr_mem/memory"
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 quit -sim
-# End time: 10:51:15 on Dec 16,2022, Elapsed time: 0:01:35
+# End time: 21:24:16 on Dec 20,2022, Elapsed time: 0:45:52
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:51:17 on Dec 16,2022
-# vlog -reportprogress 300 ../processor.v 
-# ** Error: (vlog-7) Failed to open design unit file "../processor.v" in read mode.
-# No such file or directory. (errno = ENOENT)
-# End time: 10:51:17 on Dec 16,2022, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-# ** Error: C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
-# Error in macro ./../verilog files/simulation files/sim.do line 1
-# C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
-#     while executing
-# "vlog ../processor.v"
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:52:05 on Dec 16,2022
+# Start time: 21:24:22 on Dec 20,2022
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -105,10 +114,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 10:52:05 on Dec 16,2022, Elapsed time: 0:00:00
+# End time: 21:24:22 on Dec 20,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 10:52:05 on Dec 16,2022
+# Start time: 21:24:22 on Dec 20,2022
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -131,20 +140,27 @@ do sim.do
 # Loading work.HDU
 # Loading work.FU1
 # Loading work.FU2
-# ** UI-Msg: (vsim-7) Failed to open mem file "../verilog\ files/simulation\ files/instructionMemory.mem" in read mode.
-# No such file or directory. (errno = ENOENT)
-# Error in macro ./../verilog files/simulation files/sim.do line 6
-# ** UI-Msg: (vsim-7) Failed to open mem file "../verilog\ files/simulation\ files/instructionMemory.mem" in read mode.
-# No such file or directory. (errno = ENOENT)
-#     while executing
-# "mem load -i {../verilog\ files/simulation\ files/instructionMemory.mem} /processor/instr_fetch/instr_mem/memory"
-mem load -i {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/simulation files/instructionMemory.mem} /processor/instr_fetch/instr_mem/memory
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 quit -sim
-# End time: 10:54:50 on Dec 16,2022, Elapsed time: 0:02:45
+# End time: 21:35:46 on Dec 20,2022, Elapsed time: 0:11:24
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:54:52 on Dec 16,2022
+# Start time: 21:35:50 on Dec 20,2022
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -171,10 +187,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 10:54:52 on Dec 16,2022, Elapsed time: 0:00:00
+# End time: 21:35:50 on Dec 20,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 10:54:52 on Dec 16,2022
+# Start time: 21:35:50 on Dec 20,2022
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -232,16 +248,6 @@ run
 run
 run
 run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
 quit -sim
-# End time: 10:55:16 on Dec 16,2022, Elapsed time: 0:00:24
+# End time: 21:39:34 on Dec 20,2022, Elapsed time: 0:03:44
 # Errors: 0, Warnings: 1
