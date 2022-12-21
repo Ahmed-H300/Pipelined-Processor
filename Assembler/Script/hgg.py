@@ -472,13 +472,19 @@ def CompileOutput(arrayISA, out, start, end):
         # rds , imediate # call Rds , # CALL label
         elif (line[0].casefold() == 'CALL'.casefold()):
             if(len(line) == 2):
-                temp = temp | (opCode['I_type'] <<
-                               opCodeShift) | (func['funct1'])
-                out[currentIP] = temp
-                currentIP += 1
-                temp = line[1]
-                labelused.append(line[1])
-                out[currentIP] = temp
+                op1 = reg.get(line[1], None)
+                if(op1 == None):
+                    temp = temp | (opCode['I_type'] <<
+                                   opCodeShift) | (func['funct1'])
+                    out[currentIP] = temp
+                    currentIP += 1
+                    temp = line[1]
+                    labelused.append(line[1])
+                    out[currentIP] = temp
+                else:
+                    temp = temp | (opCode['CALL'] << opCodeShift) | (
+                        op1 << rdsShift)
+                    out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif(len(line) == 1):
@@ -498,12 +504,17 @@ def CompileOutput(arrayISA, out, start, end):
 label = {}
 labelused = []
 def labelCompile(out):
-
-    # loop for label
-    # second loop for label instuctions
-    for k, v in out.items():
-        if(v in labelused):
-            out[k] = label[v]
+    
+    try:
+        # loop for label
+        # second loop for label instuctions
+        for k, v in out.items():
+            if(v in labelused):
+                out[k] = label[v]
+    except:
+        print(Fore.RED + 'Error in handling jumping labels! please check it again!')
+        print(Style.RESET_ALL)
+        exit()
 
 
 arrayISA = []
