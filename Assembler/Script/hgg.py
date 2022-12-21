@@ -159,22 +159,20 @@ def CompileOutput(arrayISA, out, start, end):
         elif (line[0].casefold() == 'SHL'.casefold()):
             if(len(line) == 3):
                 op1 = reg.get(line[1], None)
-                op2 = reg.get(line[2], None)
-                if(op1 == None or op2 == None):
+                if(op1 == None):
                     return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group1'] << opCodeShift) | (
-                    op1 << rdsShift) | (op2 << shmtShift) | (func['funct0'])
+                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SHR'.casefold()):  # like SHL
             if(len(line) == 3):
                 op1 = reg.get(line[1], None)
-                op2 = reg.get(line[2], None)
-                if(op1 == None or op2 == None):
+                if(op1 == None):
                     return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group1'] << opCodeShift) | (
-                    op1 << rdsShift) | (op2 << shmtShift) | (func['funct1'])
+                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
@@ -411,7 +409,7 @@ def CompileOutput(arrayISA, out, start, end):
                 if(op1 == None):
                     return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['m_type'] << opCodeShift) | (
-                    op1 << rdsShift) | (line[2] << shmtShift) | (func['funct0'])
+                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
@@ -421,7 +419,7 @@ def CompileOutput(arrayISA, out, start, end):
                 if(op1 == None):
                     return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['m_type'] << opCodeShift) | (
-                    op1 << rdsShift) | (line[2] << shmtShift) | (func['funct1'])
+                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
