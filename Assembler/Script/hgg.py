@@ -80,6 +80,7 @@ def CompileOutput(arrayISA, out, start, end):
         'I_type': 0b1000,
         'CLR_FLAGS': 0b1001,
         'CALL': 0b1010,
+        'SETINT': 0b1011,
     }
     func = {
         'funct0': 0b00,
@@ -328,7 +329,7 @@ def CompileOutput(arrayISA, out, start, end):
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
-        elif (line[0].casefold() == 'CLRINT'.casefold()):
+        elif (line[0].casefold() == 'CLROVF'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     0 << operationShift) | (func['funct3'])
@@ -356,7 +357,7 @@ def CompileOutput(arrayISA, out, start, end):
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
-        elif (line[0].casefold() == 'SETINT'.casefold()):
+        elif (line[0].casefold() == 'SETOVF'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     0 << operationShift) | (func['funct3'])
@@ -461,6 +462,12 @@ def CompileOutput(arrayISA, out, start, end):
         elif (line[0].casefold() == 'CLR_FLAGS'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['CLR_FLAGS'] << opCodeShift)
+                out[currentIP] = temp
+            else:
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
+        elif (line[0].casefold() == 'SETINT'.casefold()):
+            if(len(line) == 1):
+                temp = temp | (opCode['SETINT'] << opCodeShift)
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
