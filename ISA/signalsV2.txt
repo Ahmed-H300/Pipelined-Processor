@@ -101,9 +101,9 @@ control unit signals: 32 signals	-> active high		// there is a decoding circuit 
 	active in:
 		- c_type instructions group 1 (SET_C)
 
--> SET_INT		-> 1 bit 		(sets the interrupt flag)
+-> SET_OVF		-> 1 bit 		(sets the interrupt flag)
 	active in:
-		- c_type instructions group 1 (SET_INT)
+		- c_type instructions group 1 (SET_OVF)
 
 
 -> CLR_Z		-> 1 bit 		(clears the zero flag)
@@ -118,9 +118,9 @@ control unit signals: 32 signals	-> active high		// there is a decoding circuit 
 	active in:
 		- c_type instructions group 0 (CLR_C) and CLR_FLAGS instruction
 
--> CLR_INT		-> 1 bit 		(clears the interrupt aaflag)
+-> CLR_OVF		-> 1 bit 		(clears the interrupt aaflag)
 	active in:
-		- c_type instructions group 0 (CLR_INT) and CLR_FLAGS instruction
+		- c_type instructions group 0 (CLR_OVF) and CLR_FLAGS instruction
 		- RTI instruction (POP PC, flags)
 
 
@@ -137,3 +137,7 @@ control unit signals: 32 signals	-> active high		// there is a decoding circuit 
 -> mem_address_src	-> 1 bit 		(select between using address using Rdst and SP)
 	acive in :
 		- POP/PUSH instructions (s_type)
+
+-> SETINT : 	-> 1 bit
+	active in :
+		- opcode = 11

@@ -1,7 +1,7 @@
 /*this is the control unit which is responsible for creating most of enable and select signals that will make the processor work correctly*/
 module CU(RegLow_write, ALU_OP, RegHigh_write, ALU_src1, MemToReg, memWrite, memRead, portWrite, portRead,
-			memType, PC_push_pop, flags_push_pop, JMP_type, is_jmp, JMP_src, SET_Z, SET_N, SET_C, SET_INT, 
-			CLR_Z, CLR_N, CLR_C, CLR_INT, SP_src, mem_data_src, mem_address_src, instruction);
+			memType, PC_push_pop, flags_push_pop, JMP_type, is_jmp, JMP_src, SET_Z, SET_N, SET_C, SET_OVF, 
+			CLR_Z, CLR_N, CLR_C, CLR_OVF, SP_src, mem_data_src, mem_address_src, SET_INT, instruction);
 
 /*this is the instruction to decode which is 16 bits*/
 input wire [15:0] instruction;
@@ -61,7 +61,7 @@ output wire SET_N;
 output wire SET_C;
 
 /*sets the interrupt flag*/
-output wire SET_INT;
+output wire SET_OVF;
 
 /*clears the zero flag*/
 output wire CLR_Z;
@@ -73,7 +73,7 @@ output wire CLR_N;
 output wire CLR_C;
 
 /*clears the interrupt flag*/
-output wire CLR_INT;
+output wire CLR_OVF;
 
 /*select whether to keep SP value as it's or decrement it or increment it*/
 output wire [1:0] SP_src;
@@ -83,6 +83,9 @@ output wire mem_data_src;
 
 /*select between using address using Rdst and SP*/
 output wire mem_address_src;
+
+/*this is the software interrupt wire*/
+output wire SET_INT;
 
 
 /**************************************************************
@@ -155,6 +158,9 @@ assign is_CLR_FLAGS = (opcode == 4'd9);
 wire is_CALL;
 assign is_CALL = (opcode == 4'd10);
 
+/*to detect if the instruction is software interrupt*/
+wire is_SET_INT_inst;
+assign is_SET_INT_inst = (opcode == 4'd11);
 
 
 /**************************************************************
@@ -198,8 +204,8 @@ wire is_CLRC_inst;
 assign is_CLRC_inst = (is_C_type & (funct == 2'd2) & (OP == 0));
 
 /*to detect if the instruction is clear interrupt flag*/
-wire is_CLR_INT_inst;
-assign is_CLR_INT_inst = (is_C_type & (funct == 2'd3) & (OP == 0));
+wire is_CLR_OVF_inst;
+assign is_CLR_OVF_inst = (is_C_type & (funct == 2'd3) & (OP == 0));
 
 /*to detect if the instruction is set zero flag*/
 wire is_SETZ_inst;
@@ -214,8 +220,8 @@ wire is_SETC_inst;
 assign is_SETC_inst = (is_C_type & (funct == 2'd2) & (OP == 1));
 
 /*to detect if the instruction is set interrupt flag*/
-wire is_SET_INT_inst;
-assign is_SET_INT_inst = (is_C_type & (funct == 2'd3) & (OP == 1));
+wire is_SET_OVF_inst;
+assign is_SET_OVF_inst = (is_C_type & (funct == 2'd3) & (OP == 1));
 
 /*to detect if the instruction is PUSH*/
 wire is_PUSH_inst;
@@ -474,12 +480,12 @@ assign SET_N = is_SETN_inst;
 assign SET_C = is_SETC_inst;	
 
 /*
-	calculating the value of SET_INT :
+	calculating the value of SET_OVF :
 	---------------------------------------
 	active in:
-		- c_type instructions group 1 (SET_INT)
+		- c_type instructions group 1 (SET_OVF)
 */	
-assign SET_INT = is_SET_INT_inst;	
+assign SET_OVF = is_SET_OVF_inst;	
 	
 	
 /*
@@ -507,13 +513,13 @@ assign CLR_N = is_CLRN_inst | is_CLR_FLAGS;
 assign CLR_C = is_CLRC_inst | is_CLR_FLAGS;	
 
 /*
-	calculating the value of CLR_INT :
+	calculating the value of CLR_OVF :
 	---------------------------------------
 	active in:
-		- c_type instructions group 0 (CLR_INT) and CLR_FLAGS instruction
+		- c_type instructions group 0 (CLR_OVF) and CLR_FLAGS instruction
 		- RTI instruction (POP PC, flags)		
 */	
-assign CLR_INT = is_CLR_INT_inst | is_CLR_FLAGS | (is_POP_inst & PC & flags);	
+assign CLR_OVF = is_CLR_OVF_inst | is_CLR_FLAGS | (is_POP_inst & PC & flags);	
 
 
 /*
@@ -544,6 +550,15 @@ assign mem_data_src = is_PUSH_inst & (PC | flags);
 		- POP/PUSH instructions (s_type)
 */	
 assign mem_address_src = is_S_type;
+
+
+/*
+	calculating the value of mem_address_src :
+	---------------------------------------
+	acive in :
+		- SET_INT instruction
+*/
+assign SET_INT = is_SET_INT_inst;
 	
 				
 endmodule

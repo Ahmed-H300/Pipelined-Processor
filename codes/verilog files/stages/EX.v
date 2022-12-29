@@ -5,8 +5,8 @@
 module EX(PC_out, SP_src_out, port_write_out, port_read_out, Rdst1_val_out, Rdst1_out, mem_write_out, mem_read_out, reglow_write_out, reghigh_write_out, Rdst2_out, 
 			mem_type_out, memToReg_out, Rdst2_val_out, PORT_out, Rsrc_out, Rsrc_val_out, mem_data_src_out, mem_addr_src_out, Rdst_val_out, INT_out, PC_push_pop_out,
 			flags_push_pop_out, jmp_addr_out, do_jmp_out, PC_in, ALU_src_val_out, Shmt_in, hash_imm_in, Data_in, Rdst1_in, Rdst_val_in, Rsrc_val_in, ALU_src1_in, mem_write_in, mem_read_in,
-			reglow_write_in, reghigh_write_in, ALU_OP_in, port_write_in, port_read_in, Rdst2_in, mem_type_in, memToReg_in, set_Z_in, set_N_in, set_C_in, set_INT_in,
-			clr_Z_in, clr_N_in, clr_C_in, clr_INT_in, jmp_sel_in, SP_src_in, PORT_in, Rsrc_in, is_jmp_in, jmp_src_in, mem_data_src_in, mem_addr_src_in, INT_in,
+			reglow_write_in, reghigh_write_in, ALU_OP_in, port_write_in, port_read_in, Rdst2_in, mem_type_in, memToReg_in, set_Z_in, set_N_in, set_C_in, set_OVF_in,
+			clr_Z_in, clr_N_in, clr_C_in, clr_OVF_in, jmp_sel_in, SP_src_in, PORT_in, Rsrc_in, is_jmp_in, jmp_src_in, mem_data_src_in, mem_addr_src_in, INT_in,
 			PC_push_pop_in, flags_push_pop_in, POP_flags_val_in, is_POP_flags_in, Rdst1_val_MEM_in, Rdst2_val_MEM_in, Rdst1_val_WB_in, Rdst2_val_WB_in, forward_ALU_dst_FU1_in,
 			forward_ALU_src_FU1_in, forward_Rdst_num_MEM_to_Rdst_FU1_in, forward_Rdst_num_WB_to_Rdst_FU1_in, forward_Rdst_num_MEM_to_Rsrc_FU1_in, forward_Rdst_num_WB_to_Rsrc_FU1_in
 			,clk, reset);
@@ -31,7 +31,7 @@ input wire reset;
 input wire clk;
 
 /*this value comes from the MEM stage when poping the flags*/
-input wire [2:0] POP_flags_val_in;
+input wire [3:0] POP_flags_val_in;
 
 /*the signal coming from the MEM stage indicating we want to POP the flags value*/
 input wire is_POP_flags_in;
@@ -70,11 +70,11 @@ input wire memToReg_in;
 input wire set_Z_in;
 input wire set_N_in;
 input wire set_C_in;
-input wire set_INT_in;
+input wire set_OVF_in;
 input wire clr_Z_in;
 input wire clr_N_in;
 input wire clr_C_in;
-input wire clr_INT_in;
+input wire clr_OVF_in;
 input wire [1:0] jmp_sel_in;
 input wire [1:0] SP_src_in;
 input wire is_jmp_in;
@@ -143,25 +143,25 @@ input wire forward_Rdst_num_WB_to_Rsrc_FU1_in;
 wire CFlag_out;
 wire NFlag_out;
 wire ZFlag_out;
-wire INTFlag_out;
+wire OVFlag_out;
 
 /*input wires to the CCR register*/
 wire CFlag_in;
 wire NFlag_in;
 wire ZFlag_in;
-wire INTFlag_in;
+wire OVFlag_in;
 
 /*set signal to the CCR register*/
 wire CFlag_set;
 wire NFlag_set;
 wire ZFlag_set;
-wire INTFlag_set;
+wire OVFlag_set;
 
 /*reset signal to the CCR register*/
 wire CFlag_reset;
 wire NFlag_reset;
 wire ZFlag_reset;
-wire INTFlag_reset;
+wire OVFlag_reset;
 
 /*these are the results coming from the ALU*/
 wire [15:0] ALU_resultLowerWord;
@@ -169,12 +169,14 @@ wire [15:0] ALU_resultUpperWord;
 wire ALU_CF_out;
 wire ALU_NF_out;
 wire ALU_ZF_out;
+wire ALU_OVF_out;
 wire [15:0] ALU_Rdst;
 wire [15:0] ALU_Rsrc;
 wire [3:0] ALU_OP;
 wire ALU_ZF_in;
 wire ALU_NF_in;
 wire ALU_CF_in;
+wire ALU_OVF_in;
 
 /*just a wire to whether choose between the result flags of the current instruction in the execution or the flags coming from POP in MEM stage*/
 wire choose_POP_flags;
@@ -203,10 +205,10 @@ wire [15:0] normal_without_forward_selected_value;
 Reg #(1) Z_flag(.out_data(ZFlag_out), .reset(ZFlag_reset), .set(ZFlag_set), .clk(clk), .in_data(ZFlag_in));
 Reg #(1) C_flag(.out_data(CFlag_out), .reset(CFlag_reset), .set(CFlag_set), .clk(clk), .in_data(CFlag_in));
 Reg #(1) N_flag(.out_data(NFlag_out), .reset(NFlag_reset), .set(NFlag_set), .clk(clk), .in_data(NFlag_in));
-Reg #(1) INT_flag(.out_data(INTFlag_out), .reset(INTFlag_reset), .set(INTFlag_set), .clk(clk), .in_data(INTFlag_out));
+Reg #(1) OVF_flag(.out_data(OVFlag_out), .reset(OVFlag_reset), .set(OVFlag_set), .clk(clk), .in_data(OVFlag_in));
 
 ALU arithmetic_unit(.resultLowerWord(ALU_resultLowerWord), .resultUpperWord(ALU_resultUpperWord), .CF_out(ALU_CF_out), .NF_out(ALU_NF_out), .ZF_out(ALU_ZF_out), 
-					.Rdst(ALU_Rdst), .Rsrc(ALU_Rsrc), .ALU_OP(ALU_OP), .ZF_in(ALU_ZF_in), .NF_in(ALU_NF_in), .CF_in(ALU_CF_in));
+					.OVF_out(ALU_OVF_out), .Rdst(ALU_Rdst), .Rsrc(ALU_Rsrc), .ALU_OP(ALU_OP), .ZF_in(ALU_ZF_in), .NF_in(ALU_NF_in), .CF_in(ALU_CF_in), .OVF_in(ALU_OVF_in));
 
 /**************************************************************
 	important assigns
@@ -216,6 +218,7 @@ ALU arithmetic_unit(.resultLowerWord(ALU_resultLowerWord), .resultUpperWord(ALU_
 assign choose_POP_flags = (ALU_OP == 4'd11) & is_POP_flags_in;
 
 /*chosing the inputs to the CCR based on whether prioirty to POP instr or the current instruction in the exection*/
+assign OVFlag_in = (choose_POP_flags) ? POP_flags_val_in[3] : ALU_OVF_out;
 assign ZFlag_in = (choose_POP_flags) ? POP_flags_val_in[2] : ALU_ZF_out;
 assign NFlag_in = (choose_POP_flags) ? POP_flags_val_in[1] : ALU_NF_out;
 assign CFlag_in = (choose_POP_flags) ? POP_flags_val_in[0] : ALU_CF_out;
@@ -224,13 +227,13 @@ assign CFlag_in = (choose_POP_flags) ? POP_flags_val_in[0] : ALU_CF_out;
 assign ZFlag_set = set_Z_in;
 assign NFlag_set = set_N_in;
 assign CFlag_set = set_C_in;
-assign INTFlag_set = set_INT_in;
+assign OVFlag_set = set_OVF_in;
 
 /*assigning the reset signal for the CCR*/
 assign CFlag_reset = reset | clr_CF_JC | clr_C_in;
 assign NFlag_reset = reset | clr_NF_JN | clr_N_in;
 assign ZFlag_reset = reset | clr_ZF_JZ | clr_Z_in;
-assign INTFlag_reset = reset | clr_INT_in;
+assign OVFlag_reset = reset | clr_OVF_in;
 
 /*for forwarding*/
 assign selected_Rdst1_or_Rdst2_MEM_to_ALU_Rdst = (forward_Rdst_num_MEM_to_Rdst_FU1_in) ? Rdst1_val_MEM_in : Rdst2_val_MEM_in;
@@ -242,7 +245,7 @@ assign selected_Rdst1_or_Rdst2_WB_to_ALU_Rsrc = (forward_Rdst_num_WB_to_Rsrc_FU1
 /*for the inputs/outputs to the ALU*/
 assign normal_without_forward_selected_value = 	(ALU_src1_in == 2'd0)	?	Rsrc_val_in				:
 												(ALU_src1_in == 2'd1)	?	Data_in					:
-																			{{12{1'b0}}, Shmt_in}	;	
+																			{{12{1'b0}}, Shmt_in}	;
 												
 assign ALU_Rdst = 	(forward_ALU_dst_FU1_in == 2'd1)	?	selected_Rdst1_or_Rdst2_MEM_to_ALU_Rdst	:
 					(forward_ALU_dst_FU1_in == 2'd2)	?	selected_Rdst1_or_Rdst2_WB_to_ALU_Rdst	:				
@@ -250,13 +253,14 @@ assign ALU_Rdst = 	(forward_ALU_dst_FU1_in == 2'd1)	?	selected_Rdst1_or_Rdst2_ME
 
 
 assign ALU_Rsrc = 	(forward_ALU_src_FU1_in == 2'd1)	?	selected_Rdst1_or_Rdst2_MEM_to_ALU_Rsrc	:
-					(forward_ALU_src_FU1_in == 2'd2)	?	selected_Rdst1_or_Rdst2_WB_to_ALU_Rsrc	:				
+					(forward_ALU_src_FU1_in == 2'd2)	?	selected_Rdst1_or_Rdst2_WB_to_ALU_Rsrc	:
 															normal_without_forward_selected_value	; 
 
 assign ALU_OP = ALU_OP_in;
 assign ALU_ZF_in = ZFlag_out;
 assign ALU_CF_in = CFlag_out;
 assign ALU_NF_in = NFlag_out;
+assign ALU_OVF_in = OVFlag_out;
 
 /*calculation of the jmp addresses in case of jmp address*/
 assign jmp_addr_pc_offset = PC_in + {{16{Rdst_val_out[15]}}, Rdst_val_out};
@@ -282,13 +286,14 @@ assign jmp_actual_addr	= (jmp_src_in)	?	{{12{1'b0}}, hash_imm_in, Data_in}	:
 /**************************************************************
 	bypassing some outputs and assigning the others
 **************************************************************/
-assign PC_out = {ZFlag_out, NFlag_out, CFlag_out, PC_in[28:0]};
+assign PC_out = {OVFlag_out, ZFlag_out, NFlag_out, CFlag_out, PC_in[27:0]};
 assign SP_src_out = SP_src_in;
 assign port_write_out = port_write_in;
 assign port_read_out = port_read_in;
 assign Rdst1_val_out = ALU_resultLowerWord;
 assign Rdst1_out = Rdst1_in;
 assign mem_write_out = mem_write_in;
+assign mem_read_out = mem_read_in;
 assign mem_read_out = mem_read_in;
 assign reglow_write_out = reglow_write_in;
 assign reghigh_write_out = reghigh_write_in;

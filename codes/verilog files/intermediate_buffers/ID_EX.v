@@ -1,10 +1,10 @@
 /*this is the buffer between the instruction decode and instructiong execute*/
 module ID_EX(PC_out, Shmt_out, hash_imm_out, Data_out, Rdst1_out, Rdst_val_out, Rsrc_val_out, ALU_src1_out, mem_write_out, mem_read_out, reglow_write_out, reghigh_write_out,
-			ALU_OP_out, port_write_out, port_read_out, Rdst2_out, mem_type_out, memToReg_out, set_Z_out, set_N_out, set_C_out, set_INT_out, clr_Z_out, clr_N_out,
-			clr_C_out, clr_INT_out, jmp_sel_out, SP_src_out, PORT_out, Rsrc_out, is_jmp_out, jmp_src_out, mem_data_src_out, mem_addr_src_out, INT_out, PC_push_pop_out,
+			ALU_OP_out, port_write_out, port_read_out, Rdst2_out, mem_type_out, memToReg_out, set_Z_out, set_N_out, set_C_out, set_OVF_out, clr_Z_out, clr_N_out,
+			clr_C_out, clr_OVF_out, jmp_sel_out, SP_src_out, PORT_out, Rsrc_out, is_jmp_out, jmp_src_out, mem_data_src_out, mem_addr_src_out, INT_out, PC_push_pop_out,
 			flags_push_pop_out, PC_in, Shmt_in, hash_imm_in, Data_in, Rdst1_in, Rdst_val_in, Rsrc_val_in, ALU_src1_in, mem_write_in, mem_read_in, reglow_write_in, reghigh_write_in,
-			ALU_OP_in, port_write_in, port_read_in, Rdst2_in, mem_type_in, memToReg_in, set_Z_in, set_N_in, set_C_in, set_INT_in, clr_Z_in, clr_N_in,
-			clr_C_in, clr_INT_in, jmp_sel_in, SP_src_in, PORT_in, Rsrc_in, is_jmp_in, jmp_src_in, mem_data_src_in, mem_addr_src_in, INT_in, PC_push_pop_in,
+			ALU_OP_in, port_write_in, port_read_in, Rdst2_in, mem_type_in, memToReg_in, set_Z_in, set_N_in, set_C_in, set_OVF_in, clr_Z_in, clr_N_in,
+			clr_C_in, clr_OVF_in, jmp_sel_in, SP_src_in, PORT_in, Rsrc_in, is_jmp_in, jmp_src_in, mem_data_src_in, mem_addr_src_in, INT_in, PC_push_pop_in,
 			flags_push_pop_in, stall, reset, clk, flush);
 			
 
@@ -39,11 +39,11 @@ output wire memToReg_out;
 output wire set_Z_out;
 output wire set_N_out;
 output wire set_C_out;
-output wire set_INT_out;
+output wire set_OVF_out;
 output wire clr_Z_out;
 output wire clr_N_out;
 output wire clr_C_out;
-output wire clr_INT_out;
+output wire clr_OVF_out;
 output wire [1:0] jmp_sel_out;
 output wire [1:0] SP_src_out;
 output wire is_jmp_out;
@@ -84,11 +84,11 @@ input wire memToReg_in;
 input wire set_Z_in;
 input wire set_N_in;
 input wire set_C_in;
-input wire set_INT_in;
+input wire set_OVF_in;
 input wire clr_Z_in;
 input wire clr_N_in;
 input wire clr_C_in;
-input wire clr_INT_in;
+input wire clr_OVF_in;
 input wire [1:0] jmp_sel_in;
 input wire [1:0] SP_src_in;
 input wire is_jmp_in;
@@ -140,11 +140,11 @@ reg memToReg;
 reg set_Z;
 reg set_N;
 reg set_C;
-reg set_INT;
+reg set_OVF;
 reg clr_Z;
 reg clr_N;
 reg clr_C;
-reg clr_INT;
+reg clr_OVF;
 reg [1:0] jmp_sel;
 reg [1:0] SP_src;
 reg is_jmp;
@@ -184,11 +184,11 @@ assign memToReg_out = memToReg;
 assign set_Z_out = set_Z;
 assign set_N_out = set_N;
 assign set_C_out = set_C;
-assign set_INT_out = set_INT;
+assign set_OVF_out = set_OVF;
 assign clr_Z_out = clr_Z;
 assign clr_N_out = clr_N;
 assign clr_C_out = clr_C;
-assign clr_INT_out = clr_INT;
+assign clr_OVF_out = clr_OVF;
 assign jmp_sel_out = jmp_sel;
 assign SP_src_out = SP_src;
 assign is_jmp_out = is_jmp;
@@ -233,11 +233,11 @@ begin
 		set_Z <= 1'd0;
 		set_N <= 1'd0;
 		set_C <= 1'd0;
-		set_INT <= 1'd0;
+		set_OVF <= 1'd0;
 		clr_Z <= 1'd0;
 		clr_N <= 1'd0;
 		clr_C <= 1'd0;
-		clr_INT <= 1'd0;
+		clr_OVF <= 1'd0;
 		jmp_sel <= 2'd0;
 		SP_src <= 2'd0;
 		is_jmp <= 1'd0;
@@ -274,11 +274,11 @@ begin
 		set_Z <= 1'd0;
 		set_N <= 1'd0;
 		set_C <= 1'd0;
-		set_INT <= 1'd0;
+		set_OVF <= 1'd0;
 		clr_Z <= 1'd0;
 		clr_N <= 1'd0;
 		clr_C <= 1'd0;
-		clr_INT <= 1'd0;
+		clr_OVF <= 1'd0;
 		jmp_sel <= 2'd0;
 		SP_src <= 2'd0;
 		is_jmp <= 1'd0;
@@ -317,11 +317,11 @@ begin
 		set_Z <= set_Z_in;
 		set_N <= set_N_in;
 		set_C <= set_C_in;
-		set_INT <= set_INT_in;
+		set_OVF <= set_OVF_in;
 		clr_Z <= clr_Z_in;
 		clr_N <= clr_N_in;
 		clr_C <= clr_C_in;
-		clr_INT <= clr_INT_in;
+		clr_OVF <= clr_OVF_in;
 		jmp_sel <= jmp_sel_in;
 		SP_src <= SP_src_in;
 		is_jmp <= is_jmp_in;
@@ -360,11 +360,11 @@ begin
 		set_Z <= set_Z;
 		set_N <= set_N;
 		set_C <= set_C;
-		set_INT <= set_INT;
+		set_OVF <= set_OVF;
 		clr_Z <= clr_Z;
 		clr_N <= clr_N;
 		clr_C <= clr_C;
-		clr_INT <= clr_INT;
+		clr_OVF <= clr_OVF;
 		jmp_sel <= jmp_sel;
 		SP_src <= SP_src;
 		is_jmp <= is_jmp;

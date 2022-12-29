@@ -87,13 +87,13 @@ group0 : OP	-> 0	(clear)
 -> CLRZ	-> 0	 (funct)
 -> CLRN 	-> 1	 (funct)
 -> CLRC	-> 2 	 (funct)
--> CLRINT	-> 3	 (funct)
+-> CLROVF	-> 3	 (funct)
 
 group1 : OP	-> 1	(set)
 -> SETZ	-> 0	 (funct)
 -> SETN 	-> 1	 (funct)
 -> SETC	-> 2	 (funct)
--> SETINT	-> 3	 (funct)
+-> SETOVF	-> 3	 (funct)
 
 
 s_type : 6 (op-code)
@@ -125,8 +125,9 @@ n_type
 -> CLR_FLAGS : 9 (op-code)
 -> NOP 	: 0 (op-code)	
 -> CALL  : 10 (op-code)
+-> SETINT	: 11 (op-code)
 
-=> number 11-> 15 are left for future development
+=> number 12-> 15 are left for future development
 
 
 ======================================================================================
