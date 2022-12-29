@@ -1,8 +1,14 @@
-// instance=/processor/instr_fetch/instr_mem/memory// format=mti addressradix=d dataradix=h version=1.0 wordsperline=100000032: 5802
-00000033: 5803
-00000034: 5800
-00000035: 5801
-00000036: 5002
-00000037: 5003
-00000038: 5001
-00000039: 5000
+// instance=/processor/instr_fetch/instr_mem/memory
+// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1
+00000032: 8200
+00000033: 0002
+00000034: 5801
+00000035: 4201
+00000036: 5802
+00000037: 5800
+00000038: 8400
+00000039: 0006
+00000040: 8800
+00000041: fff8
+00000042: 5801
+00000043: 4801

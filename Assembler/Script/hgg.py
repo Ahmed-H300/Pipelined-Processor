@@ -49,6 +49,7 @@ def getInput(file, arrayISA):
 # compile the instructions for range
 # first loop for instuctions without label
 
+
 def CompileOutput(arrayISA, out, start, end):
     reg = {
         'R0': 0b000,
@@ -88,6 +89,7 @@ def CompileOutput(arrayISA, out, start, end):
         'funct2': 0b10,
         'funct3': 0b11,
     }
+    bits = 16
     rdsShift = 3 * 3
     rds2Shift = 1 * 3
     rsrShift = 2 * 3
@@ -455,7 +457,9 @@ def CompileOutput(arrayISA, out, start, end):
                     op1 << rdsShift) | (func['funct0'])
                 out[currentIP] = temp
                 currentIP += 1
-                temp = line[2]
+                temp = int(line[2])
+                if(temp < 0):
+                    temp = (temp + (1 << bits)) % (1 << bits)
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
@@ -510,8 +514,10 @@ def CompileOutput(arrayISA, out, start, end):
 
 label = {}
 labelused = []
+
+
 def labelCompile(out):
-    
+
     try:
         # loop for label
         # second loop for label instuctions
@@ -615,11 +621,11 @@ for txt in outConst:
     fileOut.write(txt)
 for key, vlaue in out.items():
     # formating the output
-    line = str(key).zfill(8) + ': ' + str(str(hex(int(vlaue)))[2:]).zfill(4) + '\n'
+    line = str(key).zfill(8) + ': ' + \
+        str(str(hex(int(vlaue)))[2:]).zfill(4) + '\n'
     fileOut.write(line)
 fileOut.close()
 
 print(Fore.GREEN + 'Assembled Successfully. File Name: ' + fileNameOut)
 print(Fore.GREEN + 'Have Fun :)')
 print(Style.RESET_ALL)
-
