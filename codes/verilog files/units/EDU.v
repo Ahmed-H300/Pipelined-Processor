@@ -68,7 +68,7 @@ wire [1:0] PC_src;					// to determine which PC value from which stage should we
 
 wire is_stacK_overflow;				// to determine if SP > 4095
 wire is_stack_underflow;			// to determine if SP < 2047
-wire is_inValid_instr;				// to determine if instr_opcode > 10 (can't identify instruction)
+wire is_inValid_instr;				// to determine if instr_opcode > 11 (can't identify instruction)
 wire is_division_by_zero;			// if Rsrc = 0 and we do division
 wire is_out_of_instr_mem;			// if the jmup address is out of instruction memory boundries
 wire is_out_of_data_mem;			// if the data we fetch from the data memory is out of data memory boundries
@@ -132,7 +132,7 @@ assign PC_src = (is_exception_from_ID)	?	2'd1	:
 **************************************************************/  
 assign is_stacK_overflow = (SP_MEM_in > 32'd4095);		// to determine if SP > 4095 (upper boundry)
 assign is_stack_underflow = (SP_MEM_in < 32'd2047);		// to determine if SP < 2047 (lower boundry)
-assign is_inValid_instr = (instrOpCode_in > 4'd10);		// to determine if instr_opcode > 10 (can't identify instruction)
+assign is_inValid_instr = (instrOpCode_in > 4'd11);		// to determine if instr_opcode > 10 (can't identify instruction)
 assign is_division_by_zero = (Rsrc_val_EX_in == 16'd0 && ALU_OP_in == 4'd10);		// if Rsrc = 0 and we do division (division by zero)
 assign is_out_of_instr_mem = (jmp_addr_EX_in > 32'd1048575 && is_jmp_EX_in); 		// if the jmup address is out of instruction memory boundries
 assign is_out_of_data_mem = (Rsrc_val_Mem_in > 16'd4095 && (mem_read_MEM_in | mem_write_MEM_in)); // if the data we fetch from the data memory is out of data memory boundries

@@ -1,5 +1,5 @@
 /*this is the arithmetic logic unit that's capable of dowing arithmetic operations*/
-module ALU(resultLowerWord, resultUpperWord, CF_out, NF_out, ZF_out, Rdst, Rsrc, ALU_OP, ZF_in, NF_in, CF_in);
+module ALU(resultLowerWord, resultUpperWord, CF_out, NF_out, ZF_out, OVF_out, Rdst, Rsrc, ALU_OP, ZF_in, NF_in, CF_in, OVF_in);
 
 /*this is the lower 16 bits result of selected operation where total size of result = 32 (due to multiplication)*/
 output wire [15:0] resultLowerWord;
@@ -15,6 +15,9 @@ output wire ZF_out;
 
 /*this is the result Negative flag of the current operation, if not changed pass the original value*/
 output wire NF_out;
+
+/*this is the result overflow flag of the current operation, if not changed pass the original value*/
+output wire OVF_out;
 
 /*this is the value of the 1st operand which is the target or destination*/
 input wire [15:0] Rdst;
@@ -34,6 +37,8 @@ input wire NF_in;
 /*this is the original carry flag value taken from the CCR register*/
 input wire CF_in;
 
+/*this is the original overflow flag value taken from the CCR register*/
+input wire OVF_in;
 
 /**************************************************************
 	temp wire to make the code looks clean
@@ -114,6 +119,12 @@ wire SHR_NF;				// this is the negative flag resulted from logical shifr right
 wire MUL_NF;				// this is the negative flag resulted from multiplcation
 wire DIV_NF;				// this is the negative flag resulted from division
 
+//general overflow equation
+wire OVF_generalTempRes;
+wire OVF_multiplicationCase;
+   
+assign OVF_tempRes = resultLowerWord[15] ^ Rdst[0] & resultLowerWord[15] ^ Rsrc[0]; // overflow happens when the result sign bit is different from both the 2 inputs sign bits
+assign OVF_multiplicationCase = resultUpperWord[15] ^ Rdst[0] & resultUpperWord[15] ^ Rsrc[0]; // overflow happens when the result sign bit is different from both the 2 inputs sign bits
 
 /*
 		ALU_OPERATIONS (ALU_OP):
@@ -287,7 +298,21 @@ assign ZF_out = 			(ALU_OP == 4'd0)	?	ADD_ZF	:
 							(ALU_OP == 4'd9)	?	MUL_ZF	:
 							(ALU_OP == 4'd10)	?	DIV_ZF	:
 													ZF_in	;		
-		
+
+
+assign OVF_out = 			(ALU_OP == 4'd0)	?	OVF_tempRes				:
+							(ALU_OP == 4'd1)	?	OVF_tempRes				:
+							(ALU_OP == 4'd2)	?	OVF_tempRes				:
+							(ALU_OP == 4'd3)	?	OVF_tempRes				:
+							(ALU_OP == 4'd4)	?	OVF_tempRes				:
+							(ALU_OP == 4'd5)	?	OVF_tempRes				:
+							(ALU_OP == 4'd6)	?	OVF_tempRes				:
+							(ALU_OP == 4'd7)	?	OVF_tempRes				:
+							(ALU_OP == 4'd8)	?	OVF_tempRes				:
+							(ALU_OP == 4'd9)	?	OVF_multiplicationCase	:
+							(ALU_OP == 4'd10)	?	OVF_tempRes				:
+													OVF_in	;		
+													
 
 // this is used in multiplication only, otherwise the value will be 0
 assign resultUpperWord = MUL_RES_high;

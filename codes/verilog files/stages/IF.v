@@ -2,7 +2,7 @@
 `include "../utils/mem.v"
 
 /*this is the stage of fetching the instruction*/
-module IF(PC_IF_out, instruction, Data, INT, clk, reset, interrupt, exception, SET_INT, pop_pc, PC_popedValue, jmp_sgn, PC_jmpValue, stall);
+module IF(PC_IF_out, instruction, Data, INT, clk, reset, interrupt, exception, SET_INT, pop_pc, PC_popedValue, PC_IF_ID_in, jmp_sgn, PC_jmpValue, stall);
 
 /*this is the program counter of the current executing address*/
 output wire [31:0] PC_IF_out;
@@ -46,6 +46,8 @@ input wire stall;
 /*this is the value of the new PC when preforming jumping*/
 input wire [31:0] PC_jmpValue;
 
+/*this is the value of the PC from the buffer used for SET_INT command execution*/
+input wire [31:0] PC_IF_ID_in;
 
 /**************************************************************
 	1 bit regs in this stage
@@ -75,42 +77,43 @@ wire do_interruptRoutine;
 	important assigns
 **************************************************************/
 assign PC_addedByOne = PC_out + 1;
-assign inst_opcode = {4{!masterOut}} & instr[15:12];
+assign inst_opcode = {4{!masterOut}} & instr[15:12] & {4{!INT_reg}};
 
 assign PC_in =  (RESET_reg | exception)		?	32'd32			:
 				(INT_reg)					?	32'd0			:
-				(pop_pc)					?	PC_popedValue	:	
+				(pop_pc)					?	PC_popedValue	:
 				(jmp_sgn)					?	PC_jmpValue		:
 												PC_addedByOne	;
 
-assign instruction = 	(masterOut) 	?	16'd0			:
-						(slaveOut)		?	tempRegOut		:
-											instr			;
+assign instruction = 	(masterOut | INT_reg) 	?	16'd0			:
+						(slaveOut)				?	tempRegOut		:
+													instr			;
 
 assign Data = instr;
 assign INT = INT_reg;
-assign PC_IF_out = PC_addedByOne;
+assign PC_IF_out = PC_addedByOne;//(SET_INT)	?	PC_IF_ID_in	:	PC_addedByOne;
 assign do_interruptRoutine = interrupt | SET_INT;
+ 
 
 /**************************************************************
 	creating needed modules
 **************************************************************/
 
-PC pc(.PC_out(PC_out), .PC_in(PC_in), .clk(clk), .stall(stall));
+PC pc(.PC_out(PC_out), .PC_in(PC_in), .clk(clk), .stall(stall & (!masterOut)));
 memory #(20'b1111_1111_1111_1111_1111) instr_mem(.data_out(instr), .reset(1'b0), .address(PC_out), .data_in(16'd0), .mem_read(1'd1), .mem_write(1'd0), .clk(clk));
 I_typeDetectionUnit ItypeDetectionUnit(.is_I_type(is_Itype), .instr_opcode(inst_opcode));
-masterSlaveReg stateMachine(.masterOut(masterOut), .slaveOut(slaveOut), .masterIn(is_Itype), .clk(clk), .reset(reset));
+masterSlaveReg stateMachine(.masterOut(masterOut), .slaveOut(slaveOut), .masterIn(is_Itype), .clk(clk), .reset(reset | do_interruptRoutine | pop_pc | jmp_sgn));
 Reg #(16) tempReg(.out_data(tempRegOut), .reset(reset), .set(1'b0), .clk(is_Itype), .in_data(instr));
 
 
 /**************************************************************
 	logic for 1 bit regs
 **************************************************************/
-always@(negedge clk,posedge do_interruptRoutine)
+always@(negedge clk, do_interruptRoutine)
 begin
-	if(interrupt)
+	if(do_interruptRoutine)
 		INT_reg <= 1;
-	else if(!clk)
+	else if(!clk & !stall)
 		INT_reg <= 0;
 	else
 		INT_reg <= INT_reg;
@@ -120,10 +123,10 @@ always@(negedge clk, reset)
 begin
 	if(reset)
 		RESET_reg <= 1;
-	else if(!clk)
+	else if(!clk & !stall)
 		RESET_reg <= 0;
 	else
-		RESET_reg <= INT_reg;
+		RESET_reg <= RESET_reg;
 end
 
 endmodule

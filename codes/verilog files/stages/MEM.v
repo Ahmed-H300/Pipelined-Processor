@@ -14,7 +14,7 @@ output wire [31:0] POP_PC_addr_out;
 output wire POP_PC_sgn_out;
 
 /*this is the flags popped out when there is POP flags*/
-output wire [2:0] POP_flags_val_out;
+output wire [3:0] POP_flags_val_out;
 
 /*this is the signal to pop the flags and change the value of flags*/
 output wire POP_flags_sgn_out;
@@ -123,9 +123,18 @@ wire [15:0] normal_WriteData_without_forward_selected_value;
 wire do_PC_push_pop;
 wire do_flags_push_pop;
 
+/*these wires are to handle push PC or PC-1 for the condition of the interrupt*/
+wire [27:0] PC_tempModified;
+wire [31:0] PC_selected;
+wire [27:0] PC_realPart;
+
 /**************************************************************
 	important assigns for intermediate wires
 **************************************************************/
+assign PC_realPart = PC_in[27:0];
+assign PC_tempModified = (INT_in)	?	PC_realPart - 1 	:	PC_realPart;
+assign PC_selected = {PC_in[31:28], PC_tempModified};
+
 assign SP_in = (reset) ? 32'd2047 : SP_selectedVal;
 assign SP_selector = (INT_in) ? 2'd2 : SP_src_in;
 assign SP_out = SP;
@@ -136,12 +145,13 @@ assign SP_selectedVal = 	(SP_selector == 2'd0)	?	SP_out		:
 														SP_out		;
 														
 assign normal_Addr_without_forward_selected_value = (mem_addr_src_in) ?	SP_out	:	{{16{1'b0}}, Rsrc_val_in};
+
 assign normal_WriteData_without_forward_selected_value = 	(!mem_data_src_in)	 ?	Rdst_val_in	:
-															(stall_out)	?	PC_in[15:0]	: PC_in[31:16];
+															(!stall_out)	?	PC_selected[15:0]	: PC_selected[31:16];
 
 assign data_mem_addr = 	(forward_data_to_address_FU2_in) 	? 	DATA_WB_in 	: 	normal_Addr_without_forward_selected_value;
 assign data_mem_in = 	(forward_data_to_write_data_FU2_in)	?	DATA_WB_in	: 	normal_WriteData_without_forward_selected_value;
-														
+
 
 assign do_PC_push_pop = PC_push_pop_in | INT_in;
 assign do_flags_push_pop = flags_push_pop_in | INT_in;									
@@ -176,7 +186,7 @@ assign stateReg_in = do_PC_push_pop & (!stateReg_out);
 assign stall_out = do_PC_push_pop & stateReg_out;
 assign POP_PC_sgn_out = mem_read_in & do_PC_push_pop & (!stateReg_out);
 assign Data_out = (mem_type_in) ? data_mem_out : port_read_data;
-assign POP_flags_sgn_out = stall_out & do_flags_push_pop;
+assign POP_flags_sgn_out = stall_out & do_flags_push_pop & mem_read_in;
 assign POP_flags_val_out = data_mem_out[15:12];
 assign Rdst2_val_out = Rdst2_val_in;
 assign Rdst2_out = Rdst2_in;
@@ -185,7 +195,7 @@ assign reglow_write_out = reglow_write_in;
 assign Rdst1_out = Rdst1_in;
 assign Rdst1_val_out = Rdst1_val_in;
 assign memToReg_out = memToReg_in;
-assign POP_PC_addr_out = {tempReg_out, data_mem_out};
-assign SP_val_out = SP_in;
+assign POP_PC_addr_out = {4'd0, tempReg_out[11:0], data_mem_out};
+assign SP_val_out = SP_out;
 
 endmodule

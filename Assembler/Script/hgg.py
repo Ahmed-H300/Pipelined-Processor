@@ -80,7 +80,6 @@ def CompileOutput(arrayISA, out, start, end):
         'I_type': 0b1000,
         'CLR_FLAGS': 0b1001,
         'CALL': 0b1010,
-        'SETINT': 0b1011,
     }
     func = {
         'funct0': 0b00,
@@ -160,20 +159,22 @@ def CompileOutput(arrayISA, out, start, end):
         elif (line[0].casefold() == 'SHL'.casefold()):
             if(len(line) == 3):
                 op1 = reg.get(line[1], None)
-                if(op1 == None):
+                op2 = reg.get(line[2], None)
+                if(op1 == None or op2 == None):
                     return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group1'] << opCodeShift) | (
-                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct0'])
+                    op1 << rdsShift) | (op2 << shmtShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SHR'.casefold()):  # like SHL
             if(len(line) == 3):
                 op1 = reg.get(line[1], None)
-                if(op1 == None):
+                op2 = reg.get(line[2], None)
+                if(op1 == None or op2 == None):
                     return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group1'] << opCodeShift) | (
-                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct1'])
+                    op1 << rdsShift) | (op2 << shmtShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
@@ -329,7 +330,7 @@ def CompileOutput(arrayISA, out, start, end):
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
-        elif (line[0].casefold() == 'CLROVF'.casefold()):
+        elif (line[0].casefold() == 'CLRINT'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     0 << operationShift) | (func['funct3'])
@@ -357,7 +358,7 @@ def CompileOutput(arrayISA, out, start, end):
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
-        elif (line[0].casefold() == 'SETOVF'.casefold()):
+        elif (line[0].casefold() == 'SETINT'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     1 << operationShift) | (func['funct3'])
@@ -410,7 +411,7 @@ def CompileOutput(arrayISA, out, start, end):
                 if(op1 == None):
                     return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['m_type'] << opCodeShift) | (
-                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct0'])
+                    op1 << rdsShift) | (line[2] << shmtShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
@@ -420,7 +421,7 @@ def CompileOutput(arrayISA, out, start, end):
                 if(op1 == None):
                     return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['m_type'] << opCodeShift) | (
-                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct1'])
+                    op1 << rdsShift) | (line[2] << shmtShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
@@ -465,12 +466,6 @@ def CompileOutput(arrayISA, out, start, end):
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
-        elif (line[0].casefold() == 'SETINT'.casefold()):
-            if(len(line) == 1):
-                temp = temp | (opCode['SETINT'] << opCodeShift)
-                out[currentIP] = temp
-            else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'NOP'.casefold()):
             if(len(line) == 1):
                 out[currentIP] = temp
@@ -479,19 +474,13 @@ def CompileOutput(arrayISA, out, start, end):
         # rds , imediate # call Rds , # CALL label
         elif (line[0].casefold() == 'CALL'.casefold()):
             if(len(line) == 2):
-                op1 = reg.get(line[1], None)
-                if(op1 == None):
-                    temp = temp | (opCode['I_type'] <<
-                                   opCodeShift) | (func['funct1'])
-                    out[currentIP] = temp
-                    currentIP += 1
-                    temp = line[1]
-                    labelused.append(line[1])
-                    out[currentIP] = temp
-                else:
-                    temp = temp | (opCode['CALL'] << opCodeShift) | (
-                        op1 << rdsShift)
-                    out[currentIP] = temp
+                temp = temp | (opCode['I_type'] <<
+                               opCodeShift) | (func['funct1'])
+                out[currentIP] = temp
+                currentIP += 1
+                temp = line[1]
+                labelused.append(line[1])
+                out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif(len(line) == 1):
@@ -511,17 +500,12 @@ def CompileOutput(arrayISA, out, start, end):
 label = {}
 labelused = []
 def labelCompile(out):
-    
-    try:
-        # loop for label
-        # second loop for label instuctions
-        for k, v in out.items():
-            if(v in labelused):
-                out[k] = label[v]
-    except:
-        print(Fore.RED + 'Error in handling jumping labels! please check it again!')
-        print(Style.RESET_ALL)
-        exit()
+
+    # loop for label
+    # second loop for label instuctions
+    for k, v in out.items():
+        if(v in labelused):
+            out[k] = label[v]
 
 
 arrayISA = []
