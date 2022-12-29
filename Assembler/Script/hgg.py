@@ -308,7 +308,7 @@ def CompileOutput(arrayISA, out, start, end):
                     out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
-        elif (line[0].casefold() == 'CLRZ'):
+        elif (line[0].casefold() == 'CLRZ'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     0 << operationShift) | (func['funct0'])
@@ -608,8 +608,8 @@ labelCompile(out)
 
 # write in file
 # write out in
-outConst = ['// instance=/processor/instr_fetch/instr_mem/memory',
-            '// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1']
+outConst = ['// instance=/processor/instr_fetch/instr_mem/memory\n',
+            '// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1\n']
 fileOut = open(fileNameOut, "w")
 for txt in outConst:
     fileOut.write(txt)
