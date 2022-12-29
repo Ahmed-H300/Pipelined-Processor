@@ -346,21 +346,21 @@ def CompileOutput(arrayISA, out, start, end):
         elif (line[0].casefold() == 'SETN'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
-                    0 << operationShift) | (func['funct1'])
+                    1 << operationShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SETC'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
-                    0 << operationShift) | (func['funct2'])
+                    1 << operationShift) | (func['funct2'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SETOVF'.casefold()):
             if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
-                    0 << operationShift) | (func['funct3'])
+                    1 << operationShift) | (func['funct3'])
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
@@ -611,6 +611,8 @@ labelCompile(out)
 outConst = ['// instance=/processor/instr_fetch/instr_mem/memory',
             '// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1']
 fileOut = open(fileNameOut, "w")
+for txt in outConst:
+    fileOut.write(txt)
 for key, vlaue in out.items():
     # formating the output
     line = str(key).zfill(8) + ': ' + str(str(hex(int(vlaue)))[2:]).zfill(4) + '\n'
