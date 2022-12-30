@@ -59,6 +59,9 @@ reg INT_reg;
 /*this is the reset register to make the reset active for only one cycle*/
 reg RESET_reg;
 
+/*this is the jmp signal register to make the signal active for only one cycle*/
+reg JMP_SGN_reg;
+
 /**************************************************************
 	immediate wires to make the code cleaner
 **************************************************************/
@@ -82,12 +85,12 @@ assign inst_opcode = {4{!masterOut}} & instr[15:12] & {4{!INT_reg}};
 assign PC_in =  (RESET_reg | exception)		?	32'd32			:
 				(INT_reg)					?	32'd0			:
 				(pop_pc)					?	PC_popedValue	:
-				(jmp_sgn)					?	PC_jmpValue		:
+				(JMP_SGN_reg)				?	PC_jmpValue		:
 												PC_addedByOne	;
 
-assign instruction = 	(masterOut | INT_reg) 	?	16'd0			:
-						(slaveOut)				?	tempRegOut		:
-													instr			;
+assign instruction = 	(masterOut | INT_reg | JMP_SGN_reg) 	?	16'd0			:
+						(slaveOut)								?	tempRegOut		:
+																	instr			;
 
 assign Data = instr;
 assign INT = INT_reg;
@@ -102,8 +105,8 @@ assign do_interruptRoutine = interrupt | SET_INT;
 PC pc(.PC_out(PC_out), .PC_in(PC_in), .clk(clk), .stall(stall & (!masterOut)));
 memory #(20'b1111_1111_1111_1111_1111) instr_mem(.data_out(instr), .reset(1'b0), .address(PC_out), .data_in(16'd0), .mem_read(1'd1), .mem_write(1'd0), .clk(clk));
 I_typeDetectionUnit ItypeDetectionUnit(.is_I_type(is_Itype), .instr_opcode(inst_opcode));
-masterSlaveReg stateMachine(.masterOut(masterOut), .slaveOut(slaveOut), .masterIn(is_Itype), .clk(clk), .reset(reset | do_interruptRoutine | pop_pc | jmp_sgn));
-Reg #(16) tempReg(.out_data(tempRegOut), .reset(reset), .set(1'b0), .clk(is_Itype), .in_data(instr));
+masterSlaveReg stateMachine(.masterOut(masterOut), .slaveOut(slaveOut), .masterIn(is_Itype), .clk(clk), .reset(reset | do_interruptRoutine | pop_pc | JMP_SGN_reg));
+Reg #(16) tempReg(.out_data(tempRegOut), .reset(reset), .set(1'b0), .clk(is_Itype), .in_data(instr), .flush(1'b0));
 
 
 /**************************************************************
@@ -129,8 +132,18 @@ begin
 		RESET_reg <= RESET_reg;
 end
 
-endmodule
 
+always@(negedge clk, jmp_sgn)
+begin
+	if(jmp_sgn)
+		JMP_SGN_reg <= 1;
+	else if(!clk)
+		JMP_SGN_reg <= 0;
+	else
+		JMP_SGN_reg <= JMP_SGN_reg;
+end
+
+endmodule
 
 
 /*this is the program counter module*/

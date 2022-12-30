@@ -2,7 +2,7 @@
 `define REG_V
 
 /*this is the main building block for any register in our processor and we do writing at positive edge*/
-module Reg #(parameter N = 16) (out_data, reset, set, clk, in_data);
+module Reg #(parameter N = 16) (out_data, reset, set, clk, in_data, flush);
 
 /*this is the data to be read from the register*/
 output wire [N-1:0] out_data;
@@ -22,6 +22,8 @@ input wire [N-1:0] in_data;
 /*this is actually our register*/
 reg [N-1:0] register;
 
+/*this is the flush signal which is synchronized with clock*/
+input wire flush;
 
 /*important assign*/
 assign out_data = register;
@@ -34,6 +36,8 @@ begin
 		register <= 0;			// passing 0 on reset
 	else if (set)
 		register <= {N{1'b1}};	// passing all ones on set
+	else if(clk & flush)		// zero the register
+		register <= 0;
 	else if(clk)
 		register <= in_data;	// passing input on clk
 	else

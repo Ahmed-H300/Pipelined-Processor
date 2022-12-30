@@ -60,6 +60,12 @@ add wave -color #B27600 hazard_unit/*
 add wave -divider EDU
 add wave -color #B27600 exception_unit/*
 
+add wave -divider FU1
+add wave -color #B27600 forwarding_unit_1/*
+
+add wave -divider FU2
+add wave -color #B27600 forwarding_unit_2/*
+
 add wave -divider another_tests
 add wave -color #B27600 stall_HDU stall_MEM set_INT_ID exception_EDU set_INT_ID
 

@@ -121,10 +121,12 @@ wire DIV_NF;				// this is the negative flag resulted from division
 
 //general overflow equation
 wire OVF_generalTempRes;
+wire OVF_oneOperandOperation;
 wire OVF_multiplicationCase;
    
 assign OVF_tempRes = resultLowerWord[15] ^ Rdst[0] & resultLowerWord[15] ^ Rsrc[0]; // overflow happens when the result sign bit is different from both the 2 inputs sign bits
 assign OVF_multiplicationCase = resultUpperWord[15] ^ Rdst[0] & resultUpperWord[15] ^ Rsrc[0]; // overflow happens when the result sign bit is different from both the 2 inputs sign bits
+assign OVF_oneOperandOperation = resultLowerWord[15] ^ Rdst[15]; // overflow happens when the result sign bit is different from input sign bit
 
 /*
 		ALU_OPERATIONS (ALU_OP):
@@ -223,7 +225,7 @@ assign SHL_NF = SHL_RES[15];
 assign SHL_ZF = (SHL_RES == 16'd0);			
 		
 // SHR
-assign {SHR_RES, SHR_CF} = SHR_Rdst >> SHR_Rsrc;						
+assign {SHR_RES, SHR_CF} = {SHR_Rdst, 1'b0} >> SHR_Rsrc;
 assign SHR_NF = SHR_RES[15];
 assign SHR_ZF = (SHR_RES == 16'd0);	
 
@@ -306,9 +308,9 @@ assign OVF_out = 			(ALU_OP == 4'd0)	?	OVF_tempRes				:
 							(ALU_OP == 4'd3)	?	OVF_tempRes				:
 							(ALU_OP == 4'd4)	?	OVF_tempRes				:
 							(ALU_OP == 4'd5)	?	OVF_tempRes				:
-							(ALU_OP == 4'd6)	?	OVF_tempRes				:
-							(ALU_OP == 4'd7)	?	OVF_tempRes				:
-							(ALU_OP == 4'd8)	?	OVF_tempRes				:
+							(ALU_OP == 4'd6)	?	OVF_oneOperandOperation	:
+							(ALU_OP == 4'd7)	?	OVF_oneOperandOperation	:
+							(ALU_OP == 4'd8)	?	OVF_oneOperandOperation	:
 							(ALU_OP == 4'd9)	?	OVF_multiplicationCase	:
 							(ALU_OP == 4'd10)	?	OVF_tempRes				:
 													OVF_in	;		

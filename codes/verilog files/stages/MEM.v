@@ -4,7 +4,8 @@
 module MEM(Rdst2_val_out, Rdst2_out, reghigh_write_out, reglow_write_out, Rdst1_out, Rdst1_val_out, Data_out, memToReg_out, POP_PC_addr_out, POP_PC_sgn_out,
 			POP_flags_val_out, POP_flags_sgn_out, stall_out, SP_val_out, PC_in, SP_src_in, port_write_in, port_read_in, Rdst1_val_in, Rdst1_in, mem_write_in, mem_read_in, reglow_write_in,
 			reghigh_write_in, Rdst2_in, mem_type_in, memToReg_in, Rdst2_val_in, PORT_in, Rsrc_in, Rsrc_val_in, mem_data_src_in, mem_addr_src_in, Rdst_val_in,
-			INT_in, PC_push_pop_in, flags_push_pop_in, DATA_WB_in, forward_data_to_write_data_FU2_in, forward_data_to_address_FU2_in, reset, clk);
+			INT_in, PC_push_pop_in, flags_push_pop_in, DATA_Rdst1_WB_in, Rdst2_WB_in, forward_Rdst1_to_write_data_FU2_in, forward_Rdst2_to_write_data_FU2_in, 
+			forward_Rdst1_to_address_FU2_in, forward_Rdst2_to_address_FU2_in, reset, clk);
 
 
 /*this is the address of PC when POP PC*/
@@ -80,9 +81,13 @@ output wire memToReg_out;
 	(refer to EX_MEM.v to know what each symbol means) 
 	(don't forget to have a look at the design files)
 **************************************************************/
-input wire [15:0] DATA_WB_in;
-input wire forward_data_to_write_data_FU2_in;
-input wire forward_data_to_address_FU2_in;
+input wire [15:0] DATA_Rdst1_WB_in;
+input wire [15:0] Rdst2_WB_in;
+input wire forward_Rdst1_to_write_data_FU2_in;
+input wire forward_Rdst2_to_write_data_FU2_in;
+input wire forward_Rdst1_to_address_FU2_in;
+input wire forward_Rdst2_to_address_FU2_in;
+
 
 /**************************************************************
 	intermediate wires for cleaner code
@@ -116,8 +121,8 @@ wire stateReg_out;
 reg [31:0] SP;
 
 /*these wires are for forwarding*/
-wire [15:0] normal_Addr_without_forward_selected_value;
-wire [15:0] normal_WriteData_without_forward_selected_value;
+wire [15:0] forwarded_Addr_selected_value;
+wire [15:0] forwarded_data_selected_value;
 
 /*do execute the interrupt*/
 wire do_PC_push_pop;
@@ -127,6 +132,9 @@ wire do_flags_push_pop;
 wire [27:0] PC_tempModified;
 wire [31:0] PC_selected;
 wire [27:0] PC_realPart;
+
+/*wires for port address and write data*/
+wire [15:0] port_data_in;
 
 /**************************************************************
 	important assigns for intermediate wires
@@ -139,20 +147,31 @@ assign SP_in = (reset) ? 32'd2047 : SP_selectedVal;
 assign SP_selector = (INT_in) ? 2'd2 : SP_src_in;
 assign SP_out = SP;
 
+assign port_data_in = 	(forward_Rdst1_to_write_data_FU2_in)	?	DATA_Rdst1_WB_in	:	
+						(forward_Rdst2_to_write_data_FU2_in)	?	Rdst2_WB_in			:
+																	Rdst_val_in			;
+
+
 assign SP_selectedVal = 	(SP_selector == 2'd0)	?	SP_out		:
 							(SP_selector == 2'd1)	?	SP_out-1	:
 							(SP_selector == 2'd2)	?	SP_out+1	:							
 														SP_out		;
-														
-assign normal_Addr_without_forward_selected_value = (mem_addr_src_in) ?	SP_out	:	{{16{1'b0}}, Rsrc_val_in};
+							
+assign forwarded_Addr_selected_value	=	(forward_Rdst1_to_address_FU2_in)	?	DATA_Rdst1_WB_in	:
+											(forward_Rdst2_to_address_FU2_in)	?	Rdst2_WB_in			:
+																					Rsrc_val_in			;
+																					
+assign forwarded_data_selected_value	=	(forward_Rdst1_to_write_data_FU2_in)	?	DATA_Rdst1_WB_in	:
+											(forward_Rdst2_to_write_data_FU2_in)	?	Rdst2_WB_in			:
+																						Rdst_val_in			;
+																					
+assign 	data_mem_addr	=	(mem_addr_src_in)	?	SP_out	:	{16'd0, forwarded_Addr_selected_value};
 
-assign normal_WriteData_without_forward_selected_value = 	(!mem_data_src_in)	 ?	Rdst_val_in	:
-															(!stall_out)	?	PC_selected[15:0]	: PC_selected[31:16];
-
-assign data_mem_addr = 	(forward_data_to_address_FU2_in) 	? 	DATA_WB_in 	: 	normal_Addr_without_forward_selected_value;
-assign data_mem_in = 	(forward_data_to_write_data_FU2_in)	?	DATA_WB_in	: 	normal_WriteData_without_forward_selected_value;
-
-
+assign 	data_mem_in		=	(!mem_data_src_in)	?	forwarded_data_selected_value			:
+							(!stall_out)		?	PC_selected[15:0]	: PC_selected[31:16];										
+																					
+	
+											
 assign do_PC_push_pop = PC_push_pop_in | INT_in;
 assign do_flags_push_pop = flags_push_pop_in | INT_in;									
 
@@ -160,11 +179,11 @@ assign do_flags_push_pop = flags_push_pop_in | INT_in;
 	creating needed modules
 **************************************************************/
 memory #(4096) data_memory(.data_out(data_mem_out), .reset(reset), .address(data_mem_addr), .data_in(data_mem_in), .mem_read(mem_read_in), .mem_write(mem_write_in), .clk(clk));
-memory #(16) port_out_memory(.data_out(port_read_data), .reset(reset), .address({{28{1'b0}}, PORT_in}), .data_in(16'd0), .mem_read(port_read_in), .mem_write(1'b0), .clk(clk));
-memory #(16) port_in_memory(.data_out(port_read_data_dummy), .reset(reset), .address({{28{1'b0}}, PORT_in}), .data_in(Rdst_val_in), .mem_read(1'b0), .mem_write(port_write_in), .clk(clk));
+memory #(16) port_in_memory(.data_out(port_read_data), .reset(reset), .address({{28{1'b0}}, PORT_in}), .data_in(16'd0), .mem_read(port_read_in), .mem_write(1'b0), .clk(clk));
+memory #(16) port_out_memory(.data_out(port_read_data_dummy), .reset(reset), .address({{28{1'b0}}, PORT_in}), .data_in(port_data_in), .mem_read(1'b0), .mem_write(port_write_in), .clk(clk));
 	
-Reg #(16) tempReg(.out_data(tempReg_out), .reset(reset), .set(1'b0), .clk(stall_out), .in_data(data_mem_out));	
-Reg #(1) stateReg(.out_data(stateReg_out), .reset(reset), .set(1'b0), .clk(clk), .in_data(stateReg_in));	
+Reg #(16) tempReg(.out_data(tempReg_out), .reset(reset), .set(1'b0), .clk(stall_out), .in_data(data_mem_out), .flush(1'b0));	
+Reg #(1) stateReg(.out_data(stateReg_out), .reset(reset), .set(1'b0), .clk(clk), .in_data(stateReg_in), .flush(1'b0));	
 
 /**************************************************************
 	actual logic of SP

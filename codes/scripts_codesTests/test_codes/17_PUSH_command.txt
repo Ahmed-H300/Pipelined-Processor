@@ -2,7 +2,7 @@ LDM R1, 364
 PUSH R1
 
 SETC
-PUSH PC, flags
+PUSH PC_flags
 
 PUSH PC
 

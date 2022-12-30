@@ -357,7 +357,7 @@ assign ALU_src1 = 	(is_LDM_inst) ? 2'd1 :
 	active in :
 		- LDD, POP (where PC != 0) , IN
 */					
-assign MemToReg = is_LDD_inst | is_IN_inst | (is_POP_inst & PC);
+assign MemToReg = is_LDD_inst | is_IN_inst | (is_POP_inst & (!(PC | flags)));
 
 
 /*
@@ -410,8 +410,9 @@ assign memType = memRead | memWrite;
 	---------------------------------------
 	active in:
 		- using PUSH/POP and PC = 1
+		- CALL
 */					
-assign PC_push_pop = (is_PUSH_inst | is_POP_inst) & PC;				
+assign PC_push_pop = ((is_PUSH_inst | is_POP_inst) & PC) | is_CALL | is_CALL_hashImm_inst;				
 
 
 /*
@@ -539,8 +540,9 @@ assign SP_src = (is_POP_inst) ? 2'd1 :
 	---------------------------------------
 	active in:
 		- PUSH command, PC | flags = 1
+		- CALL
 */	
-assign mem_data_src = is_PUSH_inst & (PC | flags);
+assign mem_data_src = (is_PUSH_inst & (PC | flags)) | is_CALL | is_CALL_hashImm_inst;	
 
 
 /*
@@ -548,8 +550,9 @@ assign mem_data_src = is_PUSH_inst & (PC | flags);
 	---------------------------------------
 	acive in :
 		- POP/PUSH instructions (s_type)
+		- CALL
 */	
-assign mem_address_src = is_S_type;
+assign mem_address_src = is_S_type | is_CALL | is_CALL_hashImm_inst;
 
 
 /*
