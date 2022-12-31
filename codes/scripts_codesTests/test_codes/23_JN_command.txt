@@ -1,4 +1,4 @@
-LDM R1, 2
+LDM R1, 3
 
 SETN
 
@@ -7,6 +7,8 @@ JN R1
 SETC
 
 SETZ
+
+SETOVF
 
 LDM R2, 6
 

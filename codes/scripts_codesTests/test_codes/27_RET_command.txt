@@ -1,10 +1,12 @@
-LDM R1, 2
+LDM R1, 3
 
 CALL R1
 
 SETC
 
 SETZ
+
+SETOVF
 
 LDM R5, 6
 

@@ -40,7 +40,7 @@ control unit signals: 32 signals	-> active high		// there is a decoding circuit 
  
 -> MemToReg		-> 1 bit		(to choose the source of Rdst1 is comming from the memory or result of ALU)	
 	active in :
-		- LDD, POP (where PC != 0) , IN
+		- LDD, POP (where PC = 0 and flags = 0) , IN
 		
 		
 -> memWrite		-> 1 bit 		(signal to write to the data memory)
@@ -67,6 +67,7 @@ control unit signals: 32 signals	-> active high		// there is a decoding circuit 
 -> PC_push_pop		-> 1 bit 		(to indication we should pop/push PC)
 	active in:
 		- using PUSH/POP and PC = 1
+		- using CALL
 
 -> flags_push_pop	-> 1 bit 		(to indication we should pop/push flags)
 	active in:
@@ -133,10 +134,12 @@ control unit signals: 32 signals	-> active high		// there is a decoding circuit 
 -> mem_data_src		-> 1 bit 		(select between PUSH PC or Rdst)
 	active in:
 		- PUSH command, PC | flags = 1
+		- CALL
 
 -> mem_address_src	-> 1 bit 		(select between using address using Rdst and SP)
 	acive in :
 		- POP/PUSH instructions (s_type)
+		- CALL
 
 -> SETINT : 	-> 1 bit
 	active in :

@@ -311,8 +311,10 @@ wire forward_Rdst_num_WB_to_Rsrc_FU1;
 **************************************************************/
 
 /*outputs*/
-wire forward_data_to_write_data_FU2;
-wire forward_data_to_address_FU2;
+wire forward_Rdst1_to_write_data_FU2;
+wire forward_Rdst2_to_write_data_FU2;
+wire forward_Rdst1_to_address_FU2;
+wire forward_Rdst2_to_address_FU2;
 
 /**************************************************************
 	connecting the modules(stages) together
@@ -325,8 +327,8 @@ IF instr_fetch(.PC_IF_out(PC_IF), .instruction(instruction_IF), .Data(Data_IF), 
 
 /*IF_ID buffer*/
 IF_ID fetch_decode_buff(.PC_out(PC_IF_ID_buff), .instruction_out(instr_IF_ID_buff), .Data_out(data_IF_ID_buff), .INT_out(INT_IF_ID_buff), 
-						.PC_in(PC_IF), .instruction_in(instruction_IF), .Data_in(Data_IF), .INT_in(INT_IF), .stall(stall_HDU | stall_MEM), .reset(reset), 
-						.clk(clk), .flush(exception_EDU | POP_PC_sgn_MEM | do_jmp_EX));
+						.PC_in(PC_IF), .instruction_in(instruction_IF), .Data_in(Data_IF), .INT_in(INT_IF), .stall(stall_HDU | stall_MEM), .reset(reset | exception_EDU | POP_PC_sgn_MEM | do_jmp_EX), 
+						.clk(clk), .flush(1'b0));
 	
 /*ID stage*/	
 ID instr_decode(.PC_out(PC_ID), .Shmt_out(Shmt_ID), .hash_imm_out(hash_imm_ID), .Data_out(Data_ID), .Rdst1_out(Rdst1_ID), .Rdst_val_out(Rdst_val_ID), .Rsrc_val_out(Rsrc_val_ID),
@@ -352,7 +354,7 @@ ID_EX decode_execute_buff(.PC_out(PC_ID_EX_buff), .Shmt_out(Shmt_ID_EX_buff), .h
 							.ALU_OP_in(ALU_OP_ID), .port_write_in(port_write_ID), .port_read_in(port_read_ID), .Rdst2_in(Rdst2_ID), .mem_type_in(mem_type_ID), .memToReg_in(memToReg_ID), .set_Z_in(set_Z_ID), .set_N_in(set_N_ID), 
 							.set_C_in(set_C_ID), .set_OVF_in(set_OVF_ID), .clr_Z_in(clr_Z_ID), .clr_N_in(clr_N_ID), .clr_C_in(clr_C_ID), .clr_OVF_in(clr_OVF_ID), .jmp_sel_in(jmp_sel_ID), .SP_src_in(SP_src_ID), .PORT_in(PORT_ID),
 							.Rsrc_in(Rsrc_ID), .is_jmp_in(is_jmp_ID), .jmp_src_in(jmp_src_ID), .mem_data_src_in(mem_data_src_ID), .mem_addr_src_in(mem_addr_src_ID), .INT_in(INT_ID), .PC_push_pop_in(PC_push_pop_ID),
-							.flags_push_pop_in(flags_push_pop_ID), .stall(stall_MEM), .reset(reset), .clk(clk), .flush(exception_EXE_EDU | exception_MEM_EDU | stall_HDU | POP_PC_sgn_MEM));
+							.flags_push_pop_in(flags_push_pop_ID), .stall(stall_MEM), .reset(exception_EXE_EDU | exception_MEM_EDU | POP_PC_sgn_MEM | reset), .clk(clk), .flush(stall_HDU));
 
 /*EX stage*/	
 EX instr_execute(.PC_out(PC_EX), .SP_src_out(SP_src_EX), .port_write_out(port_write_EX), .port_read_out(port_read_EX), .Rdst1_val_out(Rdst1_val_EX), .Rdst1_out(Rdst1_EX), 
@@ -368,7 +370,7 @@ EX instr_execute(.PC_out(PC_EX), .SP_src_out(SP_src_EX), .port_write_out(port_wr
 				.SP_src_in(SP_src_ID_EX_buff), .PORT_in(PORT_ID_EX_buff), .Rsrc_in(Rsrc_ID_EX_buff), .is_jmp_in(is_jmp_ID_EX_buff), .jmp_src_in(jmp_src_ID_EX_buff), 
 				.mem_data_src_in(mem_data_src_ID_EX_buff), .mem_addr_src_in(mem_addr_src_ID_EX_buff), .INT_in(INT_ID_EX_buff), .PC_push_pop_in(PC_push_pop_ID_EX_buff), 
 				.flags_push_pop_in(flags_push_pop_ID_EX_buff), .POP_flags_val_in(POP_flags_val_MEM), .is_POP_flags_in(POP_flags_sgn_MEM), . Rdst1_val_MEM_in(Rdst1_val_EX_MEM_buff),
-				.Rdst2_val_MEM_in(Rdst2_val_EX_MEM_buff), .Rdst1_val_WB_in(Rdst1_val_MEM_WB_buff), .Rdst2_val_WB_in(Rdst2_val_MEM_WB_buff), .forward_ALU_dst_FU1_in(forward_ALU_dst_FU1),
+				.Rdst2_val_MEM_in(Rdst2_val_EX_MEM_buff), .Rdst1_DATA_val_WB_in(Rdst1_val_WB), .Rdst2_val_WB_in(Rdst2_val_MEM_WB_buff), .forward_ALU_dst_FU1_in(forward_ALU_dst_FU1),
 				.forward_ALU_src_FU1_in(forward_ALU_src_FU1), .forward_Rdst_num_MEM_to_Rdst_FU1_in(forward_Rdst_num_MEM_to_Rdst_FU1), .forward_Rdst_num_WB_to_Rdst_FU1_in(forward_Rdst_num_WB_to_Rdst_FU1), 
 				.forward_Rdst_num_MEM_to_Rsrc_FU1_in(forward_Rdst_num_MEM_to_Rsrc_FU1), .forward_Rdst_num_WB_to_Rsrc_FU1_in(forward_Rdst_num_WB_to_Rsrc_FU1), .clk(clk), .reset(reset));
 
@@ -382,8 +384,8 @@ EX_MEM execute_memory_buff(.PC_out(PC_EX_MEM_buff), .SP_src_out(SP_src_EX_MEM_bu
 							.port_read_in(port_read_EX), .Rdst1_val_in(Rdst1_val_EX), .Rdst1_in(Rdst1_EX), .mem_write_in(mem_write_EX), .mem_read_in(mem_read_EX), 
 							.reglow_write_in(reglow_write_EX), .reghigh_write_in(reghigh_write_EX), .Rdst2_in(Rdst2_EX), .mem_type_in(mem_type_EX), .memToReg_in(memToReg_EX), 
 							.Rdst2_val_in(Rdst2_val_EX), .PORT_in(PORT_EX), .Rsrc_in(Rsrc_EX), .Rsrc_val_in(Rsrc_val_EX), .mem_data_src_in(mem_data_src_EX), .mem_addr_src_in(mem_addr_src_EX), 
-							.Rdst_val_in(Rdst_val_EX), .INT_in(INT_EX), .PC_push_pop_in(PC_push_pop_EX), .flags_push_pop_in(flags_push_pop_EX), .clk(clk), .reset(reset), .stall(stall_MEM),
-							.flush(exception_MEM_EDU));
+							.Rdst_val_in(Rdst_val_EX), .INT_in(INT_EX), .PC_push_pop_in(PC_push_pop_EX), .flags_push_pop_in(flags_push_pop_EX), .clk(clk), .reset(exception_MEM_EDU | reset), .stall(stall_MEM),
+							.flush(1'b0));
 
 /*MEM stage*/
 MEM instr_memory(.Rdst2_val_out(Rdst2_val_MEM), .Rdst2_out(Rdst2_MEM), .reghigh_write_out(reghigh_write_MEM), .reglow_write_out(reglow_write_MEM), .Rdst1_out(Rdst1_MEM), 
@@ -394,7 +396,9 @@ MEM instr_memory(.Rdst2_val_out(Rdst2_val_MEM), .Rdst2_out(Rdst2_MEM), .reghigh_
 				.Rdst2_in(Rdst2_EX_MEM_buff), .mem_type_in(mem_type_EX_MEM_buff), .memToReg_in(memToReg_EX_MEM_buff), .Rdst2_val_in(Rdst2_val_EX_MEM_buff), .PORT_in(PORT_EX_MEM_buff),
 				.Rsrc_in(Rsrc_EX_MEM_buff), .Rsrc_val_in(Rsrc_val_EX_MEM_buff), .mem_data_src_in(mem_data_src_EX_MEM_buff), .mem_addr_src_in(mem_addr_src_EX_MEM_buff), 
 				.Rdst_val_in(Rdst_val_EX_MEM_buff), .INT_in(INT_EX_MEM_buff), .PC_push_pop_in(PC_push_pop_EX_MEM_buff), .flags_push_pop_in(flags_push_pop_EX_MEM_buff), 
-				.DATA_WB_in(Data_MEM_WB_buff), .forward_data_to_write_data_FU2_in(forward_data_to_write_data_FU2), .forward_data_to_address_FU2_in(forward_data_to_address_FU2), .reset(reset), .clk(clk));
+				.DATA_Rdst1_WB_in(Rdst1_val_WB), .Rdst2_WB_in(Rdst2_val_WB), .forward_Rdst1_to_write_data_FU2_in(forward_Rdst1_to_write_data_FU2), 
+				.forward_Rdst2_to_write_data_FU2_in(forward_Rdst2_to_write_data_FU2), .forward_Rdst1_to_address_FU2_in(forward_Rdst1_to_address_FU2),
+				.forward_Rdst2_to_address_FU2_in(forward_Rdst2_to_address_FU2), .reset(reset), .clk(clk));
 
 /*MEM_WB buffer*/
 MEM_WB memory_writeBack_buff(.Rdst2_val_out(Rdst2_val_MEM_WB_buff), .Rdst2_out(Rdst2_MEM_WB_buff), .reghigh_write_out(reghigh_write_MEM_WB_buff), .reglow_write_out(reglow_write_MEM_WB_buff), 
@@ -432,8 +436,9 @@ FU1 forwarding_unit_1(.forward_ALU_dst_out(forward_ALU_dst_FU1), .forward_ALU_sr
 						.Rdst1_mem_in(Rdst1_EX_MEM_buff), .Rdst2_mem_in(Rdst2_EX_MEM_buff), .Rsrc_EX_in(Rsrc_ID_EX_buff), .Rdst_EX_in(Rdst1_ID_EX_buff));
 
 /*forwarding unit 2 (MEM-MEM)*/
-FU2 forwarding_unit_2(.forward_data_to_write_data_out(forward_data_to_write_data_FU2), .forward_data_to_address_out(forward_data_to_address_FU2), .Rdst1_WB_in(Rdst1_MEM_WB_buff),
-						.Rdst2_WB_in(Rdst2_MEM_WB_buff), .Rdst_MEM_in(Rdst1_EX_MEM_buff), .Rsrc_MEM_in(Rsrc_EX_MEM_buff), .mem_to_Reg_WB_in(memToReg_MEM_WB_buff));
+FU2 forwarding_unit_2(.forward_Rdst1_to_write_data_out(forward_Rdst1_to_write_data_FU2), .forward_Rdst2_to_write_data_out(forward_Rdst2_to_write_data_FU2), 
+						.forward_Rdst1_to_address_out(forward_Rdst1_to_address_FU2), .forward_Rdst2_to_address_out(forward_Rdst2_to_address_FU2), .Rdst1_WB_in(Rdst1_MEM_WB_buff),
+						.Rdst2_WB_in(Rdst2_MEM_WB_buff), .Rdst_MEM_in(Rdst1_EX_MEM_buff), .Rsrc_MEM_in(Rsrc_EX_MEM_buff), .reg_low_write_WB(reglow_write_WB), 
+						.reg_high_write_WB(reghigh_write_WB));
 
-		
 endmodule

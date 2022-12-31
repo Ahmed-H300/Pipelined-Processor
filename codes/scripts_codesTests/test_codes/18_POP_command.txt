@@ -8,15 +8,15 @@ SETC
 
 POP R1
 
-PUSH PC, flags
+PUSH PC_flags
 
-CLRC
+INC R2
 
-POP PC, flags
+POP PC_flags
 
 PUSH PC
 
-LDM R2, 7
+LDM R2, 30
 
 POP PC
 
