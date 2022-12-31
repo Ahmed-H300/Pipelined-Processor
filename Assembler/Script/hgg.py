@@ -84,10 +84,12 @@ def CompileOutput(arrayISA, out, start, end):
         'SETINT': 0b1011,
     }
     func = {
-        'funct0': 0b00,
-        'funct1': 0b01,
-        'funct2': 0b10,
-        'funct3': 0b11,
+        'funct0': 0b000,
+        'funct1': 0b001,
+        'funct2': 0b010,
+        'funct3': 0b011,
+        'funct4': 0b100,
+        'funct5': 0b101,
     }
     bits = 16
     rdsShift = 3 * 3
@@ -517,13 +519,17 @@ labelused = []
 
 
 def labelCompile(out):
-
+    imm1Shift = 3
     try:
         # loop for label
         # second loop for label instuctions
         for k, v in out.items():
             if(v in labelused):
-                out[k] = label[v]
+                labelValue = label[v]
+                tempim1 = (labelValue >> 16) & 0xF
+                tempim2 = labelValue & 0xFFFF
+                out[k-1] = out[k-1] | (tempim1 << imm1Shift)
+                out[k] = tempim2
     except:
         print(Fore.RED + 'Error in handling jumping labels! please check it again!')
         print(Style.RESET_ALL)
