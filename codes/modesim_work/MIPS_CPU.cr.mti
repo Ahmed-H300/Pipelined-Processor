@@ -53,15 +53,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	EX_MEM
 
-} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module ALU
--- Compiling module Reg
--- Compiling module EX
-
-Top level modules:
-	EX
-
 } {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/ID.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/ID.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module CU
@@ -78,13 +69,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	HDU
 
-} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/ALU.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/ALU.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module ALU
-
-Top level modules:
-	ALU
-
 } {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/IF.v} {0 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/IF.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module Reg
@@ -92,26 +76,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 -- Compiling module IF
 ** Error: (vlog-13069) D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/IF.v(137): near "always": syntax error, unexpected always, expecting class.
 
-} {6.0 7.0} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module Reg
-
-Top level modules:
-	Reg
-
-} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU1.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU1.v}
+} {6.0 7.0} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU1.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU1.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module FU1
 
 Top level modules:
 	FU1
 
-} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU2.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU2.v}
+} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module FU2
+-- Compiling module Reg
 
 Top level modules:
-	FU2
+	Reg
 
 } {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/mem.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/mem.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -119,6 +96,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 
 Top level modules:
 	memory
+
+} {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU2.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU2.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module FU2
+
+Top level modules:
+	FU2
 
 } {} {}} {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/regFile.v} {1 {vlog -work work -stats=none {D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/regFile.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020

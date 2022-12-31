@@ -7,7 +7,7 @@ module EX(PC_out, SP_src_out, port_write_out, port_read_out, Rdst1_val_out, Rdst
 			flags_push_pop_out, jmp_addr_out, do_jmp_out, ALU_src_val_out, PC_in, Shmt_in, hash_imm_in, Data_in, Rdst1_in, Rdst_val_in, Rsrc_val_in, ALU_src1_in, mem_write_in, mem_read_in,
 			reglow_write_in, reghigh_write_in, ALU_OP_in, port_write_in, port_read_in, Rdst2_in, mem_type_in, memToReg_in, set_Z_in, set_N_in, set_C_in, set_OVF_in,
 			clr_Z_in, clr_N_in, clr_C_in, clr_OVF_in, jmp_sel_in, SP_src_in, PORT_in, Rsrc_in, is_jmp_in, jmp_src_in, mem_data_src_in, mem_addr_src_in, INT_in,
-			PC_push_pop_in, flags_push_pop_in, POP_flags_val_in, is_POP_flags_in, Rdst1_val_MEM_in, Rdst2_val_MEM_in, Rdst1_val_WB_in, Rdst2_val_WB_in, forward_ALU_dst_FU1_in,
+			PC_push_pop_in, flags_push_pop_in, POP_flags_val_in, is_POP_flags_in, Rdst1_val_MEM_in, Rdst2_val_MEM_in, Rdst1_DATA_val_WB_in, Rdst2_val_WB_in, forward_ALU_dst_FU1_in,
 			forward_ALU_src_FU1_in, forward_Rdst_num_MEM_to_Rdst_FU1_in, forward_Rdst_num_WB_to_Rdst_FU1_in, forward_Rdst_num_MEM_to_Rsrc_FU1_in, forward_Rdst_num_WB_to_Rsrc_FU1_in
 			,clk, reset);
 
@@ -121,7 +121,7 @@ output wire flags_push_pop_out;
 **************************************************************/
 input wire [15:0] Rdst1_val_MEM_in;
 input wire [15:0] Rdst2_val_MEM_in;
-input wire [15:0] Rdst1_val_WB_in;
+input wire [15:0] Rdst1_DATA_val_WB_in;
 input wire [15:0] Rdst2_val_WB_in;
 
 input wire [1:0] forward_ALU_dst_FU1_in;
@@ -241,10 +241,10 @@ assign OVFlag_reset = reset | clr_OVF_in;
 
 /*for forwarding*/
 assign selected_Rdst1_or_Rdst2_MEM_to_ALU_Rdst = (forward_Rdst_num_MEM_to_Rdst_FU1_in) ? Rdst1_val_MEM_in : Rdst2_val_MEM_in;
-assign selected_Rdst1_or_Rdst2_WB_to_ALU_Rdst = (forward_Rdst_num_WB_to_Rdst_FU1_in) ? Rdst1_val_WB_in : Rdst2_val_WB_in;
+assign selected_Rdst1_or_Rdst2_WB_to_ALU_Rdst = (forward_Rdst_num_WB_to_Rdst_FU1_in) ? Rdst1_DATA_val_WB_in : Rdst2_val_WB_in;
 
 assign selected_Rdst1_or_Rdst2_MEM_to_ALU_Rsrc = (forward_Rdst_num_MEM_to_Rsrc_FU1_in) ? Rdst1_val_MEM_in : Rdst2_val_MEM_in;
-assign selected_Rdst1_or_Rdst2_WB_to_ALU_Rsrc = (forward_Rdst_num_WB_to_Rsrc_FU1_in) ? Rdst1_val_WB_in : Rdst2_val_WB_in;
+assign selected_Rdst1_or_Rdst2_WB_to_ALU_Rsrc = (forward_Rdst_num_WB_to_Rsrc_FU1_in) ? Rdst1_DATA_val_WB_in : Rdst2_val_WB_in;
 
 /*for the inputs/outputs to the ALU*/
 assign normal_without_forward_selected_value = 	(ALU_src1_in == 2'd0)	?	Rsrc_val_in				:

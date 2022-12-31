@@ -354,7 +354,7 @@ ID_EX decode_execute_buff(.PC_out(PC_ID_EX_buff), .Shmt_out(Shmt_ID_EX_buff), .h
 							.ALU_OP_in(ALU_OP_ID), .port_write_in(port_write_ID), .port_read_in(port_read_ID), .Rdst2_in(Rdst2_ID), .mem_type_in(mem_type_ID), .memToReg_in(memToReg_ID), .set_Z_in(set_Z_ID), .set_N_in(set_N_ID), 
 							.set_C_in(set_C_ID), .set_OVF_in(set_OVF_ID), .clr_Z_in(clr_Z_ID), .clr_N_in(clr_N_ID), .clr_C_in(clr_C_ID), .clr_OVF_in(clr_OVF_ID), .jmp_sel_in(jmp_sel_ID), .SP_src_in(SP_src_ID), .PORT_in(PORT_ID),
 							.Rsrc_in(Rsrc_ID), .is_jmp_in(is_jmp_ID), .jmp_src_in(jmp_src_ID), .mem_data_src_in(mem_data_src_ID), .mem_addr_src_in(mem_addr_src_ID), .INT_in(INT_ID), .PC_push_pop_in(PC_push_pop_ID),
-							.flags_push_pop_in(flags_push_pop_ID), .stall(stall_MEM), .reset(exception_EXE_EDU | exception_MEM_EDU | stall_HDU | POP_PC_sgn_MEM | reset), .clk(clk), .flush(1'b0));
+							.flags_push_pop_in(flags_push_pop_ID), .stall(stall_MEM), .reset(exception_EXE_EDU | exception_MEM_EDU | POP_PC_sgn_MEM | reset), .clk(clk), .flush(stall_HDU));
 
 /*EX stage*/	
 EX instr_execute(.PC_out(PC_EX), .SP_src_out(SP_src_EX), .port_write_out(port_write_EX), .port_read_out(port_read_EX), .Rdst1_val_out(Rdst1_val_EX), .Rdst1_out(Rdst1_EX), 
@@ -370,7 +370,7 @@ EX instr_execute(.PC_out(PC_EX), .SP_src_out(SP_src_EX), .port_write_out(port_wr
 				.SP_src_in(SP_src_ID_EX_buff), .PORT_in(PORT_ID_EX_buff), .Rsrc_in(Rsrc_ID_EX_buff), .is_jmp_in(is_jmp_ID_EX_buff), .jmp_src_in(jmp_src_ID_EX_buff), 
 				.mem_data_src_in(mem_data_src_ID_EX_buff), .mem_addr_src_in(mem_addr_src_ID_EX_buff), .INT_in(INT_ID_EX_buff), .PC_push_pop_in(PC_push_pop_ID_EX_buff), 
 				.flags_push_pop_in(flags_push_pop_ID_EX_buff), .POP_flags_val_in(POP_flags_val_MEM), .is_POP_flags_in(POP_flags_sgn_MEM), . Rdst1_val_MEM_in(Rdst1_val_EX_MEM_buff),
-				.Rdst2_val_MEM_in(Rdst2_val_EX_MEM_buff), .Rdst1_val_WB_in(Rdst1_val_MEM_WB_buff), .Rdst2_val_WB_in(Rdst2_val_MEM_WB_buff), .forward_ALU_dst_FU1_in(forward_ALU_dst_FU1),
+				.Rdst2_val_MEM_in(Rdst2_val_EX_MEM_buff), .Rdst1_DATA_val_WB_in(Rdst1_val_WB), .Rdst2_val_WB_in(Rdst2_val_MEM_WB_buff), .forward_ALU_dst_FU1_in(forward_ALU_dst_FU1),
 				.forward_ALU_src_FU1_in(forward_ALU_src_FU1), .forward_Rdst_num_MEM_to_Rdst_FU1_in(forward_Rdst_num_MEM_to_Rdst_FU1), .forward_Rdst_num_WB_to_Rdst_FU1_in(forward_Rdst_num_WB_to_Rdst_FU1), 
 				.forward_Rdst_num_MEM_to_Rsrc_FU1_in(forward_Rdst_num_MEM_to_Rsrc_FU1), .forward_Rdst_num_WB_to_Rsrc_FU1_in(forward_Rdst_num_WB_to_Rsrc_FU1), .clk(clk), .reset(reset));
 

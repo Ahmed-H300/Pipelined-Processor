@@ -179,7 +179,35 @@ assign {ADD_Rsrc, SUB_Rsrc, INC_Rsrc, DEC_Rsrc, AND_Rsrc, OR_Rsrc, NOT_Rsrc, SHL
 						(ALU_OP == 4'd10) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0} :
 												{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc} ;
 												
-												
+
+/**************************************************************
+	preforming the operation on the multiplication 
+	to handle negative numbers
+**************************************************************/	
+wire [15:0] MUL_Rdst_modified;
+wire [15:0] MUL_Rsrc_modified;
+wire [31:0] MUL_Res_temp;
+wire [31:0] MUL_Res;
+
+assign MUL_Rdst_modified =	(MUL_Rdst[15])	?	-MUL_Rdst	:	MUL_Rdst;
+assign MUL_Rsrc_modified =	(MUL_Rsrc[15])	?	-MUL_Rsrc	:	MUL_Rsrc;
+assign MUL_Res_temp	=	MUL_Rdst_modified	*	MUL_Rsrc_modified;
+assign MUL_Res	=	(MUL_Rdst[15] ^ MUL_Rsrc[15])	?	-MUL_Res_temp	:	MUL_Res_temp;
+
+/**************************************************************
+	preforming the operation on the division 
+	to handle negative numbers
+**************************************************************/	
+wire [15:0] DIV_Rdst_modified;
+wire [15:0] DIV_Rsrc_modified;
+wire [15:0] DIV_Res_temp;
+wire [15:0] DIV_Res;
+
+assign DIV_Rdst_modified =	(DIV_Rdst[15])	?	-DIV_Rdst	:	DIV_Rdst;
+assign DIV_Rsrc_modified =	(MUL_Rsrc[15])	?	-DIV_Rsrc	:	DIV_Rsrc;
+assign DIV_Res_temp	=	DIV_Rdst_modified	/	DIV_Rsrc_modified;
+assign DIV_Res	=	(DIV_Rdst[15] ^ DIV_Rsrc[15])	?	-DIV_Res_temp	:	DIV_Res_temp;
+										
 /**************************************************************
 	preforming the operation on the inputs
 **************************************************************/		
@@ -230,12 +258,12 @@ assign SHR_NF = SHR_RES[15];
 assign SHR_ZF = (SHR_RES == 16'd0);	
 
 // MUL
-assign {MUL_RES_high, MUL_RES_low} = MUL_Rdst * MUL_Rsrc;						
+assign {MUL_RES_high, MUL_RES_low} = MUL_Res;						
 assign MUL_NF = MUL_RES_high[15];
 assign MUL_ZF = ({MUL_RES_high, MUL_RES_low} == 8'd0);	
 
 // DIV
-assign DIV_RES = DIV_Rdst /  DIV_Rsrc;						
+assign DIV_RES = DIV_Res;						
 assign DIV_NF = DIV_RES[15];
 assign DIV_ZF = (DIV_RES == 16'd0);	
 

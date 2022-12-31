@@ -42,6 +42,9 @@ add wave -color #B27600 fetch_decode_buff/*
 add wave -divider ID
 add wave -color #B27600 instr_decode/*
 
+add wave -divider ID_EX
+add wave -color #B27600 decode_execute_buff/*
+
 add wave -divider EX
 add wave -color #B27600 instr_execute/*
 
