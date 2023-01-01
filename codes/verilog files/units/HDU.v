@@ -36,7 +36,7 @@ wire is_there_depenedency;		// to detect if there is a dependency between the cu
 				then
 				B_type instruction
 **************************************************************/
-assign is_instr_match_hazard = (inst_opcode_ID_in == 4'd1 || inst_opcode_ID_in == 4'd2 || inst_opcode_ID_in == 4'd3 || inst_opcode_ID_in == 4'd4);
+assign is_instr_match_hazard = (inst_opcode_ID_in == 4'd1 || inst_opcode_ID_in == 4'd2 || inst_opcode_ID_in == 4'd3 || inst_opcode_ID_in == 4'd4 || inst_opcode_ID_in == 4'd12);
 assign is_there_depenedency = (Rdst1_EX_in == Rsrc_ID_in || Rdst1_EX_in == Rdst_ID_in);
 assign HDU_stall_out = is_instr_match_hazard & is_there_depenedency & mem_read_EX_in;
 

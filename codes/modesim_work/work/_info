@@ -10,26 +10,27 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 vALU
-Z0 !s110 1672598137
+Z0 !s110 1672600269
 !i10b 1
 !s100 MfH3b>M`R_8Nl5DdSN7][0
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IF1kX`5nh=ojBemG8heDGQ0
+Iiza=iFW`TX5U5nJ`lAl^83
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 dD:/PROJECTS/third year/first term/computer architecture/codes/modesim_work
 w1672590903
-8..\verilog files\stages\..\units\ALU.v
-F..\verilog files\stages\..\units\ALU.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/ALU.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/ALU.v
+!i122 1179
 L0 2 378
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1672598136.000000
-!s107 ..\verilog files\units\HDU.v|..\verilog files\units\FU2.v|..\verilog files\units\FU1.v|..\verilog files\units\EDU.v|..\verilog files\intermediate_buffers\MEM_WB.v|..\verilog files\intermediate_buffers\IF_ID.v|..\verilog files\intermediate_buffers\ID_EX.v|..\verilog files\intermediate_buffers\EX_MEM.v|..\verilog files\stages\WB.v|..\verilog files\stages\MEM.v|..\verilog files\stages\..\utils\mem.v|..\verilog files\stages\IF.v|..\verilog files\stages\..\utils\reg.v|..\verilog files\stages\..\units\ALU.v|..\verilog files\stages\EX.v|..\verilog files\stages\..\units\regFile.v|..\verilog files\stages\..\units\CU.v|..\verilog files\stages\ID.v|../verilog files/processor.v|
-Z6 !s90 -reportprogress|300|../verilog files/processor.v|
+Z5 !s108 1672600268.000000
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/ALU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/ALU.v|
 !i113 1
+Z6 o-work work
 Z7 tCvgOpt 0
 n@a@l@u
 vCU
@@ -37,22 +38,23 @@ R0
 !i10b 1
 !s100 1LTn7K>j067<12o1?>L^40
 R1
-IYdJ87Afg<VEoYzNezLJGz3
+Ijz1N[B_<U]ImZE=PiGk`K2
 R2
 R3
 w1672597040
-8..\verilog files\stages\..\units\CU.v
-F..\verilog files\stages\..\units\CU.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/CU.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/CU.v
+!i122 1180
 L0 2 584
 R4
 r1
 !s85 0
 31
-R5
-Z8 !s107 ..\verilog files\units\HDU.v|..\verilog files\units\FU2.v|..\verilog files\units\FU1.v|..\verilog files\units\EDU.v|..\verilog files\intermediate_buffers\MEM_WB.v|..\verilog files\intermediate_buffers\IF_ID.v|..\verilog files\intermediate_buffers\ID_EX.v|..\verilog files\intermediate_buffers\EX_MEM.v|..\verilog files\stages\WB.v|..\verilog files\stages\MEM.v|..\verilog files\stages\..\utils\mem.v|..\verilog files\stages\IF.v|..\verilog files\stages\..\utils\reg.v|..\verilog files\stages\..\units\ALU.v|..\verilog files\stages\EX.v|..\verilog files\stages\..\units\regFile.v|..\verilog files\stages\..\units\CU.v|..\verilog files\stages\ID.v|../verilog files/processor.v|
-R6
+Z8 !s108 1672600269.000000
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/CU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/CU.v|
 !i113 1
+R6
 R7
 n@c@u
 vEDU
@@ -60,68 +62,71 @@ R0
 !i10b 1
 !s100 mog_WRBSPC0[72=e4lh@E1
 R1
-I8`4BLB136?X4UGSNDTATR1
+Ik89m6PhML:zkR;Gj81T^B1
 R2
 R3
 w1672596742
-8..\verilog files\units\EDU.v
-F..\verilog files\units\EDU.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/EDU.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/EDU.v
+!i122 1181
 L0 2 150
 R4
 r1
 !s85 0
 31
-R5
 R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/EDU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/EDU.v|
 !i113 1
+R6
 R7
 n@e@d@u
 vEX
-R0
+Z9 !s110 1672600268
 !i10b 1
 !s100 _m]TmnbOQjTTU3?@Mcgoc1
 R1
-IiEhk0P;^LPcVZa`HVW=gI3
+IdRAc^UgkoDB8<`1]J0<500
 R2
 R3
 w1672576510
-8..\verilog files\stages\EX.v
-F..\verilog files\stages\EX.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v
+!i122 1174
 L0 5 321
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+!s107 D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\utils\reg.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\units\ALU.v|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/EX.v|
 !i113 1
+R6
 R7
 n@e@x
 vEX_MEM
-R0
+Z10 !s110 1672600267
 !i10b 1
 !s100 EgLXge`_@C`95>aXVG3;>2
 R1
-I6ijEMP60V:d_gm<bTghUR0
+IW[=9ihc?0682bCMaH;1PN0
 R2
 R3
 w1671145557
-8..\verilog files\intermediate_buffers\EX_MEM.v
-F..\verilog files\intermediate_buffers\EX_MEM.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/EX_MEM.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/EX_MEM.v
+!i122 1170
 L0 1 251
 R4
 r1
 !s85 0
 31
-R5
-R8
-R6
+Z11 !s108 1672600267.000000
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/EX_MEM.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/EX_MEM.v|
 !i113 1
+R6
 R7
 n@e@x_@m@e@m
 vFU1
@@ -129,22 +134,23 @@ R0
 !i10b 1
 !s100 3l2Pni]<eA5ciN0`7PgPP1
 R1
-IlK50i6_JURiQzEz;_7IPV3
+IjS0zI<N<2bE5dndGKWXjM1
 R2
 R3
 w1671019626
-8..\verilog files\units\FU1.v
-F..\verilog files\units\FU1.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU1.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU1.v
+!i122 1182
 L0 2 135
 R4
 r1
 !s85 0
 31
-R5
 R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU1.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU1.v|
 !i113 1
+R6
 R7
 n@f@u1
 vFU2
@@ -152,229 +158,239 @@ R0
 !i10b 1
 !s100 0ND5=PMMgAmc5@W9zI]P33
 R1
-IWh=zF?o^5ebhc?L^?kN>d0
+Id_EMF6Xog[h`lZk`_e96D2
 R2
 R3
 w1672355458
-8..\verilog files\units\FU2.v
-F..\verilog files\units\FU2.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU2.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU2.v
+!i122 1183
 L0 2 80
 R4
 r1
 !s85 0
 31
-R5
 R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/FU2.v|
 !i113 1
+R6
 R7
 n@f@u2
 vHDU
 R0
 !i10b 1
-!s100 ]JT=nd0cc`E97]IFonVTF0
+!s100 Y=ee^LaVMd?>gG`3Jb>ak3
 R1
-I<6OdTN5MdR68R0iY:_;SZ3
+I@`2^z3P72J<YPG0XBFngS0
 R2
 R3
-w1670955592
-8..\verilog files\units\HDU.v
-F..\verilog files\units\HDU.v
-!i122 1168
+w1672600246
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/HDU.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/HDU.v
+!i122 1184
 L0 2 43
 R4
 r1
 !s85 0
 31
-R5
 R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/HDU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/HDU.v|
 !i113 1
+R6
 R7
 n@h@d@u
 vI_typeDetectionUnit
-R0
+R9
 !i10b 1
 !s100 jOG5i]:1S;Gfl3_Dz;HVW3
 R1
-I:dC5V@Kb>[C7m@Yc_e@K=2
+ICJJda5=PLilb@_kPEigMZ0
 R2
 R3
-Z9 w1672575643
-Z10 8..\verilog files\stages\IF.v
-Z11 F..\verilog files\stages\IF.v
-!i122 1168
+Z12 w1672575643
+Z13 8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/IF.v
+Z14 FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/IF.v
+!i122 1176
 L0 185 12
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+Z15 !s107 D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\utils\mem.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\utils\reg.v|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/IF.v|
+Z16 !s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/IF.v|
 !i113 1
+R6
 R7
 n@i_type@detection@unit
 vID
-R0
+R9
 !i10b 1
 !s100 ?k;S9W0KD@;;BL1R;FcYU0
 R1
-I7e5X`HV<?LTHSo>mU;ooS0
+IgcO>j;cV31j2iCCGcBnVz0
 R2
 R3
 w1672597076
-8..\verilog files\stages\ID.v
-F..\verilog files\stages\ID.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/ID.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/ID.v
+!i122 1175
 L0 5 147
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+!s107 D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\units\regFile.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\units\CU.v|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/ID.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/ID.v|
 !i113 1
+R6
 R7
 n@i@d
 vID_EX
-R0
+R9
 !i10b 1
 !s100 V81XD_c0coUVRJN_US6oK3
 R1
-IIiV4IRoeMeW5^cNj^^U1?2
+I>B`1z]1eF;:m8b`1bW]>V2
 R2
 R3
 w1672259012
-8..\verilog files\intermediate_buffers\ID_EX.v
-F..\verilog files\intermediate_buffers\ID_EX.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/ID_EX.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/ID_EX.v
+!i122 1171
 L0 2 379
 R4
 r1
 !s85 0
 31
-R5
-R8
-R6
+R11
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/ID_EX.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/ID_EX.v|
 !i113 1
+R6
 R7
 n@i@d_@e@x
 vIF
-R0
+R9
 !i10b 1
 !s100 cTGnDAXYMj?1cjSPeFGH;3
 R1
-I1YWk7bNTcHSF<>PDAXF3V2
+IBX9jb?D;lJ=XQDJlF@9m>3
 R2
 R3
-R9
-R10
-R11
-!i122 1168
+R12
+R13
+R14
+!i122 1176
 L0 5 142
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+R15
+R16
 !i113 1
+R6
 R7
 n@i@f
 vIF_ID
-R0
+R9
 !i10b 1
 !s100 =;cd2EeNFHCT0^OcoW4_01
 R1
-IghBd7[GNBk]NZ^nE44JCg1
+IPPJ99RWz_Y8LZ9@b9`Q<D3
 R2
 R3
 w1672590385
-8..\verilog files\intermediate_buffers\IF_ID.v
-F..\verilog files\intermediate_buffers\IF_ID.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/IF_ID.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/IF_ID.v
+!i122 1172
 L0 2 93
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/IF_ID.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/IF_ID.v|
 !i113 1
+R6
 R7
 n@i@f_@i@d
 vmasterSlaveReg
-R0
+R9
 !i10b 1
 !s100 4ZZL`gllSWT<fbP?4JLO61
 R1
-Ik?6e0:9^dKIiLn3O2Z0H@1
+I0zVI^I3B7U<zPa1of^YNG2
 R2
 R3
-R9
-R10
-R11
-!i122 1168
+R12
+R13
+R14
+!i122 1176
 L0 202 48
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+R15
+R16
 !i113 1
+R6
 R7
 nmaster@slave@reg
 vMEM
-R0
+R9
 !i10b 1
 !s100 NaABFNiLajk>z^<:0=mQE3
 R1
-I]TQL`k_YB>lbkkl^5E4RW1
+II[Zh48YU>fV5:h3Rknl7S0
 R2
 R3
 w1672575700
-8..\verilog files\stages\MEM.v
-F..\verilog files\stages\MEM.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/MEM.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/MEM.v
+!i122 1177
 L0 4 217
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+!s107 D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\utils\mem.v|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/MEM.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/MEM.v|
 !i113 1
+R6
 R7
 n@m@e@m
 vMEM_WB
-R0
+R9
 !i10b 1
 !s100 1?_8?W6WjURd8PFD0<Wka0
 R1
-I6J8kQ0fe3@nOhAF[D;gNa1
+I97kg<=DnJlK_V8Y[SBI@`2
 R2
 R3
 w1671145559
-8..\verilog files\intermediate_buffers\MEM_WB.v
-F..\verilog files\intermediate_buffers\MEM_WB.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/MEM_WB.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/MEM_WB.v
+!i122 1173
 L0 2 127
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/MEM_WB.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/intermediate_buffers/MEM_WB.v|
 !i113 1
+R6
 R7
 n@m@e@m_@w@b
 vmemory
@@ -382,89 +398,93 @@ R0
 !i10b 1
 !s100 8B6AOBm]BKZ5FlDLYddRj2
 R1
-I^Wz=EWZ_8@5]7oZR[Jj0G1
+I;X4eRXZm?JlT`zGo1Whn23
 R2
 R3
 w1669846140
-8..\verilog files\stages\..\utils\mem.v
-F..\verilog files\stages\..\utils\mem.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/mem.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/mem.v
+!i122 1186
 L0 5 51
 R4
 r1
 !s85 0
 31
-R5
 R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/mem.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/mem.v|
 !i113 1
+R6
 R7
 vPC
-R0
+R9
 !i10b 1
 !s100 >`Z3a:;K1RZG][a^mZOEl1
 R1
-IzekCW[M@o]hEHI0Dakaoz0
+Id[CXJ[9Z^Hid`3Ed=ON>g3
 R2
 R3
-R9
-R10
-R11
-!i122 1168
+R12
+R13
+R14
+!i122 1176
 L0 150 30
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+R15
+R16
 !i113 1
+R6
 R7
 n@p@c
 vprocessor
-R0
+R10
 !i10b 1
 !s100 dYNKVDHVEnNFAMoB5GFYG0
 R1
-IDZM9Rl5?Y_DAfeLFAWV802
+I@`anUPD0P7S?l:<OFX>YJ0
 R2
 R3
 w1672597750
-8../verilog files/processor.v
-F../verilog files/processor.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v
+!i122 1169
 L0 19 430
 R4
 r1
 !s85 0
 31
-R5
-R8
-R6
+R11
+!s107 D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\units\HDU.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\units\FU2.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\units\FU1.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\units\EDU.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\intermediate_buffers\MEM_WB.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\intermediate_buffers\IF_ID.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\intermediate_buffers\ID_EX.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\intermediate_buffers\EX_MEM.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\WB.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\MEM.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\utils\mem.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\IF.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\utils\reg.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\units\ALU.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\EX.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\units\regFile.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\..\units\CU.v|D:\PROJECTS\third year\first term\computer architecture\codes\verilog files\stages\ID.v|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/processor.v|
 !i113 1
+R6
 R7
 vReg
-R0
+!s110 1672600270
 !i10b 1
 !s100 P6oi[`X=`4dfi2;WVVP_Y2
 R1
-I490MUJJ`3k]]U[`SGFQn[0
+I81B3TBbPS[LePWWG49cgd3
 R2
 R3
 w1672576444
-8..\verilog files\stages\..\utils\reg.v
-F..\verilog files\stages\..\utils\reg.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v
+!i122 1187
 L0 5 53
 R4
 r1
 !s85 0
 31
-R5
 R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/utils/reg.v|
 !i113 1
+R6
 R7
 n@reg
 vregFile
@@ -472,44 +492,46 @@ R0
 !i10b 1
 !s100 5jKDLoOS9?@?YHP`NIkc^1
 R1
-ILSfaizl9d=DU[=??HUQS^3
+I]_aYcTKGJ=zQcFN@KN2_?3
 R2
 R3
 w1672575630
-8..\verilog files\stages\..\units\regFile.v
-F..\verilog files\stages\..\units\regFile.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/regFile.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/regFile.v
+!i122 1185
 L0 2 128
 R4
 r1
 !s85 0
 31
-R5
 R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/regFile.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/units/regFile.v|
 !i113 1
+R6
 R7
 nreg@file
 vWB
-R0
+R9
 !i10b 1
 !s100 >5o0HoMU6o?AJH8O`_b?22
 R1
-I5^Gi3b`bmnKJJQ0obM:M_2
+IP68PEXMzh2D673NNmH:zE2
 R2
 R3
 w1669987169
-8..\verilog files\stages\WB.v
-F..\verilog files\stages\WB.v
-!i122 1168
+8D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/WB.v
+FD:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/WB.v
+!i122 1178
 L0 2 39
 R4
 r1
 !s85 0
 31
 R5
-R8
-R6
+!s107 D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/WB.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/PROJECTS/third year/first term/computer architecture/codes/verilog files/stages/WB.v|
 !i113 1
+R6
 R7
 n@w@b
