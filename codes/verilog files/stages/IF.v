@@ -75,6 +75,7 @@ wire is_Itype;
 wire masterOut;
 wire slaveOut;
 wire do_interruptRoutine;
+wire do_reset;
 
 /**************************************************************
 	important assigns
@@ -82,7 +83,7 @@ wire do_interruptRoutine;
 assign PC_addedByOne = PC_out + 1;
 assign inst_opcode = {4{!masterOut}} & instr[15:12] & {4{!INT_reg}};
 
-assign PC_in =  (RESET_reg | exception)		?	32'd32			:
+assign PC_in =  (RESET_reg)					?	32'd32			:
 				(INT_reg)					?	32'd0			:
 				(pop_pc)					?	PC_popedValue	:
 				(JMP_SGN_reg)				?	PC_jmpValue		:
@@ -96,7 +97,7 @@ assign Data = instr;
 assign INT = INT_reg;
 assign PC_IF_out = PC_addedByOne;//(SET_INT)	?	PC_IF_ID_in	:	PC_addedByOne;
 assign do_interruptRoutine = interrupt | SET_INT;
- 
+assign do_reset = exception | reset;
 
 /**************************************************************
 	creating needed modules
@@ -122,9 +123,9 @@ begin
 		INT_reg <= INT_reg;
 end
 
-always@(negedge clk, reset)
+always@(negedge clk, do_reset)
 begin
-	if(reset)
+	if(do_reset)
 		RESET_reg <= 1;
 	else if(!clk & !stall)
 		RESET_reg <= 0;
