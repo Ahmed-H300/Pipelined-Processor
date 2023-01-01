@@ -73,6 +73,11 @@ group2	: 3 (op-code)
 -> NOT 		-> 2 (funct)
 -> MOV 		-> 3 (funct)
 
+group3	: 12 (op-code)
+============
+-> MOD  		-> 0 (funct)
+
+
 
 b_type	: 4 (op-code)
 ------
@@ -126,8 +131,9 @@ n_type
 -> NOP 	: 0 (op-code)	
 -> CALL  : 10 (op-code)
 -> SETINT	: 11 (op-code)
+-> RST	; 13 (op-code)
 
-=> number 12-> 15 are left for future development
+=> number 13-> 15 are left for future development
 
 
 ======================================================================================

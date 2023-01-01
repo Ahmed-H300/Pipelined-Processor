@@ -1,0 +1,15 @@
+
+
+; main code
+SETC
+LDM R1,1
+SETINT
+
+LDM R4, 5
+
+
+; interrupt service routine
+VECT
+INC R1
+SETINT
+RTI

@@ -69,7 +69,7 @@ endgenerate
 generate
   for(it = 0; it < 8; it = it + 1) 
   begin
-    Reg #(16) registerModule(.out_data(register_out[it]), .reset(reset), .set(1'b0), .clk(clk_actual[it]), .in_data(data_actual[it]), .flush(1'b0));
+    Reg #(16) registerModule(.out_data(register_out[it]), .reset(reset), .set(1'b0), .clk(clk_actual[it]), .in_data(data_actual[it]), .flush(1'b0), .clr(1'b0), .stall(1'b0));
   end
 endgenerate
 

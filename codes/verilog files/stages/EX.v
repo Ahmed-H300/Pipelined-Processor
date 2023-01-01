@@ -8,8 +8,8 @@ module EX(PC_out, SP_src_out, port_write_out, port_read_out, Rdst1_val_out, Rdst
 			reglow_write_in, reghigh_write_in, ALU_OP_in, port_write_in, port_read_in, Rdst2_in, mem_type_in, memToReg_in, set_Z_in, set_N_in, set_C_in, set_OVF_in,
 			clr_Z_in, clr_N_in, clr_C_in, clr_OVF_in, jmp_sel_in, SP_src_in, PORT_in, Rsrc_in, is_jmp_in, jmp_src_in, mem_data_src_in, mem_addr_src_in, INT_in,
 			PC_push_pop_in, flags_push_pop_in, POP_flags_val_in, is_POP_flags_in, Rdst1_val_MEM_in, Rdst2_val_MEM_in, Rdst1_DATA_val_WB_in, Rdst2_val_WB_in, forward_ALU_dst_FU1_in,
-			forward_ALU_src_FU1_in, forward_Rdst_num_MEM_to_Rdst_FU1_in, forward_Rdst_num_WB_to_Rdst_FU1_in, forward_Rdst_num_MEM_to_Rsrc_FU1_in, forward_Rdst_num_WB_to_Rsrc_FU1_in
-			,clk, reset);
+			forward_ALU_src_FU1_in, forward_Rdst_num_MEM_to_Rdst_FU1_in, forward_Rdst_num_WB_to_Rdst_FU1_in, forward_Rdst_num_MEM_to_Rsrc_FU1_in, forward_Rdst_num_WB_to_Rsrc_FU1_in,
+			stall_CCR_POP, clk, reset);
 
 /*it's the jmp address incase we did want to do jmp instruction*/
 output wire [31:0] jmp_addr_out;
@@ -23,6 +23,8 @@ output wire [15:0] Rdst1_val_out;
 /*this is the result of ALU (Rdst2 val) which is the upper 16 bits in case of multiplication*/
 output wire [15:0] Rdst2_val_out;
 
+/*this wire is to prevent the CCR from being edited due to pop command*/
+input wire stall_CCR_POP;
 
 /*this is the reset signal that will zero out the CCR register*/
 input wire reset;
@@ -158,10 +160,10 @@ wire ZFlag_set;
 wire OVFlag_set;
 
 /*reset signal to the CCR register*/
-wire CFlag_reset;
-wire NFlag_reset;
-wire ZFlag_reset;
-wire OVFlag_reset;
+wire CFlag_clr;
+wire NFlag_clr;
+wire ZFlag_clr;
+wire OVFlag_clr;
 
 /*these are the results coming from the ALU*/
 wire [15:0] ALU_resultLowerWord;
@@ -206,10 +208,10 @@ wire [31:0] Rdst_val_toPC_offset;
 /**************************************************************
 	creating needed modules
 **************************************************************/
-Reg #(1) Z_flag(.out_data(ZFlag_out), .reset(ZFlag_reset), .set(ZFlag_set), .clk(clk), .in_data(ZFlag_in), .flush(clr_ZF_JZ));
-Reg #(1) C_flag(.out_data(CFlag_out), .reset(CFlag_reset), .set(CFlag_set), .clk(clk), .in_data(CFlag_in), .flush(clr_CF_JC));
-Reg #(1) N_flag(.out_data(NFlag_out), .reset(NFlag_reset), .set(NFlag_set), .clk(clk), .in_data(NFlag_in), .flush(clr_NF_JN));
-Reg #(1) OVF_flag(.out_data(OVFlag_out), .reset(OVFlag_reset), .set(OVFlag_set), .clk(clk), .in_data(OVFlag_in), .flush(1'b0));  // TODO: edit the flush signal if you want to add the JMPOVF signal
+Reg #(1) Z_flag(.out_data(ZFlag_out), .reset(reset), .set(ZFlag_set), .clk(clk), .in_data(ZFlag_in), .flush(clr_ZF_JZ), .clr(CFlag_clr), .stall(stall_CCR_POP));
+Reg #(1) C_flag(.out_data(CFlag_out), .reset(reset), .set(CFlag_set), .clk(clk), .in_data(CFlag_in), .flush(clr_CF_JC), .clr(NFlag_clr), .stall(stall_CCR_POP));
+Reg #(1) N_flag(.out_data(NFlag_out), .reset(reset), .set(NFlag_set), .clk(clk), .in_data(NFlag_in), .flush(clr_NF_JN), .clr(ZFlag_clr), .stall(stall_CCR_POP));
+Reg #(1) OVF_flag(.out_data(OVFlag_out), .reset(reset), .set(OVFlag_set), .clk(clk), .in_data(OVFlag_in), .flush(1'b0), .clr(OVFlag_clr), .stall(stall_CCR_POP));  // TODO: edit the flush signal if you want to add the JMPOVF signal
 
 ALU arithmetic_unit(.resultLowerWord(ALU_resultLowerWord), .resultUpperWord(ALU_resultUpperWord), .CF_out(ALU_CF_out), .NF_out(ALU_NF_out), .ZF_out(ALU_ZF_out), 
 					.OVF_out(ALU_OVF_out), .Rdst(ALU_Rdst), .Rsrc(ALU_Rsrc), .ALU_OP(ALU_OP), .ZF_in(ALU_ZF_in), .NF_in(ALU_NF_in), .CF_in(ALU_CF_in), .OVF_in(ALU_OVF_in));
@@ -228,16 +230,16 @@ assign NFlag_in = (choose_POP_flags) ? POP_flags_val_in[1] : ALU_NF_out;
 assign CFlag_in = (choose_POP_flags) ? POP_flags_val_in[0] : ALU_CF_out;
 
 /*assigning the set signal for the CCR*/
-assign ZFlag_set = set_Z_in;
-assign NFlag_set = set_N_in;
-assign CFlag_set = set_C_in;
-assign OVFlag_set = set_OVF_in;
+assign ZFlag_set 	= 	set_Z_in;
+assign NFlag_set 	= 	set_N_in;
+assign CFlag_set 	= 	set_C_in;
+assign OVFlag_set 	= 	set_OVF_in;
 
-/*assigning the reset signal for the CCR*/
-assign CFlag_reset = reset | clr_C_in;
-assign NFlag_reset = reset | clr_N_in;
-assign ZFlag_reset = reset | clr_Z_in;
-assign OVFlag_reset = reset | clr_OVF_in;
+/*assigning the clr signal for the CCR*/
+assign CFlag_clr 	=  	clr_C_in;
+assign NFlag_clr 	= 	clr_N_in;
+assign ZFlag_clr 	= 	clr_Z_in;
+assign OVFlag_clr 	= 	clr_OVF_in;
 
 /*for forwarding*/
 assign selected_Rdst1_or_Rdst2_MEM_to_ALU_Rdst = (forward_Rdst_num_MEM_to_Rdst_FU1_in) ? Rdst1_val_MEM_in : Rdst2_val_MEM_in;

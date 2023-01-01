@@ -18,7 +18,7 @@ for { set a 0}  {$a < 8} {incr a} {
 
 #Program counter
 add wave -divider PC					     
-add wave -color #007EFF -radix dec -label pc_IF PC_IF -label pc_ID PC_ID -label pc_EX PC_EX
+add wave -color #007EFF -radix dec -label PC_reg instr_fetch/PC_out -label pc_IF PC_IF -label pc_ID PC_ID -label pc_EX PC_EX
 
 #Stack pointer
 add wave -divider SP
@@ -70,18 +70,18 @@ add wave -divider FU2
 add wave -color #B27600 forwarding_unit_2/*
 
 add wave -divider another_tests
-add wave -color #B27600 stall_HDU stall_MEM set_INT_ID exception_EDU set_INT_ID
+add wave -color #B27600 stall_HDU stall_MEM set_INT_ID exception_EDU set_INT_ID rst_ID
 
 
 force interrupt 1'b0
-force reset 1'b1
+force reset_in 1'b1
 force clk 1 0, 0 {100 ps} -r 200
 run
 
-force reset 1'b0
+force reset_in 1'b0
 run
 
-# loading the data memory after reset signal
+# loading the data memory after reset_in signal
 mem load -i ../verilog\ files/simulation\ files/portInMemory.mem /processor/instr_memory/port_in_memory/memory
 mem load -i ../verilog\ files/simulation\ files/dataMemory.mem /processor/instr_memory/data_memory/memory
 

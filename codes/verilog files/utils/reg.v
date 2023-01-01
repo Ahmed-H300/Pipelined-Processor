@@ -2,7 +2,7 @@
 `define REG_V
 
 /*this is the main building block for any register in our processor and we do writing at positive edge*/
-module Reg #(parameter N = 16) (out_data, reset, set, clk, in_data, flush);
+module Reg #(parameter N = 16) (out_data, reset, set, clk, in_data, flush, clr, stall);
 
 /*this is the data to be read from the register*/
 output wire [N-1:0] out_data;
@@ -25,23 +25,33 @@ reg [N-1:0] register;
 /*this is the flush signal which is synchronized with clock*/
 input wire flush;
 
+/*this is the clr signal similar to reset but doesn't do reset of the stall signal is high unlike reset signal*/
+input wire clr;
+
+/*this is the stall signal which prevents the change of the values of the reg*/
+input wire stall;
+
 /*important assign*/
 assign out_data = register;
 
 
 /*there is a signal that came and we need to change the output */
-always @(posedge clk, reset, set) 
+always @(posedge clk, reset, set, clr) 
 begin 
-	if(reset)
-		register <= 0;			// passing 0 on reset
-	else if (set)
-		register <= {N{1'b1}};	// passing all ones on set
+	if(reset)					// passing 0 on reset
+		register <= 0;			
+	else if(stall)				// keep the value as it's
+		register <= register;	
+	else if(clr)				// passing 0 on clr
+		register <= 0;
+	else if (set)				// passing all ones on set
+		register <= {N{1'b1}};	
 	else if(clk & flush)		// zero the register
 		register <= 0;
-	else if(clk)
-		register <= in_data;	// passing input on clk
-	else
-		register <= register;	// if nothing happened which is impossible then keep the value
+	else if(clk)				// passing input on clk
+		register <= in_data;	
+	else						// if nothing happened which is impossible then keep the value
+		register <= register;	
 end
 
 endmodule

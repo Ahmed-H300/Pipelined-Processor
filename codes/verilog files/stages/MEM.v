@@ -182,8 +182,8 @@ memory #(4096) data_memory(.data_out(data_mem_out), .reset(reset), .address(data
 memory #(16) port_in_memory(.data_out(port_read_data), .reset(reset), .address({{28{1'b0}}, PORT_in}), .data_in(16'd0), .mem_read(port_read_in), .mem_write(1'b0), .clk(clk));
 memory #(16) port_out_memory(.data_out(port_read_data_dummy), .reset(reset), .address({{28{1'b0}}, PORT_in}), .data_in(port_data_in), .mem_read(1'b0), .mem_write(port_write_in), .clk(clk));
 	
-Reg #(16) tempReg(.out_data(tempReg_out), .reset(reset), .set(1'b0), .clk(stall_out), .in_data(data_mem_out), .flush(1'b0));	
-Reg #(1) stateReg(.out_data(stateReg_out), .reset(reset), .set(1'b0), .clk(clk), .in_data(stateReg_in), .flush(1'b0));	
+Reg #(16) tempReg(.out_data(tempReg_out), .reset(reset), .set(1'b0), .clk(stall_out), .in_data(data_mem_out), .flush(1'b0), .clr(1'b0), .stall(1'b0));	
+Reg #(1) stateReg(.out_data(stateReg_out), .reset(reset), .set(1'b0), .clk(clk), .in_data(stateReg_in), .flush(1'b0), .clr(1'b0), .stall(1'b0));	
 
 /**************************************************************
 	actual logic of SP

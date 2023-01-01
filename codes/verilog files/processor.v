@@ -16,7 +16,7 @@
 
 
 /*this is our top module which is our processor*/
-module processor(EPC, CAUSE, interrupt, reset, clk);
+module processor(EPC, CAUSE, interrupt, reset_in, clk);
 
 /*this is exception program counter that will hold the address of the malfunction instruction*/
 output wire [31:0] EPC;
@@ -25,7 +25,7 @@ output wire [31:0] EPC;
 output wire [2:0] CAUSE;
 
 /*this is the reset singal which zeros all the resets except for PC and SP that will hold special value*/
-input wire reset;
+input wire reset_in;
 
 /*this is the clk that's taken as input to the processor and that's really what makes the processor run*/
 input wire clk;
@@ -33,7 +33,10 @@ input wire clk;
 /*this is the interrupt signal that's taken as input to the processor and it makes the prcoessor goes into interrupt handler routine*/
 input wire interrupt;
 
-
+/*this is the actual reset signal to the system*/
+wire rst_ID;
+wire reset;
+assign reset = rst_ID | reset_in;
 
 /**************************************************************
 	intermediate wires for the IF stage
@@ -337,7 +340,7 @@ ID instr_decode(.PC_out(PC_ID), .Shmt_out(Shmt_ID), .hash_imm_out(hash_imm_ID), 
 				.set_Z_out(set_Z_ID), .set_N_out(set_N_ID), .set_C_out(set_C_ID), .set_OVF_out(set_OVF_ID), .clr_Z_out(clr_Z_ID), .clr_N_out(clr_N_ID),.clr_C_out(clr_C_ID), 
 				.clr_OVF_out(clr_OVF_ID), .jmp_sel_out(jmp_sel_ID), .SP_src_out(SP_src_ID), .PORT_out(PORT_ID), .Rsrc_out(Rsrc_ID), .is_jmp_out(is_jmp_ID), .jmp_src_out(jmp_src_ID),
 				.mem_data_src_out(mem_data_src_ID), .mem_addr_src_out(mem_addr_src_ID), .INT_out(INT_ID), .PC_push_pop_out(PC_push_pop_ID), .flags_push_pop_out(flags_push_pop_ID), .set_INT_out(set_INT_ID),
-				.PC_in(PC_IF_ID_buff), .instruction_in(instr_IF_ID_buff), .Data_in(data_IF_ID_buff), .INT_in(INT_IF_ID_buff), .data_to_be_written_low_in(Rdst1_val_WB), 
+				.rst_out(rst_ID), .PC_in(PC_IF_ID_buff), .instruction_in(instr_IF_ID_buff), .Data_in(data_IF_ID_buff), .INT_in(INT_IF_ID_buff), .data_to_be_written_low_in(Rdst1_val_WB), 
 				.reg_dst_low_in(Rdst1_WB), .reg_write_low_in(reglow_write_WB), .data_to_be_written_high_in(Rdst2_val_WB), .reg_dst_high_in(Rdst2_WB), .reg_write_high_in(reghigh_write_WB), 
 				.reset(reset), .clk(clk));
 
@@ -372,7 +375,8 @@ EX instr_execute(.PC_out(PC_EX), .SP_src_out(SP_src_EX), .port_write_out(port_wr
 				.flags_push_pop_in(flags_push_pop_ID_EX_buff), .POP_flags_val_in(POP_flags_val_MEM), .is_POP_flags_in(POP_flags_sgn_MEM), . Rdst1_val_MEM_in(Rdst1_val_EX_MEM_buff),
 				.Rdst2_val_MEM_in(Rdst2_val_EX_MEM_buff), .Rdst1_DATA_val_WB_in(Rdst1_val_WB), .Rdst2_val_WB_in(Rdst2_val_MEM_WB_buff), .forward_ALU_dst_FU1_in(forward_ALU_dst_FU1),
 				.forward_ALU_src_FU1_in(forward_ALU_src_FU1), .forward_Rdst_num_MEM_to_Rdst_FU1_in(forward_Rdst_num_MEM_to_Rdst_FU1), .forward_Rdst_num_WB_to_Rdst_FU1_in(forward_Rdst_num_WB_to_Rdst_FU1), 
-				.forward_Rdst_num_MEM_to_Rsrc_FU1_in(forward_Rdst_num_MEM_to_Rsrc_FU1), .forward_Rdst_num_WB_to_Rsrc_FU1_in(forward_Rdst_num_WB_to_Rsrc_FU1), .clk(clk), .reset(reset));
+				.forward_Rdst_num_MEM_to_Rsrc_FU1_in(forward_Rdst_num_MEM_to_Rsrc_FU1), .forward_Rdst_num_WB_to_Rsrc_FU1_in(forward_Rdst_num_WB_to_Rsrc_FU1), 
+				.stall_CCR_POP(mem_read_EX_MEM_buff & (PC_push_pop_EX_MEM_buff | flags_push_pop_EX_MEM_buff)), .clk(clk), .reset(reset));
 
 /*EX_MEM buffer*/
 EX_MEM execute_memory_buff(.PC_out(PC_EX_MEM_buff), .SP_src_out(SP_src_EX_MEM_buff), .port_write_out(port_write_EX_MEM_buff), .port_read_out(port_read_EX_MEM_buff), 

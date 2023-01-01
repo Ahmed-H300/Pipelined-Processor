@@ -1,0 +1,6 @@
+LDM R1, -1
+LDM R2, 8
+MUL R1, R2, R3
+INC R3
+
+

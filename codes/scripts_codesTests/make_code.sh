@@ -4,8 +4,6 @@ fileNum=$1
 #get the relative file path
 filePath=$(find ./test_codes/ -iname $fileNum"_*")
 
-echo $filePath
-
 #execute the file 
 python assembler.py $filePath instructionMemory.mem
 

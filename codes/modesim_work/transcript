@@ -1,6 +1,26 @@
+# Compile of processor.v was successful.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 0 failed with no errors.
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:12:40 on Dec 31,2022
+# Start time: 18:19:15 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -27,10 +47,853 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 21:12:40 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 18:19:15 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 21:12:40 on Dec 31,2022
+# Start time: 18:19:15 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 18:23:44 on Jan 01,2023, Elapsed time: 0:04:29
+# Errors: 0, Warnings: 2
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:24:00 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:24:00 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:24:00 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 18:25:52 on Jan 01,2023, Elapsed time: 0:01:52
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:26:10 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:26:11 on Jan 01,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:26:11 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 18:26:22 on Jan 01,2023, Elapsed time: 0:00:11
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:26:31 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:26:31 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:26:31 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit-sim
+# invalid command name "quit-sim"
+quit -sim
+# End time: 18:28:50 on Jan 01,2023, Elapsed time: 0:02:19
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:30:05 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:30:06 on Jan 01,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:30:06 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 18:30:19 on Jan 01,2023, Elapsed time: 0:00:13
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:30:35 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:30:36 on Jan 01,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:30:36 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 18:30:46 on Jan 01,2023, Elapsed time: 0:00:10
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:31:36 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:31:37 on Jan 01,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:31:37 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 18:32:58 on Jan 01,2023, Elapsed time: 0:01:21
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:35:06 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:35:06 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:35:06 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 18:35:19 on Jan 01,2023, Elapsed time: 0:00:13
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:35:45 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:35:45 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:35:45 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 18:36:41 on Jan 01,2023, Elapsed time: 0:00:56
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:37:56 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:37:57 on Jan 01,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:37:57 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 18:38:11 on Jan 01,2023, Elapsed time: 0:00:14
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:38:15 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 18:38:15 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 18:38:16 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -117,12 +980,13 @@ run
 run
 run
 run
+run
 quit -sim
-# End time: 21:13:15 on Dec 31,2022, Elapsed time: 0:00:35
+# End time: 18:38:54 on Jan 01,2023, Elapsed time: 0:00:38
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:29:30 on Dec 31,2022
+# Start time: 19:00:18 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -149,68 +1013,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 21:29:30 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 19:00:18 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 21:29:30 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-quit -sim
-# End time: 21:29:37 on Dec 31,2022, Elapsed time: 0:00:07
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:35:20 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 21:35:20 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 21:35:20 on Dec 31,2022
+# Start time: 19:00:18 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -246,23 +1052,12 @@ run
 run
 run
 run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
 quit -sim
-# End time: 22:03:37 on Dec 31,2022, Elapsed time: 0:28:17
+# End time: 19:01:03 on Jan 01,2023, Elapsed time: 0:00:45
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 22:49:46 on Dec 31,2022
+# Start time: 19:01:17 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -289,10 +1084,453 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 22:49:46 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 19:01:17 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 22:49:46 on Dec 31,2022
+# Start time: 19:01:17 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit sim
+# unknown switch: sim
+quit -sim
+# End time: 19:01:39 on Jan 01,2023, Elapsed time: 0:00:22
+# Errors: 0, Warnings: 2
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:01:52 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 19:01:52 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 19:01:52 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 19:02:13 on Jan 01,2023, Elapsed time: 0:00:21
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:08:46 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 19:08:46 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 19:08:46 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 19:09:01 on Jan 01,2023, Elapsed time: 0:00:15
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:15:01 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 19:15:01 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 19:15:01 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 19:15:11 on Jan 01,2023, Elapsed time: 0:00:10
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:15:55 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 19:15:55 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 19:15:55 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+mem load -filltype value -filldata 00000005 -fillradix symbolic /processor/instr_memory/port_in_memory/memory(0)
+# (vsim-3657) Illegal character '5' for radix 'binary' found in fill pattern "00000005".
+mem load -filltype value -filldata 00000005 -fillradix decimal /processor/instr_memory/port_in_memory/memory(0)
+quit -sim
+# End time: 19:17:38 on Jan 01,2023, Elapsed time: 0:01:43
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:21:20 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 19:21:20 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 19:21:20 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+mem load -filltype value -filldata 005 -fillradix hexadecimal /processor/instr_memory/port_in_memory/memory(0)
+mem load -filltype value -filldata 019 -fillradix hexadecimal /processor/instr_memory/port_in_memory/memory(1)
+mem load -filltype value -filldata FFFF -fillradix hexadecimal /processor/instr_memory/port_in_memory/memory(2)
+mem load -filltype value -filldata F320 -fillradix hexadecimal /processor/instr_memory/port_in_memory/memory(3)
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 19:27:42 on Jan 01,2023, Elapsed time: 0:06:22
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:43:59 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 19:44:00 on Jan 01,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 19:44:00 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -346,12 +1584,97 @@ run
 run
 run
 run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 quit -sim
-# End time: 22:50:00 on Dec 31,2022, Elapsed time: 0:00:14
+# End time: 19:45:03 on Jan 01,2023, Elapsed time: 0:01:03
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 22:56:35 on Dec 31,2022
+# Start time: 19:47:02 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -378,10 +1701,770 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 22:56:35 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 19:47:02 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 22:56:35 on Dec 31,2022
+# Start time: 19:47:02 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 19:49:54 on Jan 01,2023, Elapsed time: 0:02:52
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:49:57 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 19:49:57 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 19:49:57 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 19:50:19 on Jan 01,2023, Elapsed time: 0:00:22
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:51:17 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 19:51:17 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 19:51:17 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 19:53:46 on Jan 01,2023, Elapsed time: 0:02:29
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:53:50 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 19:53:50 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 19:53:50 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 19:57:22 on Jan 01,2023, Elapsed time: 0:03:32
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:16:52 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# ** Error: (vlog-13069) ** while parsing file included at ../verilog files/processor.v(1)
+# ** while parsing file included at ..\verilog files\stages\ID.v(1)
+# ** at ..\verilog files\stages\..\units\CU.v(176): near "wire": syntax error, unexpected wire, expecting ';' or ','.
+# -- Compiling module regFile
+# -- Compiling module ID
+# ** Error: (vlog-13069) ** while parsing file included at ../verilog files/processor.v(1)
+# ** at ..\verilog files\stages\ID.v(130): near ".": syntax error, unexpected '.', expecting ')'.
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# ** Error: ../verilog files/processor.v(37): (vlog-2730) Undefined variable: 'rst_ID'.
+# ** Error (suppressible): ../verilog files/processor.v(109): (vlog-2388) 'rst_ID' already declared in this scope (processor) at ../verilog files/processor.v(37).
+# End time: 20:16:53 on Jan 01,2023, Elapsed time: 0:00:01
+# Errors: 4, Warnings: 0
+# ** Error: C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./../verilog files/simulation files/sim.do line 1
+# C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog ../verilog\ files/processor.v"
+# Compile of processor.v failed with 4 errors.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v failed with 2 errors.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v failed with 1 errors.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 3 failed with 7 errors.
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:17:26 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# ** Error: (vlog-13069) ** while parsing file included at ../verilog files/processor.v(1)
+# ** at ..\verilog files\stages\ID.v(130): near ".": syntax error, unexpected '.', expecting ')'.
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# ** Error: ../verilog files/processor.v(37): (vlog-2730) Undefined variable: 'rst_ID'.
+# ** Error (suppressible): ../verilog files/processor.v(109): (vlog-2388) 'rst_ID' already declared in this scope (processor) at ../verilog files/processor.v(37).
+# End time: 20:17:26 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 3, Warnings: 0
+# ** Error: C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./../verilog files/simulation files/sim.do line 1
+# C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog ../verilog\ files/processor.v"
+# Compile of processor.v failed with 3 errors.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v failed with 1 errors.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 2 failed with 4 errors.
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:18:00 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# ** Error: ../verilog files/processor.v(37): (vlog-2730) Undefined variable: 'rst_ID'.
+# ** Error (suppressible): ../verilog files/processor.v(109): (vlog-2388) 'rst_ID' already declared in this scope (processor) at ../verilog files/processor.v(37).
+# End time: 20:18:00 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+# ** Error: C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./../verilog files/simulation files/sim.do line 1
+# C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog ../verilog\ files/processor.v"
+# Compile of processor.v failed with 2 errors.
+# Compile of EX_MEM.v was successful.
+# Compile of ID_EX.v was successful.
+# Compile of IF_ID.v was successful.
+# Compile of MEM_WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of WB.v was successful.
+# Compile of ALU.v was successful.
+# Compile of CU.v was successful.
+# Compile of EDU.v was successful.
+# Compile of FU1.v was successful.
+# Compile of FU2.v was successful.
+# Compile of HDU.v was successful.
+# Compile of regFile.v was successful.
+# Compile of mem.v was successful.
+# Compile of reg.v was successful.
+# 19 compiles, 1 failed with 2 errors.
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:19:07 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 20:19:07 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 20:19:07 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 20:19:29 on Jan 01,2023, Elapsed time: 0:00:22
+# Errors: 0, Warnings: 4
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:19:38 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 20:19:38 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 20:19:38 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+quit -sim
+# End time: 20:19:52 on Jan 01,2023, Elapsed time: 0:00:14
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:19:54 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 20:19:54 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 20:19:54 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -431,19 +2514,16 @@ run
 run
 run
 quit -sim
-# End time: 22:56:54 on Dec 31,2022, Elapsed time: 0:00:19
+# End time: 20:25:49 on Jan 01,2023, Elapsed time: 0:05:55
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 22:59:05 on Dec 31,2022
+# Start time: 20:25:52 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
 # -- Compiling module ID
 # -- Compiling module ALU
-# ** Error: ** while parsing file included at ../verilog files/processor.v(2)
-# ** while parsing file included at ..\verilog files\stages\EX.v(1)
-# ** at ..\verilog files\stages\..\units\ALU.v(266): (vlog-2730) Undefined variable: 'DIV_ResDIV_Res'.
 # -- Compiling module Reg
 # -- Compiling module EX
 # -- Compiling module memory
@@ -462,7 +2542,177 @@ do sim.do
 # -- Compiling module FU2
 # -- Compiling module HDU
 # -- Compiling module processor
-# End time: 22:59:05 on Dec 31,2022, Elapsed time: 0:00:00
+# 
+# Top level modules:
+# 	processor
+# End time: 20:25:52 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 20:25:52 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 20:26:07 on Jan 01,2023, Elapsed time: 0:00:15
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:26:26 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# 
+# Top level modules:
+# 	processor
+# End time: 20:26:26 on Jan 01,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 100ps processor 
+# Start time: 20:26:26 on Jan 01,2023
+# Loading work.processor
+# Loading work.IF
+# Loading work.PC
+# Loading work.memory
+# Loading work.I_typeDetectionUnit
+# Loading work.masterSlaveReg
+# Loading work.Reg
+# Loading work.IF_ID
+# Loading work.ID
+# Loading work.CU
+# Loading work.regFile
+# Loading work.ID_EX
+# Loading work.EX
+# Loading work.ALU
+# Loading work.EX_MEM
+# Loading work.MEM
+# Loading work.MEM_WB
+# Loading work.WB
+# Loading work.EDU
+# Loading work.HDU
+# Loading work.FU1
+# Loading work.FU2
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 20:28:31 on Jan 01,2023, Elapsed time: 0:02:05
+# Errors: 0, Warnings: 1
+do sim.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:28:59 on Jan 01,2023
+# vlog -reportprogress 300 ../verilog files/processor.v 
+# -- Compiling module CU
+# -- Compiling module regFile
+# -- Compiling module ID
+# -- Compiling module ALU
+# -- Compiling module Reg
+# -- Compiling module EX
+# -- Compiling module memory
+# -- Compiling module IF
+# -- Compiling module PC
+# -- Compiling module I_typeDetectionUnit
+# -- Compiling module masterSlaveReg
+# -- Compiling module MEM
+# -- Compiling module WB
+# -- Compiling module EX_MEM
+# -- Compiling module ID_EX
+# -- Compiling module IF_ID
+# -- Compiling module MEM_WB
+# -- Compiling module EDU
+# -- Compiling module FU1
+# -- Compiling module FU2
+# -- Compiling module HDU
+# -- Compiling module processor
+# ** Error (suppressible): ../verilog files/processor.v(39): (vlog-2388) 'reset' already declared in this scope (processor) at ../verilog files/processor.v(38).
+# End time: 20:28:59 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 1, Warnings: 0
 # ** Error: C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
 # Error in macro ./../verilog files/simulation files/sim.do line 1
@@ -471,7 +2721,7 @@ do sim.do
 # "vlog ../verilog\ files/processor.v"
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 22:59:37 on Dec 31,2022
+# Start time: 20:29:13 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -498,10 +2748,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 22:59:37 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 20:29:13 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 22:59:37 on Dec 31,2022
+# Start time: 20:29:13 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -549,19 +2799,12 @@ run
 run
 run
 run
-run
-run
-run
-run
-run
-run
-run
 quit -sim
-# End time: 22:59:54 on Dec 31,2022, Elapsed time: 0:00:17
+# End time: 20:32:04 on Jan 01,2023, Elapsed time: 0:02:51
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:01:20 on Dec 31,2022
+# Start time: 20:32:12 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -588,73 +2831,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 23:01:20 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 20:32:12 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 23:01:20 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-# ** Error: (vsim-3659) Too many digits (5) in data on line 8 of file "../verilog files/simulation files/instructionMemory.mem". (Max is 4.)
-# Error in macro ./../verilog files/simulation files/sim.do line 6
-# (vsim-3659) Too many digits (5) in data on line 8 of file "../verilog files/simulation files/instructionMemory.mem". (Max is 4.)
-#     while executing
-# "mem load -i ../verilog\ files/simulation\ files/instructionMemory.mem /processor/instr_fetch/instr_mem/memory"
-quit -sim
-# End time: 23:01:29 on Dec 31,2022, Elapsed time: 0:00:09
-# Errors: 1, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:10:52 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:10:52 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:10:53 on Dec 31,2022
+# Start time: 20:32:12 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -687,12 +2867,31 @@ run
 run
 run
 run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 quit -sim
-# End time: 23:11:26 on Dec 31,2022, Elapsed time: 0:00:33
+# End time: 20:32:35 on Jan 01,2023, Elapsed time: 0:00:23
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:15:40 on Dec 31,2022
+# Start time: 20:32:49 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -719,143 +2918,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 23:15:40 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 20:32:49 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 23:15:40 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-# A time value could not be extracted from the current line
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 23:16:08 on Dec 31,2022, Elapsed time: 0:00:28
-# Errors: 0, Warnings: 1
-do sim.od
-# Cannot open macro file: sim.od
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:16:19 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:16:19 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:16:19 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-# ** Error: (vsim-3659) Too many digits (5) in data on line 4 of file "../verilog files/simulation files/instructionMemory.mem". (Max is 4.)
-# Error in macro ./../verilog files/simulation files/sim.do line 6
-# (vsim-3659) Too many digits (5) in data on line 4 of file "../verilog files/simulation files/instructionMemory.mem". (Max is 4.)
-#     while executing
-# "mem load -i ../verilog\ files/simulation\ files/instructionMemory.mem /processor/instr_fetch/instr_mem/memory"
-quit -sim
-# End time: 23:16:25 on Dec 31,2022, Elapsed time: 0:00:06
-# Errors: 1, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:17:49 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:17:49 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:17:49 on Dec 31,2022
+# Start time: 20:32:49 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -894,12 +2960,26 @@ run
 run
 run
 run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 quit -sim
-# End time: 23:17:59 on Dec 31,2022, Elapsed time: 0:00:10
+# End time: 20:33:25 on Jan 01,2023, Elapsed time: 0:00:36
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:18:45 on Dec 31,2022
+# Start time: 20:33:50 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -926,10 +3006,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 23:18:45 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 20:33:50 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 23:18:45 on Dec 31,2022
+# Start time: 20:33:50 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -960,12 +3040,35 @@ run
 run
 run
 run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
 quit -sim
-# End time: 23:18:59 on Dec 31,2022, Elapsed time: 0:00:14
+# End time: 20:34:16 on Jan 01,2023, Elapsed time: 0:00:26
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:20:21 on Dec 31,2022
+# Start time: 20:34:24 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -992,10 +3095,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 23:20:21 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 20:34:24 on Jan 01,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 23:20:21 on Dec 31,2022
+# Start time: 20:34:24 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -1039,21 +3142,12 @@ run
 run
 run
 run
-run
-run
-run
-run
-run
-run
-run
-run
-run
 quit -sim
-# End time: 23:21:01 on Dec 31,2022, Elapsed time: 0:00:40
+# End time: 20:34:45 on Jan 01,2023, Elapsed time: 0:00:21
 # Errors: 0, Warnings: 1
 do sim.do
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:21:38 on Dec 31,2022
+# Start time: 20:35:36 on Jan 01,2023
 # vlog -reportprogress 300 ../verilog files/processor.v 
 # -- Compiling module CU
 # -- Compiling module regFile
@@ -1080,10 +3174,10 @@ do sim.do
 # 
 # Top level modules:
 # 	processor
-# End time: 23:21:38 on Dec 31,2022, Elapsed time: 0:00:00
+# End time: 20:35:37 on Jan 01,2023, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -t 100ps processor 
-# Start time: 23:21:38 on Dec 31,2022
+# Start time: 20:35:37 on Jan 01,2023
 # Loading work.processor
 # Loading work.IF
 # Loading work.PC
@@ -1106,7 +3200,6 @@ do sim.do
 # Loading work.HDU
 # Loading work.FU1
 # Loading work.FU2
-run
 run
 run
 run
@@ -1135,1013 +3228,5 @@ run
 run
 run
 quit -sim
-# End time: 23:25:51 on Dec 31,2022, Elapsed time: 0:04:13
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:29:52 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:29:52 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:29:53 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 23:32:02 on Dec 31,2022, Elapsed time: 0:02:09
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:32:56 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:32:56 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:32:56 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 23:40:42 on Dec 31,2022, Elapsed time: 0:07:46
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:41:15 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:41:15 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:41:15 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 23:44:36 on Dec 31,2022, Elapsed time: 0:03:21
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:44:39 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:44:39 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:44:39 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 23:51:11 on Dec 31,2022, Elapsed time: 0:06:32
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:51:19 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:51:20 on Dec 31,2022, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:51:20 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 23:52:50 on Dec 31,2022, Elapsed time: 0:01:30
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:52:57 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:52:57 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:52:57 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 23:53:24 on Dec 31,2022, Elapsed time: 0:00:27
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:53:28 on Dec 31,2022
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 23:53:28 on Dec 31,2022, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 23:53:28 on Dec 31,2022
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 00:27:05 on Jan 01,2023, Elapsed time: 0:33:37
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:34:48 on Jan 01,2023
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 00:34:48 on Jan 01,2023, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 00:34:48 on Jan 01,2023
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-# ** Error: (vsim-3063) Port 'Rdst1_DATA_val_WB_in' not found in the connected module (68th connection).
-#    Time: 0 ps  Iteration: 0  Instance: /processor/instr_execute File: ../verilog files/processor.v Line: 360
-# Error loading design
-# Error: Error loading design
-#        Pausing macro execution
-# MACRO ./../verilog files/simulation files/sim.do PAUSED at line 3
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:35:29 on Jan 01,2023
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 00:35:29 on Jan 01,2023, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 00:34:48 on Jan 01,2023
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 00:35:42 on Jan 01,2023, Elapsed time: 0:00:54
-# Errors: 1, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:35:51 on Jan 01,2023
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 00:35:51 on Jan 01,2023, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 00:35:51 on Jan 01,2023
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 00:36:11 on Jan 01,2023, Elapsed time: 0:00:20
-# Errors: 0, Warnings: 1
-do sim.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:37:15 on Jan 01,2023
-# vlog -reportprogress 300 ../verilog files/processor.v 
-# -- Compiling module CU
-# -- Compiling module regFile
-# -- Compiling module ID
-# -- Compiling module ALU
-# -- Compiling module Reg
-# -- Compiling module EX
-# -- Compiling module memory
-# -- Compiling module IF
-# -- Compiling module PC
-# -- Compiling module I_typeDetectionUnit
-# -- Compiling module masterSlaveReg
-# -- Compiling module MEM
-# -- Compiling module WB
-# -- Compiling module EX_MEM
-# -- Compiling module ID_EX
-# -- Compiling module IF_ID
-# -- Compiling module MEM_WB
-# -- Compiling module EDU
-# -- Compiling module FU1
-# -- Compiling module FU2
-# -- Compiling module HDU
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 00:37:15 on Jan 01,2023, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -t 100ps processor 
-# Start time: 00:37:15 on Jan 01,2023
-# Loading work.processor
-# Loading work.IF
-# Loading work.PC
-# Loading work.memory
-# Loading work.I_typeDetectionUnit
-# Loading work.masterSlaveReg
-# Loading work.Reg
-# Loading work.IF_ID
-# Loading work.ID
-# Loading work.CU
-# Loading work.regFile
-# Loading work.ID_EX
-# Loading work.EX
-# Loading work.ALU
-# Loading work.EX_MEM
-# Loading work.MEM
-# Loading work.MEM_WB
-# Loading work.WB
-# Loading work.EDU
-# Loading work.HDU
-# Loading work.FU1
-# Loading work.FU2
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-quit -sim
-# End time: 00:38:51 on Jan 01,2023, Elapsed time: 0:01:36
+# End time: 20:35:52 on Jan 01,2023, Elapsed time: 0:00:15
 # Errors: 0, Warnings: 1

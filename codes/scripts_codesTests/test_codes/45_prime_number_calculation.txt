@@ -1,0 +1,36 @@
+;----------------------------------------------
+; calculating prime numbers
+;----------------------------------------------
+
+LDM R1, 0	; base address in the memory for initial number of prime numbers
+LDM R2, 2	; first number in primes numbers
+LDM R3, 2	; this is the divisor that divides the number by 2 to see if it's divisible in the lower half 
+
+; store the 1st prime number in the memory
+STD R2, R1
+INC R1
+LDM R2, 3
+
+Outerloop:
+	
+	isPrime:
+	STD R2, R1	; storing the prime number in the memory address R1
+	INC R1	; incremenet the pointer
+	
+	notPrime:
+	INC R2	; to get the next number to check if it's prime or not
+	MOV R2, R4	; to get the half of the number to check
+	DIV R3, R4	; get half of the number to serch if something divides its
+
+	; loop for every element in the range from half the number till 2 to check if this number is prime or not
+	InnerLoop:
+		MOV R2, R5	; in order not to lose the number
+		MOD R4, R5	; check if R5 % R4 != 0
+		JZ notPrime	; this number divides the original number 
+		DEC R4	; get the next number in the list
+		DEC R4 	; to check if we reached one or not
+		JZ isPrime	; then if we reached the end of the list without something that divides the number then it's prime
+		INC R4	; get R4 back to its original next value
+		JMP InnerLoop	; go to the next iteration
+		
+

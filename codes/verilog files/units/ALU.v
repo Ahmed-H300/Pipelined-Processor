@@ -69,6 +69,8 @@ wire [15:0] DIV_Rdst;		// this is the first input to the DIV circuit
 wire [15:0] DIV_Rsrc;		// this is the second input to the DIV circuit
 wire [15:0] MOV_Rdst;		// this is the first input to the MOV circuit	-> (NOT_USED)
 wire [15:0] MOV_Rsrc;		// this is the second input to the MOV circuit
+wire [15:0] MOD_Rdst;		// this is the first input to the MOD circuit
+wire [15:0] MOD_Rsrc;		// this is the second input to the MOD circuit
 
 // outputs from the operation circuit
 wire [15:0] ADD_RES;		// this is the result of addition
@@ -84,6 +86,7 @@ wire [15:0] MUL_RES_high;	// this is the result of upper 16 bits of multiplcatio
 wire [15:0] MUL_RES_low;	// this is the result of lower 16 bits of multiplcation
 wire [15:0] DIV_RES;		// this is the result of division
 wire [15:0] MOV_RES;		// this is the result of moving
+wire [15:0] MOD_RES;		// this is the result of modulus
 
 //output carry flags from the operation circuit
 wire ADD_CF;				// this is the carry flag resulted from addition
@@ -105,6 +108,7 @@ wire SHL_ZF;				// this is the zero flag resulted from logical shift left
 wire SHR_ZF;				// this is the zero flag resulted from logical shifr right
 wire MUL_ZF;				// this is the zero flag resulted from multiplcation
 wire DIV_ZF;				// this is the zero flag resulted from division
+wire MOD_ZF;				// this is the zero flag resulted from modulus
 
 //output negative flags from the operation circuit
 wire ADD_NF;				// this is the negative flag resulted from addition
@@ -143,6 +147,7 @@ assign OVF_oneOperandOperation = resultLowerWord[15] ^ Rdst[15]; // overflow hap
 		- 9 MUL
 		- 10 DIV
 		- 11 MOV
+		- 12 MOD
 */
 
 
@@ -150,34 +155,36 @@ assign OVF_oneOperandOperation = resultLowerWord[15] ^ Rdst[15]; // overflow hap
 /**************************************************************
 	demultiplixing the inputs
 **************************************************************/
-assign {ADD_Rdst, SUB_Rdst, INC_Rdst, DEC_Rdst, AND_Rdst, OR_Rdst, NOT_Rdst, SHL_Rdst, SHR_Rdst, MUL_Rdst, DIV_Rdst, MOV_Rdst} = 
-						(ALU_OP == 4'd0) 	? 	{Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd1) 	? 	{16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd2) 	? 	{16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd3) 	? 	{16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd4) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd5) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd6) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd7) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd8) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd9) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0} :
-						(ALU_OP == 4'd10) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0} :
-												{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst} ;
+assign {ADD_Rdst, SUB_Rdst, INC_Rdst, DEC_Rdst, AND_Rdst, OR_Rdst, NOT_Rdst, SHL_Rdst, SHR_Rdst, MUL_Rdst, DIV_Rdst, MOD_Rdst, MOV_Rdst} = 
+						(ALU_OP == 4'd0) 	? 	{Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd1) 	? 	{16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd2) 	? 	{16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd3) 	? 	{16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd4) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd5) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd6) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd7) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd8) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd9) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd10) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0, 16'd0} :
+						(ALU_OP == 4'd12) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst, 16'd0} :
+												{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rdst} ;
 												
 												
-assign {ADD_Rsrc, SUB_Rsrc, INC_Rsrc, DEC_Rsrc, AND_Rsrc, OR_Rsrc, NOT_Rsrc, SHL_Rsrc, SHR_Rsrc, MUL_Rsrc, DIV_Rsrc, MOV_Rsrc} = 
-						(ALU_OP == 4'd0) 	? 	{Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd1) 	? 	{16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd2) 	? 	{16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd3) 	? 	{16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd4) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd5) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd6) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd7) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd8) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0} :
-						(ALU_OP == 4'd9) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0} :
-						(ALU_OP == 4'd10) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0} :
-												{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc} ;
+assign {ADD_Rsrc, SUB_Rsrc, INC_Rsrc, DEC_Rsrc, AND_Rsrc, OR_Rsrc, NOT_Rsrc, SHL_Rsrc, SHR_Rsrc, MUL_Rsrc, DIV_Rsrc, MOD_Rsrc, MOV_Rsrc} = 
+						(ALU_OP == 4'd0) 	? 	{Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd1) 	? 	{16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd2) 	? 	{16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd3) 	? 	{16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd4) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd5) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd6) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd7) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd8) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd9) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0, 16'd0} :
+						(ALU_OP == 4'd10) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0, 16'd0} :
+						(ALU_OP == 4'd12) 	? 	{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc, 16'd0} :
+												{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, Rsrc} ;
 												
 
 /**************************************************************
@@ -204,9 +211,22 @@ wire [15:0] DIV_Res_temp;
 wire [15:0] DIV_Res;
 
 assign DIV_Rdst_modified =	(DIV_Rdst[15])	?	-DIV_Rdst	:	DIV_Rdst;
-assign DIV_Rsrc_modified =	(MUL_Rsrc[15])	?	-DIV_Rsrc	:	DIV_Rsrc;
+assign DIV_Rsrc_modified =	(DIV_Rsrc[15])	?	-DIV_Rsrc	:	DIV_Rsrc;
 assign DIV_Res_temp	=	DIV_Rdst_modified	/	DIV_Rsrc_modified;
 assign DIV_Res	=	(DIV_Rdst[15] ^ DIV_Rsrc[15])	?	-DIV_Res_temp	:	DIV_Res_temp;
+
+
+/**************************************************************
+	preforming the operation on the modulus 
+	to handle negative numbers
+**************************************************************/	
+wire [15:0] MOD_Rdst_modified;
+wire [15:0] MOD_Rsrc_modified;
+wire [15:0] MOD_Res;
+assign MOD_Rdst_modified =	(MOD_Rdst[15])	?	-MOD_Rdst	:	MOD_Rdst;
+assign MOD_Rsrc_modified =	(MOD_Rsrc[15])	?	-MOD_Rsrc	:	MOD_Rsrc;
+
+assign MOD_Res = MOD_Rdst_modified % MOD_Rsrc_modified;
 										
 /**************************************************************
 	preforming the operation on the inputs
@@ -267,6 +287,10 @@ assign DIV_RES = DIV_Res;
 assign DIV_NF = DIV_RES[15];
 assign DIV_ZF = (DIV_RES == 16'd0);	
 
+// MOD
+assign MOD_RES = MOD_Res;
+assign MOD_ZF = (MOD_RES == 0);
+
 // MOV
 assign MOV_RES = MOV_Rsrc;	
 
@@ -286,6 +310,7 @@ assign resultLowerWord = 	(ALU_OP == 4'd0)	?	ADD_RES	:
 							(ALU_OP == 4'd8)	?	SHR_RES	:
 							(ALU_OP == 4'd9)	?	MUL_RES_low	:
 							(ALU_OP == 4'd10)	?	DIV_RES	:
+							(ALU_OP == 4'd12)	?	MOD_RES	:
 													MOV_RES	;
 							
 							
@@ -300,6 +325,7 @@ assign CF_out = 			(ALU_OP == 4'd0)	?	ADD_CF	:
 							(ALU_OP == 4'd8)	?	SHR_CF	:
 							(ALU_OP == 4'd9)	?	CF_in	:
 							(ALU_OP == 4'd10)	?	CF_in	:
+							(ALU_OP == 4'd12)	?	CF_in	:
 													CF_in	;
 							
 assign NF_out = 			(ALU_OP == 4'd0)	?	ADD_NF	:
@@ -313,6 +339,7 @@ assign NF_out = 			(ALU_OP == 4'd0)	?	ADD_NF	:
 							(ALU_OP == 4'd8)	?	SHR_NF	:
 							(ALU_OP == 4'd9)	?	MUL_NF	:
 							(ALU_OP == 4'd10)	?	DIV_NF	:
+							(ALU_OP == 4'd12)	?	NF_in	:
 													NF_in	;	
 		
 		
@@ -327,6 +354,7 @@ assign ZF_out = 			(ALU_OP == 4'd0)	?	ADD_ZF	:
 							(ALU_OP == 4'd8)	?	SHR_ZF	:
 							(ALU_OP == 4'd9)	?	MUL_ZF	:
 							(ALU_OP == 4'd10)	?	DIV_ZF	:
+							(ALU_OP == 4'd12)	?	MOD_ZF	:
 													ZF_in	;		
 
 
@@ -341,6 +369,7 @@ assign OVF_out = 			(ALU_OP == 4'd0)	?	OVF_tempRes				:
 							(ALU_OP == 4'd8)	?	OVF_oneOperandOperation	:
 							(ALU_OP == 4'd9)	?	OVF_multiplicationCase	:
 							(ALU_OP == 4'd10)	?	OVF_tempRes				:
+							(ALU_OP == 4'd12)	?	OVF_tempRes				:
 													OVF_in	;		
 													
 

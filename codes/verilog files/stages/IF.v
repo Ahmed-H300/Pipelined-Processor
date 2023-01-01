@@ -106,7 +106,7 @@ PC pc(.PC_out(PC_out), .PC_in(PC_in), .clk(clk), .stall(stall & (!masterOut)));
 memory #(20'b1111_1111_1111_1111_1111) instr_mem(.data_out(instr), .reset(1'b0), .address(PC_out), .data_in(16'd0), .mem_read(1'd1), .mem_write(1'd0), .clk(clk));
 I_typeDetectionUnit ItypeDetectionUnit(.is_I_type(is_Itype), .instr_opcode(inst_opcode));
 masterSlaveReg stateMachine(.masterOut(masterOut), .slaveOut(slaveOut), .masterIn(is_Itype), .clk(clk), .reset(reset | do_interruptRoutine | pop_pc | JMP_SGN_reg));
-Reg #(16) tempReg(.out_data(tempRegOut), .reset(reset), .set(1'b0), .clk(is_Itype), .in_data(instr), .flush(1'b0));
+Reg #(16) tempReg(.out_data(tempRegOut), .reset(reset), .set(1'b0), .clk(is_Itype), .in_data(instr), .flush(1'b0), .clr(1'b0), .stall(1'b0));
 
 
 /**************************************************************

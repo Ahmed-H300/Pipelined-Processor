@@ -1,21 +1,10 @@
-label1:
-	LDM R1, 5
-	LDM R3, 10
-	SETOVF
-	CALL label3
-	INC R1
-
-
-	
-
-{
-1000000
-label3:
-	CLROVF
-	LDM R3, 300
-	RET
-	SETC
-}
+LDM R1, 25
+LDM R2, 53
+MOD R1, R2
+NOT R1
+INC R1
+LDM R2, 53
+MOD R1, R2
 
 
 
@@ -23,8 +12,8 @@ label3:
 ;	expected values after this code ends 
 ;	------------------------------------
 ;	R0	=	0
-;	R1	=	0
-;	R2	=	0
+;	R1	=	25
+;	R2	=	3
 ;	R3	=	0
 ;	R4	=	0
 ;	R5	=	0

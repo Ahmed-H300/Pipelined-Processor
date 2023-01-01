@@ -25,6 +25,7 @@ control unit signals: 32 signals	-> active high		// there is a decoding circuit 
 		- 9 (MUL) when opcode is 1 and funct is 1
 		- 10 (DIV) when opcode is 1 and funct is 0
 		- 11 (MOV) when opcode is 3 and funct is 3
+		- 12 (MOD) when opcode is 12 and funct is 0
 	otherwise:
 		- we use the command MOV for any other operation
 				
@@ -144,3 +145,7 @@ control unit signals: 32 signals	-> active high		// there is a decoding circuit 
 -> SETINT : 	-> 1 bit
 	active in :
 		- opcode = 11
+
+-> RST :	-> 1 bit
+	active in:
+		- opcode = 13

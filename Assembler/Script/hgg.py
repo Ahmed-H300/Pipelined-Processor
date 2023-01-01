@@ -14,7 +14,7 @@ from colorama import Fore, Back, Style
 # ordered dictionary
 from collections import OrderedDict
 # replace insensitive
-# import re
+#import re
 ##########################################################################
 # check if a file name is wirtten and check whether an ouput name is given or the default will be used (a.mem)
 argumentLenght = len(sys.argv)
@@ -37,18 +37,17 @@ if (argumentLenght == 3):
 def getInput(file, arrayISA):
     # loop on line and neglect empty lines
     for line in file:
-        if (line.strip()):
-            if (';' in line):
+        if(line.strip()):
+            if(';' in line):
                 # to delte any commnets form the line
-                indexofhash = line.find(';')
+                indexofhash = line.rfind(';')
                 line = line[0:indexofhash]
-                if (not line.strip()):
+                if(not line.strip()):
                     continue
             # add line to the array
             arrayISA.append(line)
 # compile the instructions for range
 # first loop for instuctions without label
-
 
 def CompileOutput(arrayISA, out, start, end):
     reg = {
@@ -81,19 +80,13 @@ def CompileOutput(arrayISA, out, start, end):
         'I_type': 0b1000,
         'CLR_FLAGS': 0b1001,
         'CALL': 0b1010,
-        'SETINT': 0b1011,
-        'group3': 0b1100,
-        'RST': 0b1101,
     }
     func = {
-        'funct0': 0b000,
-        'funct1': 0b001,
-        'funct2': 0b010,
-        'funct3': 0b011,
-        'funct4': 0b100,
-        'funct5': 0b101,
+        'funct0': 0b00,
+        'funct1': 0b01,
+        'funct2': 0b10,
+        'funct3': 0b11,
     }
-    bits = 16
     rdsShift = 3 * 3
     rds2Shift = 1 * 3
     rsrShift = 2 * 3
@@ -111,156 +104,147 @@ def CompileOutput(arrayISA, out, start, end):
         line = line.replace(',', ' ')
         line = line.replace('RTI', 'POP PC_Flags')
         line = line.replace('RET', 'POP PC')
-        # insensitive_hippo = re.compile(re.escape('hippo'), re.IGNORECASE)
-        # insensitive_hippo.sub('giraffe', 'I want a hIPpo for my birthday')
+        #insensitive_hippo = re.compile(re.escape('hippo'), re.IGNORECASE)
+        #insensitive_hippo.sub('giraffe', 'I want a hIPpo for my birthday')
         line = line.split()
         temp = 0b0000000000000000
-        if (line[0].casefold() == 'DIV'.casefold()):  # DIV R0, R1   -> R0->src    -> R1-> dst
-            if (len(line) == 3):
+        if(line[0].casefold() == 'DIV'.casefold()):  # DIV R0, R1   -> R0->src    -> R1-> dst
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
                 op2 = reg.get(line[2], None)
-                if (op1 == None or op2 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group0'] << opCodeShift) | (
                     op2 << rdsShift) | (op1 << rsrShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
-        elif (line[0].casefold() == 'MOD'.casefold()):  # DIV R0, R1   -> R0->src    -> R1-> dst
-            if (len(line) == 3):
-                op1 = reg.get(line[1], None)
-                op2 = reg.get(line[2], None)
-                if (op1 == None or op2 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
-                temp = temp | (opCode['group3'] << opCodeShift) | (
-                    op2 << rdsShift) | (op1 << rsrShift) | (func['funct0'])
-                out[currentIP] = temp
-            else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         # note there is 2 rdes types #MUL R0, R1, R2   -> R0-> src  ->  R1 -> rds -> R2-> rds2
         elif (line[0].casefold() == 'MUL'.casefold()):
-            if (len(line) == 4):
+            if(len(line) == 4):
                 op1 = reg.get(line[1], None)
                 op2 = reg.get(line[2], None)
                 op3 = reg.get(line[3], None)
-                if (op1 == None or op2 == None or op3 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None or op2 == None or op3 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group0'] << opCodeShift) | (op2 << rdsShift) | (
                     op1 << rsrShift) | (op3 << rds2Shift) | (func['funct1'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
 
         elif (line[0].casefold() == 'ADD'.casefold()):  # like Div
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
                 op2 = reg.get(line[2], None)
-                if (op1 == None or op2 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group0'] << opCodeShift) | (
                     op2 << rdsShift) | (op1 << rsrShift) | (func['funct2'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SUB'.casefold()):  # like Div
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
                 op2 = reg.get(line[2], None)
-                if (op1 == None or op2 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group0'] << opCodeShift) | (
                     op2 << rdsShift) | (op1 << rsrShift) | (func['funct3'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         # SHL R0, 5    -> R0 -> rds , -> 5 -> shmt
         elif (line[0].casefold() == 'SHL'.casefold()):
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                op2 = reg.get(line[2], None)
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group1'] << opCodeShift) | (
-                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct0'])
+                    op1 << rdsShift) | (op2 << shmtShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SHR'.casefold()):  # like SHL
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                op2 = reg.get(line[2], None)
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group1'] << opCodeShift) | (
-                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct1'])
+                    op1 << rdsShift) | (op2 << shmtShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'INC'.casefold()):  # Inc Rds
-            if (len(line) == 2):
+            if(len(line) == 2):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group1'] << opCodeShift) | (
                     op1 << rdsShift) | (func['funct2'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'DEC'.casefold()):
-            if (len(line) == 2):
+            if(len(line) == 2):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group1'] << opCodeShift) | (
                     op1 << rdsShift) | (func['funct3'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'OR'.casefold()):
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
                 op2 = reg.get(line[2], None)
-                if (op1 == None or op2 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group2'] << opCodeShift) | (
                     op2 << rdsShift) | (op1 << rsrShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'AND'.casefold()):
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
                 op2 = reg.get(line[2], None)
-                if (op1 == None or op2 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group2'] << opCodeShift) | (
                     op2 << rdsShift) | (op1 << rsrShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'NOT'.casefold()):
-            if (len(line) == 2):
+            if(len(line) == 2):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group2'] << opCodeShift) | (
                     op1 << rdsShift) | (func['funct2'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'MOV'.casefold()):
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
                 op2 = reg.get(line[2], None)
-                if (op1 == None or op2 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['group2'] << opCodeShift) | (
                     op2 << rdsShift) | (op1 << rsrShift) | (func['funct3'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'JZ'.casefold()):  # note there is two types
-            if (len(line) == 2):
+            if(len(line) == 2):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
+                if(op1 == None):
                     temp = temp | (opCode['I_type'] <<
                                    opCodeShift) | (func['funct5'])
                     out[currentIP] = temp
@@ -273,11 +257,11 @@ def CompileOutput(arrayISA, out, start, end):
                         op1 << rdsShift) | (func['funct0'])
                     out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'JN'.casefold()):
-            if (len(line) == 2):
+            if(len(line) == 2):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
+                if(op1 == None):
                     temp = temp | (opCode['I_type'] <<
                                    opCodeShift) | (func['funct4'])
                     out[currentIP] = temp
@@ -290,11 +274,11 @@ def CompileOutput(arrayISA, out, start, end):
                         op1 << rdsShift) | (func['funct1'])
                     out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'JC'.casefold()):
-            if (len(line) == 2):
+            if(len(line) == 2):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
+                if(op1 == None):
                     temp = temp | (opCode['I_type'] <<
                                    opCodeShift) | (func['funct3'])
                     out[currentIP] = temp
@@ -307,11 +291,11 @@ def CompileOutput(arrayISA, out, start, end):
                         op1 << rdsShift) | (func['funct2'])
                     out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'JMP'.casefold()):  # rds and imediate
-            if (len(line) == 2):
+            if(len(line) == 2):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
+                if(op1 == None):
                     temp = temp | (opCode['I_type'] <<
                                    opCodeShift) | (func['funct2'])
                     out[currentIP] = temp
@@ -324,68 +308,68 @@ def CompileOutput(arrayISA, out, start, end):
                         op1 << rdsShift) | (func['funct3'])
                     out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
-        elif (line[0].casefold() == 'CLRZ'.casefold()):
-            if (len(line) == 1):
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
+        elif (line[0].casefold() == 'CLRZ'):
+            if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     0 << operationShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'CLRN'.casefold()):
-            if (len(line) == 1):
+            if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     0 << operationShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'CLRC'.casefold()):
-            if (len(line) == 1):
+            if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     0 << operationShift) | (func['funct2'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
-        elif (line[0].casefold() == 'CLROVF'.casefold()):
-            if (len(line) == 1):
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
+        elif (line[0].casefold() == 'CLRINT'.casefold()):
+            if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     0 << operationShift) | (func['funct3'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SETZ'.casefold()):
-            if (len(line) == 1):
+            if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
                     1 << operationShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SETN'.casefold()):
-            if (len(line) == 1):
+            if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
-                    1 << operationShift) | (func['funct1'])
+                    0 << operationShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'SETC'.casefold()):
-            if (len(line) == 1):
+            if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
-                    1 << operationShift) | (func['funct2'])
+                    0 << operationShift) | (func['funct2'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
-        elif (line[0].casefold() == 'SETOVF'.casefold()):
-            if (len(line) == 1):
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
+        elif (line[0].casefold() == 'SETINT'.casefold()):
+            if(len(line) == 1):
                 temp = temp | (opCode['c_type'] << opCodeShift) | (
-                    1 << operationShift) | (func['funct3'])
+                    0 << operationShift) | (func['funct3'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'PUSH'.casefold()):  # rds pc_flags pc
-            if (len(line) == 2):
+            if(len(line) == 2):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    if (line[1].casefold() == 'PC'.casefold()):
+                if(op1 == None):
+                    if(line[1].casefold() == 'PC'.casefold()):
                         temp = temp | (opCode['s_type'] << opCodeShift) | (
                             1 << PCShift) | (0 << PC_FlagsShift) | (func['funct0'])
                         out[currentIP] = temp
@@ -394,18 +378,18 @@ def CompileOutput(arrayISA, out, start, end):
                             1 << PCShift) | (1 << PC_FlagsShift) | (func['funct0'])
                         out[currentIP] = temp
                     else:
-                        return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                        return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 else:
                     temp = temp | (opCode['s_type'] << opCodeShift) | (
                         op1 << rdsShift) | (func['funct0'])
                     out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'POP'.casefold()):  # rds pc_flags pc
-            if (len(line) == 2):
+            if(len(line) == 2):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    if (line[1].casefold() == 'PC'.casefold()):
+                if(op1 == None):
+                    if(line[1].casefold() == 'PC'.casefold()):
                         temp = temp | (opCode['s_type'] << opCodeShift) | (
                             1 << PCShift) | (0 << PC_FlagsShift) | (func['funct1'])
                         out[currentIP] = temp
@@ -414,119 +398,99 @@ def CompileOutput(arrayISA, out, start, end):
                             1 << PCShift) | (1 << PC_FlagsShift) | (func['funct1'])
                         out[currentIP] = temp
                     else:
-                        return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                        return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 else:
                     temp = temp | (opCode['s_type'] << opCodeShift) | (
                         op1 << rdsShift) | (func['funct1'])
                     out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'OUT'.casefold()):  # rds, portnumber
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['m_type'] << opCodeShift) | (
-                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct0'])
+                    op1 << rdsShift) | (line[2] << shmtShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'IN'.casefold()):  # rds, portnumber
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['m_type'] << opCodeShift) | (
-                    op1 << rdsShift) | (int(line[2]) << shmtShift) | (func['funct1'])
+                    op1 << rdsShift) | (line[2] << shmtShift) | (func['funct1'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'LDD'.casefold()):
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
                 op2 = reg.get(line[2], None)
-                if (op1 == None or op2 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['m_type'] << opCodeShift) | (
                     op2 << rdsShift) | (op1 << rsrShift) | (func['funct2'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'STD'.casefold()):  # STD R0, R1  -> R0-> dst  R1 -> src
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
                 op2 = reg.get(line[2], None)
-                if (op1 == None or op2 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['m_type'] << opCodeShift) | (
                     op1 << rdsShift) | (op2 << rsrShift) | (func['funct3'])
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'LDM'.casefold()):  # LDM R0, 55
-            if (len(line) == 3):
+            if(len(line) == 3):
                 op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                if(op1 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
                 temp = temp | (opCode['I_type'] << opCodeShift) | (
                     op1 << rdsShift) | (func['funct0'])
                 out[currentIP] = temp
                 currentIP += 1
-                temp = int(line[2])
-                if (temp < 0):
-                    temp = (temp + (1 << bits)) % (1 << bits)
+                temp = line[2]
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'CLR_FLAGS'.casefold()):
-            if (len(line) == 1):
+            if(len(line) == 1):
                 temp = temp | (opCode['CLR_FLAGS'] << opCodeShift)
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
-        elif (line[0].casefold() == 'SETINT'.casefold()):
-            if (len(line) == 1):
-                temp = temp | (opCode['SETINT'] << opCodeShift)
-                out[currentIP] = temp
-            else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         elif (line[0].casefold() == 'NOP'.casefold()):
-            if (len(line) == 1):
+            if(len(line) == 1):
                 out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
-        elif (line[0].casefold() == 'RST'.casefold()):
-            if (len(line) == 1):
-                temp = temp | (opCode['SETINT'] << opCodeShift)
-                out[currentIP] = temp
-            else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         # rds , imediate # call Rds , # CALL label
         elif (line[0].casefold() == 'CALL'.casefold()):
-            if (len(line) == 2):
-                op1 = reg.get(line[1], None)
-                if (op1 == None):
-                    temp = temp | (opCode['I_type'] <<
-                                   opCodeShift) | (func['funct1'])
-                    out[currentIP] = temp
-                    currentIP += 1
-                    temp = line[1]
-                    labelused.append(line[1])
-                    out[currentIP] = temp
-                else:
-                    temp = temp | (opCode['CALL'] << opCodeShift) | (
-                        op1 << rdsShift)
-                    out[currentIP] = temp
+            if(len(line) == 2):
+                temp = temp | (opCode['I_type'] <<
+                               opCodeShift) | (func['funct1'])
+                out[currentIP] = temp
+                currentIP += 1
+                temp = line[1]
+                labelused.append(line[1])
+                out[currentIP] = temp
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
-        elif (len(line) == 1):
-            if (line[0][-1] == ':'):
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
+        elif(len(line) == 1):
+            if(line[0][-1] == ':'):
                 label[line[0][:-1]] = currentIP
                 continue
             else:
-                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                return 'Error in ' + lineOld + 'Instruction number:' + str(numISA)
         else:
-            return 'Invaild Instruction (instruction is not in the ISA please check your code): ' + lineOld + '-> ' + str((numISA + 1))
+            return 'Invaild Instruction (instruction is not in the ISA please check your code): ' + lineOld + '-> ' + str(numISA)
         currentIP += 1
         numISA += 1
 
@@ -535,24 +499,13 @@ def CompileOutput(arrayISA, out, start, end):
 
 label = {}
 labelused = []
-
-
 def labelCompile(out):
-    imm1Shift = 3
-    try:
-        # loop for label
-        # second loop for label instuctions
-        for k, v in out.items():
-            if (v in labelused):
-                labelValue = label[v]
-                tempim1 = (labelValue >> 16) & 0xF
-                tempim2 = labelValue & 0xFFFF
-                out[k-1] = out[k-1] | (tempim1 << imm1Shift)
-                out[k] = tempim2
-    except:
-        print(Fore.RED + 'Error in handling jumping labels! please check it again!')
-        print(Style.RESET_ALL)
-        exit()
+
+    # loop for label
+    # second loop for label instuctions
+    for k, v in out.items():
+        if(v in labelused):
+            out[k] = label[v]
 
 
 arrayISA = []
@@ -560,7 +513,7 @@ arrayISA = []
 try:
     file = open(fileName, 'r')
     getInput(file, arrayISA)
-    if (len(arrayISA) == 0):
+    if(len(arrayISA) == 0):
         print(Fore.RED + 'File is Empty! Please check it again.')
         print(Style.RESET_ALL)
         exit()
@@ -576,100 +529,79 @@ except IOError:
 # spliting Vector and ()
 # check for VECT
 arrVect = []
-for vec in arrayISA:
-    if ('VECT' in vec):
-        index = arrayISA.index(vec)
-        arrVect = arrayISA[index + 1:]
-        del arrayISA[index:]
-
-
-counter1 = 0
-counter2 = 0
-for test in arrayISA:
-    if ('{\n' == test):
-        counter1 += 1
-    elif ('}\n' == test):
-        counter2 += 1
-if counter1 != counter2:
-    print(Fore.RED + '{ and } are not of the same number! please check your curley brackets. number counter of { ' +
-          str(counter1) + ' number counter of } ' + str(counter2))
-    print(Style.RESET_ALL)
-    exit()
+if ('VECT\n' in arrayISA):
+    index = arrayISA.index('VECT\n')
+    arrVect = arrayISA[index + 1:]
+    del arrayISA[index:]
 
 # check for {}
-arrSpecial = [[0 for x in range(0)] for x in range(counter1)]
-for i in range(counter1):
-    if (('{\n' in arrayISA) and ('}\n' in arrayISA)):
-        index1 = arrayISA.index('{\n')
-        index2 = arrayISA.index('}\n')
-        arrSpecial[i] = arrayISA[index1 + 1: index2]
-        del arrayISA[index1: index2 + 1]
+arrSpecial = []
+if (('{\n' in arrayISA) and ('}\n' in arrayISA)):
+    index1 = arrayISA.index('{\n')
+    index2 = arrayISA.index('}\n')
+    arrSpecial = arrayISA[index1 + 1: index2]
+    del arrayISA[index1: index2 + 1]
 
 # dectionary of compiled ISA
 out = OrderedDict()
 
 # Compile VECT
-if (len(arrVect) != 0):
+if(len(arrVect) != 0):
     startMain = 0
     endMain = 31
     errorMessage = CompileOutput(arrVect, out, startMain, endMain)
-    if (errorMessage != 0):
+    if(errorMessage != 0):
         print(Fore.RED + errorMessage + '! Please check it again.')
         print(Style.RESET_ALL)
         exit()
-    if (len(out) == 0):
+    if(len(out) == 0):
         print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
         print(Style.RESET_ALL)
         exit()
 
 # Compile ISA
-if (len(arrayISA) != 0):
+if(len(arrayISA) != 0):
     startMain = 32
     endMain = 1048575
     errorMessage = CompileOutput(arrayISA, out, startMain, endMain)
-    if (errorMessage != 0):
+    if(errorMessage != 0):
         print(Fore.RED + errorMessage + '! Please check it again.')
         print(Style.RESET_ALL)
         exit()
-    if (len(out) == 0):
+    if(len(out) == 0):
         print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
         print(Style.RESET_ALL)
         exit()
 
-# Compile {}
-for i in range(counter1):
-    if (len(arrSpecial[i]) != 0):
-        startMain = int(arrSpecial[i][0])
-        del arrSpecial[i][0]
-        endMain = 1048575
-        errorMessage = CompileOutput(arrSpecial[i], out, startMain, endMain)
-        if (errorMessage != 0):
-            print(Fore.RED + errorMessage + '! Please check it again.')
-            print(Style.RESET_ALL)
-            exit()
-        if (len(out) == 0):
-            print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
-            print(Style.RESET_ALL)
-            exit()
+#Compile ()
+if(len(arrSpecial) != 0):
+    startMain = int(arrSpecial[0])
+    del arrSpecial[0]
+    endMain = 1048575
+    errorMessage = CompileOutput(arrSpecial, out, startMain, endMain)
+    if(errorMessage != 0):
+        print(Fore.RED + errorMessage + '! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
+    if(len(out) == 0):
+        print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
+        print(Style.RESET_ALL)
+        exit()
 
 labelCompile(out)
 
 # write in file
 # write out in
-outConst = ['// instance=/processor/instr_fetch/instr_mem/memory\n',
-            '// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1\n']
+outConst = ['// instance=/processor/instr_fetch/instr_mem/memory',
+            '// format=mti addressradix=d dataradix=h version=1.0 wordsperline=1']
 fileOut = open(fileNameOut, "w")
-for txt in outConst:
-    fileOut.write(txt)
 for key, vlaue in out.items():
     # formating the output
-    line = str(key).zfill(8) + ': ' + \
-        str(str(hex(int(vlaue)))[2:]).zfill(4) + '\n'
+    line = str(key).zfill(8) + ': ' + str(str(hex(int(vlaue)))[2:]).zfill(4) + '\n'
     fileOut.write(line)
 fileOut.close()
 
-print()
 print(Fore.GREEN + 'Assembled Successfully. File Name: ' + fileNameOut)
 print(Fore.GREEN + 'Have Fun :)')
-print(Fore.GREEN + 'Wish You Happy Coding :)')
 print(Style.RESET_ALL)
+

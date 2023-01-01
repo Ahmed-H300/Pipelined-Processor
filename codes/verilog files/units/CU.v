@@ -1,7 +1,7 @@
 /*this is the control unit which is responsible for creating most of enable and select signals that will make the processor work correctly*/
 module CU(RegLow_write, ALU_OP, RegHigh_write, ALU_src1, MemToReg, memWrite, memRead, portWrite, portRead,
 			memType, PC_push_pop, flags_push_pop, JMP_type, is_jmp, JMP_src, SET_Z, SET_N, SET_C, SET_OVF, 
-			CLR_Z, CLR_N, CLR_C, CLR_OVF, SP_src, mem_data_src, mem_address_src, SET_INT, instruction);
+			CLR_Z, CLR_N, CLR_C, CLR_OVF, SP_src, mem_data_src, mem_address_src, SET_INT, RST, instruction);
 
 /*this is the instruction to decode which is 16 bits*/
 input wire [15:0] instruction;
@@ -87,6 +87,8 @@ output wire mem_address_src;
 /*this is the software interrupt wire*/
 output wire SET_INT;
 
+/*this is software reset wire*/
+output wire RST;
 
 /**************************************************************
 	temp wire to make the code looks clean
@@ -124,7 +126,7 @@ assign I_funct = instruction[2:0];
 
 /*to detect the R type instruction*/
 wire is_R_type;
-assign is_R_type = (opcode == 4'd1) | (opcode == 4'd2) | (opcode == 4'd3);
+assign is_R_type = (opcode == 4'd1) | (opcode == 4'd2) | (opcode == 4'd3) | (opcode == 4'd12);
 
 /*to detect the B type instruction*/
 wire is_B_type;
@@ -162,6 +164,9 @@ assign is_CALL = (opcode == 4'd10);
 wire is_SET_INT_inst;
 assign is_SET_INT_inst = (opcode == 4'd11);
 
+/*to detect if the instruction is software reset*/
+wire is_RST_inst;
+assign is_RST_inst = (opcode == 4'd13);
 
 /**************************************************************
 	detection of the instruction itself
@@ -249,27 +254,27 @@ assign is_STD_inst = (is_M_type & (funct == 2'd3));
 
 /*to detect if the instruction is LDM*/
 wire is_LDM_inst;
-assign is_LDM_inst = (is_I_type & (funct == 2'd0));
+assign is_LDM_inst = (is_I_type & (I_funct == 3'd0));
 
 /*to detect if the instruction is CALL using immediate value*/
 wire is_CALL_hashImm_inst;
-assign is_CALL_hashImm_inst = (is_I_type & (funct == 2'd1));
+assign is_CALL_hashImm_inst = (is_I_type & (I_funct == 3'd1));
 
 /*to detect if the instruction is JMP unconditionally using immediate value*/
 wire is_JMP_hashImm_inst;
-assign is_JMP_hashImm_inst = (is_I_type & (funct == 2'd2));
+assign is_JMP_hashImm_inst = (is_I_type & (I_funct == 3'd2));
 
 /*to detect if the instruction is jump if carry flag using immediate value*/
 wire is_JC_hashImm_inst;
-assign is_JC_hashImm_inst = (is_I_type & (funct == 2'd3));
+assign is_JC_hashImm_inst = (is_I_type & (I_funct == 3'd3));
 
 /*to detect if the instruction is jump if negative flag using immediate value*/
 wire is_JN_hashImm_inst;
-assign is_JN_hashImm_inst = (is_I_type & (funct == 2'd4));
+assign is_JN_hashImm_inst = (is_I_type & (I_funct == 3'd4));
 
 /*to detect if the instruction is jump if zero flag using immediate value*/
 wire is_JZ_hashImm_inst;
-assign is_JZ_hashImm_inst = (is_I_type & (funct == 2'd5));
+assign is_JZ_hashImm_inst = (is_I_type & (I_funct == 3'd5));
 
 
 /**************************************************************
@@ -278,23 +283,26 @@ assign is_JZ_hashImm_inst = (is_I_type & (funct == 2'd5));
 wire [3:0] selected_ALU_OP_from_group0; 	// used to detected the needed ALU operation from group0 based on funct
 wire [3:0] selected_ALU_OP_from_group1;		// used to detected the needed ALU operation from group1 based on funct
 wire [3:0] selected_ALU_OP_from_group2;		// used to detected the needed ALU operation from group2 based on funct
+wire [3:0] selected_ALU_OP_from_group3;		// used to detected the needed ALU operation from group3 based on funct
 
 
 assign selected_ALU_OP_from_group0 = 	(funct == 4'd0) ? 4'd10 :		// Division (DIV)
-										(funct == 4'd1) ? 4'd9 :		// multiplication (MUL)
-										(funct == 4'd2) ? 4'd0 :		// addition (ADD)
+										(funct == 4'd1) ? 4'd9 	:		// multiplication (MUL)
+										(funct == 4'd2) ? 4'd0 	:		// addition (ADD)
 										4'd1;							// subtraction (SUB)									
 
-assign selected_ALU_OP_from_group1 = 	(funct == 4'd0) ? 4'd7 :		// shift left (SHL)
-										(funct == 4'd1) ? 4'd8 :		// shift right (SHR)
-										(funct == 4'd2) ? 4'd2 :		// increment bt 1 (INC)
+assign selected_ALU_OP_from_group1 = 	(funct == 4'd0) ? 4'd7 	:		// shift left (SHL)
+										(funct == 4'd1) ? 4'd8 	:		// shift right (SHR)
+										(funct == 4'd2) ? 4'd2 	:		// increment bt 1 (INC)
 										4'd3;							// decrement by one (DEC)
 										
-assign selected_ALU_OP_from_group2 = 	(funct == 4'd0) ? 4'd5 :		// bitwise OR (OR)
-										(funct == 4'd1) ? 4'd4 :		// bitwise AND (AND)
-										(funct == 4'd2) ? 4'd6 :		// bitwise NOT (NOT)
+assign selected_ALU_OP_from_group2 = 	(funct == 4'd0) ? 4'd5 	:		// bitwise OR (OR)
+										(funct == 4'd1) ? 4'd4 	:		// bitwise AND (AND)
+										(funct == 4'd2) ? 4'd6 	:		// bitwise NOT (NOT)
 										4'd11;							// move instruction (MOV)
-											 
+
+assign selected_ALU_OP_from_group3 = 	(funct == 4'd0) ? 4'd12	:		// modululs (MOD)
+										4'd11;							// (defualt (MOV) instruction)
 
 /*
 	calculating the value of RegLow_write :
@@ -331,12 +339,14 @@ assign RegHigh_write = is_MUL_inst;
 		- 9 (MUL) when opcode is 1 and funct is 1
 		- 10 (DIV) when opcode is 1 and funct is 0
 		- 11 (MOV) when opcode is 3 and funct is 3
+		- 12 (MOD) when opcode is 12 and funct is 0
 	otherwise:
 		- we use the command MOV for any other operation
 */
-assign ALU_OP = (opcode == 4'd1) ? selected_ALU_OP_from_group0 :	// select the operation from the group0
-				(opcode == 4'd2) ? selected_ALU_OP_from_group1 :	// select the operation from the group1
-				(opcode == 4'd3) ? selected_ALU_OP_from_group2 :	// select the operation from the group2
+assign ALU_OP = (opcode == 4'd1) 	? selected_ALU_OP_from_group0 :	// select the operation from the group0
+				(opcode == 4'd2) 	? selected_ALU_OP_from_group1 :	// select the operation from the group1
+				(opcode == 4'd3) 	? selected_ALU_OP_from_group2 :	// select the operation from the group2
+				(opcode == 4'd12)	? selected_ALU_OP_from_group3 :	// select the operation from the group3
 				4'd11;												// make MOV command is the default command
 				
 /*
@@ -556,12 +566,20 @@ assign mem_address_src = is_S_type | is_CALL | is_CALL_hashImm_inst;
 
 
 /*
-	calculating the value of mem_address_src :
+	calculating the value of SET_INT :
 	---------------------------------------
 	acive in :
 		- SET_INT instruction
 */
 assign SET_INT = is_SET_INT_inst;
 	
+	
+/*
+	calculating the value of RST :
+	---------------------------------------
+	acive in :
+		- RST instruction
+*/	
+assign RST = is_RST_inst;	
 				
 endmodule
