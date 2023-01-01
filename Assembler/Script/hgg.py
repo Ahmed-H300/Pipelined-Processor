@@ -82,6 +82,7 @@ def CompileOutput(arrayISA, out, start, end):
         'CLR_FLAGS': 0b1001,
         'CALL': 0b1010,
         'SETINT': 0b1011,
+        'group3': 0b1100,
     }
     func = {
         'funct0': 0b000,
@@ -120,6 +121,17 @@ def CompileOutput(arrayISA, out, start, end):
                 if (op1 == None or op2 == None):
                     return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
                 temp = temp | (opCode['group0'] << opCodeShift) | (
+                    op2 << rdsShift) | (op1 << rsrShift) | (func['funct0'])
+                out[currentIP] = temp
+            else:
+                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+        elif (line[0].casefold() == 'MOD'.casefold()):  # DIV R0, R1   -> R0->src    -> R1-> dst
+            if (len(line) == 3):
+                op1 = reg.get(line[1], None)
+                op2 = reg.get(line[2], None)
+                if (op1 == None or op2 == None):
+                    return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+                temp = temp | (opCode['group3'] << opCodeShift) | (
                     op2 << rdsShift) | (op1 << rsrShift) | (func['funct0'])
                 out[currentIP] = temp
             else:
