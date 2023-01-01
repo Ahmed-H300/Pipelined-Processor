@@ -83,6 +83,7 @@ def CompileOutput(arrayISA, out, start, end):
         'CALL': 0b1010,
         'SETINT': 0b1011,
         'group3': 0b1100,
+        'RST': 0b1101,
     }
     func = {
         'funct0': 0b000,
@@ -491,6 +492,12 @@ def CompileOutput(arrayISA, out, start, end):
                 return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
         elif (line[0].casefold() == 'NOP'.casefold()):
             if (len(line) == 1):
+                out[currentIP] = temp
+            else:
+                return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
+        elif (line[0].casefold() == 'RST'.casefold()):
+            if (len(line) == 1):
+                temp = temp | (opCode['SETINT'] << opCodeShift)
                 out[currentIP] = temp
             else:
                 return 'Error in ' + lineOld + 'Instruction number:' + str((numISA + 1))
