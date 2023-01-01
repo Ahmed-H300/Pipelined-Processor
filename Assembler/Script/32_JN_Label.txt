@@ -3,7 +3,7 @@ label1:
 	LDM R3, 10
 	JN label2
 	SETN
-	JN label1
+	JN label3
 	INC R1
 
 {

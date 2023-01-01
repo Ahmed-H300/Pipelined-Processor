@@ -562,13 +562,28 @@ if ('VECT\n' in arrayISA):
     arrVect = arrayISA[index + 1:]
     del arrayISA[index:]
 
+
+counter1 = 0
+counter2 = 0
+for test in arrayISA:
+    if ('{\n' == test):
+        counter1 += 1
+    elif ('}\n' == test):
+        counter2 += 1
+if counter1 != counter2:
+    print(Fore.RED + '{ and } are not of the same number! please check your curley brackets. number counter of { ' +
+          str(counter1) + ' number counter of } ' + str(counter2))
+    print(Style.RESET_ALL)
+    exit()
+
 # check for {}
-arrSpecial = []
-if (('{\n' in arrayISA) and ('}\n' in arrayISA)):
-    index1 = arrayISA.index('{\n')
-    index2 = arrayISA.index('}\n')
-    arrSpecial = arrayISA[index1 + 1: index2]
-    del arrayISA[index1: index2 + 1]
+arrSpecial = [[0 for x in range(0)] for x in range(counter1)]
+for i in range(counter1):
+    if (('{\n' in arrayISA) and ('}\n' in arrayISA)):
+        index1 = arrayISA.index('{\n')
+        index2 = arrayISA.index('}\n')
+        arrSpecial[i] = arrayISA[index1 + 1: index2]
+        del arrayISA[index1: index2 + 1]
 
 # dectionary of compiled ISA
 out = OrderedDict()
@@ -601,20 +616,21 @@ if (len(arrayISA) != 0):
         print(Style.RESET_ALL)
         exit()
 
-# Compile ()
-if (len(arrSpecial) != 0):
-    startMain = int(arrSpecial[0])
-    del arrSpecial[0]
-    endMain = 1048575
-    errorMessage = CompileOutput(arrSpecial, out, startMain, endMain)
-    if (errorMessage != 0):
-        print(Fore.RED + errorMessage + '! Please check it again.')
-        print(Style.RESET_ALL)
-        exit()
-    if (len(out) == 0):
-        print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
-        print(Style.RESET_ALL)
-        exit()
+# Compile {}
+for i in range(counter1):
+    if (len(arrSpecial[i]) != 0):
+        startMain = int(arrSpecial[i][0])
+        del arrSpecial[i][0]
+        endMain = 1048575
+        errorMessage = CompileOutput(arrSpecial[i], out, startMain, endMain)
+        if (errorMessage != 0):
+            print(Fore.RED + errorMessage + '! Please check it again.')
+            print(Style.RESET_ALL)
+            exit()
+        if (len(out) == 0):
+            print(Fore.RED + 'Error Couldn\'t assemble the file! Please check it again.')
+            print(Style.RESET_ALL)
+            exit()
 
 labelCompile(out)
 
@@ -632,6 +648,8 @@ for key, vlaue in out.items():
     fileOut.write(line)
 fileOut.close()
 
+print()
 print(Fore.GREEN + 'Assembled Successfully. File Name: ' + fileNameOut)
 print(Fore.GREEN + 'Have Fun :)')
+print(Fore.GREEN + 'Wish You Happy Coding :)')
 print(Style.RESET_ALL)
