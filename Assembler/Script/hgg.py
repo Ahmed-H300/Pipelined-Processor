@@ -569,10 +569,11 @@ except IOError:
 # spliting Vector and ()
 # check for VECT
 arrVect = []
-if ('VECT\n' in arrayISA):
-    index = arrayISA.index('VECT\n')
-    arrVect = arrayISA[index + 1:]
-    del arrayISA[index:]
+for vec in arrayISA:
+    if ('VECT' in vec):
+        index = arrayISA.index(vec)
+        arrVect = arrayISA[index + 1:]
+        del arrayISA[index:]
 
 
 counter1 = 0
