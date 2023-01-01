@@ -180,23 +180,8 @@ bonus:
 Notes:
 	-> assembler should use Rdst as the the target register while Rsrc as the memory address in STD and LDD commands
 	-> assembler should replace RET, RTI with their equivalent commands
-	-> assembler should map the addresses of the ports to their real addresses
 	-> assembler should detect invalid instructions
-	-> reset before interrupt if both happened at the same time
-	-> for reset signal, it has to be stable for at least 1 clock cycle
 	-> when flushing, we clear all the registers except for INT signal and PC
-=====================================================================================
-TODO:
-	-> when doing jmp then reset, the jmp instruction will flush the int signal
- 	-> make reset aysnchronous and flush synchronous
-	-> complete interrupt design
-	-> CLR_FLAGs and CLR_interrupt should execute same as RTI
-	-> CLR_INT (will be discussed with hany)
-	-> forward the port memory also in the case of (IN Rdst,Port then out Rdst, port)
-	-> reset is asynchronous with clock
-	-> make memory for data and in ports
-	-> solve the problems related to INT 
-	-> add the overflow flag
 =====================================================================================
 CAUSE valus:
 	->	0	:	no error
