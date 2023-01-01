@@ -40,7 +40,7 @@ def getInput(file, arrayISA):
         if (line.strip()):
             if (';' in line):
                 # to delte any commnets form the line
-                indexofhash = line.rfind(';')
+                indexofhash = line.find(';')
                 line = line[0:indexofhash]
                 if (not line.strip()):
                     continue
